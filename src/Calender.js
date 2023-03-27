@@ -1,8 +1,7 @@
 import dayjs from 'dayjs'
 import isBetween from 'dayjs/plugin/isBetween'
 import { Fragment, useState } from 'react'
-import { Grid, Badge, Button } from '@mui/material'
-import Task from './Task'
+import { Grid } from '@mui/material'
 import Week from './Week'
 
 dayjs.extend(isBetween)
