@@ -54,8 +54,6 @@ function Calender(){
     let [tasksInWeeks, setTasksInWeeks] = useState(stuff.tasksInWeeks) //2D array where each subarray contains the tasks of the corresponding week
     let [days, setDays] = useState(stuff.newDays) //2D array of days
 
-    daysOfMonth()
-
     //change year and months
     function nextYear(){
         year = year + 1 //needed to do this funky formatting to avoid race conditions for some reason
@@ -100,7 +98,7 @@ function Calender(){
         for(let i = firstOfMonth.date(); i <= lastOfMonth.date(); i++){
             week.push(firstOfMonth.date(i))
             //If saturday, push to newDays array and reset the current week
-            if(firstOfMonth.date(i).day() == 6){
+            if(firstOfMonth.date(i).day() === 6){
                 newDays.push(week)
                 tasksInWeeks.push(tasksInWeek(week)) //Get tasks for this week
                 week = []
@@ -151,14 +149,14 @@ function Calender(){
             {/* display current year and month, with buttons
                 currently this can only show one month at a time */}
             <button onClick={e => prevYear(e)}>prev year</button>
-            <Fragment>{year}</Fragment>
             <button onClick={nextYear}>next year</button>
 
-            <div></div>
-
             <button onClick={prevMonth}>prev month</button>
-            <Fragment>{months[month]}</Fragment>
             <button onClick={nextMonth}>next month</button>
+
+            <div>{year + " " + months[month]}</div>
+
+            
 
             <Grid container columns={7} paddingTop={"10px"}>
 

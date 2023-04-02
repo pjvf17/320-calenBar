@@ -23,7 +23,7 @@ export default function Day(props){
                 let showBage = props.day !== "0" && (d.day() === "0" || d.date() === 1 || d.isSame(t.startDate) || props.dayOfWeek === 0)
 
                 {/* If tasks is today, draw visible line, otherwise make it invisible */}
-                if(dayjs(props.day).isBetween(t.startDate, t.endDate, "day", "[]")){
+                if(d.isBetween(t.startDate, t.endDate, "day", "[]")){
                     return (
                         <div key={i}>
                             <Badge badgeContent={t.description} color="success" invisible={!showBage}></Badge>
