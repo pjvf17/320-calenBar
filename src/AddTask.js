@@ -8,6 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Stack, Link } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import React, {useState} from 'react';
+import Service from './Service';
 
 
 export default function AddTask() {
@@ -17,7 +18,14 @@ export default function AddTask() {
 
   function handleSubmit(event) {
       event.preventDefault();
-      console.log(title, priority, description) 
+      // console.log(title, priority, description) 
+      let task = {
+        title: title,
+        priority: priority,
+        description: description
+      }
+      Service.postTask(task)
+      handleClose()
   }
   const [open, setOpen] = React.useState(false);
 
@@ -26,6 +34,9 @@ export default function AddTask() {
   };
 
   const handleClose = () => {
+    setTitle('')
+    setPriority('')
+    setDescription('')
     setOpen(false);
   };
 
@@ -81,13 +92,16 @@ export default function AddTask() {
                 <br/>
                 <DatePicker label="Estimated Completion"/>
                 <br/>
-                <br/>
+                <div style={{textAlign:"right"}}>
+                  <Button color = "primary" type="submit">Submit</Button>
+                  <Button color = "secondary" onClick={handleClose}>Cancel</Button>
+                </div>
             </form>  
         </DialogContent>
-        <DialogActions>
+        {/* <DialogActions>
           <Button color = "secondary" onClick={handleClose}>Cancel</Button>
           <Button type="submit">Add Task</Button>
-        </DialogActions>
+        </DialogActions> */}
       </Dialog>
     </div>
   );

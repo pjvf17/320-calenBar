@@ -38,7 +38,7 @@ class Service{
 
 
     postTask(task){
-
+        console.log(task)
     }
 
     deleteTask(task){
