@@ -3,6 +3,7 @@ import isBetween from 'dayjs/plugin/isBetween'
 import { Fragment, useState } from 'react'
 import { Grid } from '@mui/material'
 import Week from './Week'
+import service from './Service'
 
 dayjs.extend(isBetween)
 let djs = dayjs()
@@ -14,40 +15,9 @@ function Calender(){
 
     let [year, setYear] = useState(djs.year())
     let [month, setMonth] = useState(djs.month())
-
-    let task1 = {
-        startDate: "2023-3-2",
-        endDate: "2023-3-21",
-        color: "blue",
-        description: "first"
-    }
-    let task2 = {
-        startDate: "2023-3-10",
-        endDate: "2023-3-21",
-        color: "green",
-        description: "second"
-    }
-    let task3 = {
-        startDate: "2023-3-21",
-        endDate: "2023-3-24",
-        color: "red",
-        description: "third"
-    }
-    let task4 = {
-        startDate: "2023-3-24",
-        endDate: "2023-4-12",
-        color: "orange",
-        description: "fourth"
-    }
-    let task5 = {
-        startDate: "2023-3-22",
-        endDate: "2023-4-17",
-        color: "cyan",
-        description: "fifth"
-    }
     
 
-    let [tasks, setTasks] = useState([task1, task2, task3, task4, task5])
+    let [tasks, setTasks] = useState(service.getTasksByYearAndMonth(year, month))
 
     // daysOfMonth gets both the days and the tasks on a given month
     let stuff = daysOfMonth()
@@ -63,13 +33,13 @@ function Calender(){
         setDays(stuff.newDays)
     }
     function nextMonth(){
-        month = month + 1 < 12? month + 1 : 0
+        month = month < 11? month + 1 : 0
         setMonth(month)
         let stuff = daysOfMonth()
         setTasksInWeeks(stuff.tasksInWeeks)
         setDays(stuff.newDays)
     }
-    function prevYear(e){
+    function prevYear(){
         year = year - 1
         setYear(year)
         let stuff = daysOfMonth()
@@ -77,7 +47,7 @@ function Calender(){
         setDays(stuff.newDays)
     }
     function prevMonth(){
-        month = month - 1 > -1? month - 1 : 11
+        month = month > 0? month - 1 : 11
         setMonth(month)
         let stuff = daysOfMonth()
         setTasksInWeeks(stuff.tasksInWeeks)
@@ -148,7 +118,7 @@ function Calender(){
         
             {/* display current year and month, with buttons
                 currently this can only show one month at a time */}
-            <button onClick={e => prevYear(e)}>prev year</button>
+            <button onClick={prevYear}>prev year</button>
             <button onClick={nextYear}>next year</button>
 
             <button onClick={prevMonth}>prev month</button>
