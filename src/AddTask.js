@@ -1,24 +1,21 @@
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import { Stack, Link } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { MuiColorInput } from 'mui-color-input'
+import dayjs, { Dayjs } from 'dayjs';
 import React, {useState} from 'react';
 import Service from './Service';
-
 
 export default function AddTask() {
   const [title, setTitle] = useState('')
   const [priority, setPriority] = useState('')
   const [description, setDescription] = useState('')
-  const [startDate, setStartDate] = useState('')
-  const [endDate, setEndDate] = useState('')
-  const [estimateDate, setEstimateDate] = useState('')
+  const [startDate, setStartDate] = useState(dayjs())
+  const [endDate, setEndDate] = useState(dayjs().add(1, 'd'))
+  const [estimateDate, setEstimateDate] = useState(dayjs())
   const [color, setColor] = React.useState('#ffffff')
 
   function handleSubmit(event) {
@@ -46,9 +43,9 @@ export default function AddTask() {
     setTitle('')
     setPriority('')
     setDescription('')
-    setStartDate('')
-    setEndDate('')
-    setEstimateDate('')
+    setStartDate(dayjs())
+    setEndDate(dayjs().add(1,'d'))
+    setEstimateDate(dayjs())
     setColor('#ffffff')
     setOpen(false);
   };
