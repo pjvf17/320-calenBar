@@ -15,14 +15,20 @@ export default function AddTask() {
   const [title, setTitle] = useState('')
   const [priority, setPriority] = useState('')
   const [description, setDescription] = useState('')
+  const [startDate, setStartDate] = useState('')
+  const [endDate, setEndDate] = useState('')
+  const [estimateDate, setEstimateDate] = useState('')
 
   function handleSubmit(event) {
       event.preventDefault();
       // console.log(title, priority, description) 
       let task = {
-        title: title,
-        priority: priority,
-        description: description
+        title,
+        priority,
+        description,
+        startDate,
+        endDate,
+        estimateDate
       }
       Service.postTask(task)
       handleClose()
@@ -37,6 +43,9 @@ export default function AddTask() {
     setTitle('')
     setPriority('')
     setDescription('')
+    setStartDate('')
+    setEndDate('')
+    setEstimateDate('')
     setOpen(false);
   };
 
@@ -86,11 +95,23 @@ export default function AddTask() {
                     multiline
                     sx={{mb: 4}}
                 />
-                <DatePicker label="Start Date"/>
-                <DatePicker label="End Date"/>
+                <DatePicker 
+                  label="Start Date"
+                  value={startDate}
+                  onChange={(newValue) => setStartDate(newValue)}
+                />
+                <DatePicker 
+                  label="End Date"
+                  value={endDate}
+                  onChange={(newValue) => setEndDate(newValue)}
+                />
                 <br/>
                 <br/>
-                <DatePicker label="Estimated Completion"/>
+                <DatePicker 
+                  label="Estimated Completion"
+                  value={estimateDate}
+                  onChange={(newValue) => setEstimateDate(newValue)}
+                />
                 <br/>
                 <div style={{textAlign:"right"}}>
                   <Button color = "primary" type="submit">Submit</Button>
