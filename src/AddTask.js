@@ -7,6 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Stack, Link } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { MuiColorInput } from 'mui-color-input'
 import React, {useState} from 'react';
 import Service from './Service';
 
@@ -18,6 +19,7 @@ export default function AddTask() {
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
   const [estimateDate, setEstimateDate] = useState('')
+  const [color, setColor] = React.useState('#ffffff')
 
   function handleSubmit(event) {
       event.preventDefault();
@@ -28,7 +30,8 @@ export default function AddTask() {
         description,
         startDate,
         endDate,
-        estimateDate
+        estimateDate,
+        color
       }
       Service.postTask(task)
       handleClose()
@@ -46,6 +49,7 @@ export default function AddTask() {
     setStartDate('')
     setEndDate('')
     setEstimateDate('')
+    setColor('#ffffff')
     setOpen(false);
   };
 
@@ -112,6 +116,7 @@ export default function AddTask() {
                   value={estimateDate}
                   onChange={(newValue) => setEstimateDate(newValue)}
                 />
+                <MuiColorInput value={color} onChange={(newColor) => setColor(newColor)} />
                 <br/>
                 <div style={{textAlign:"right"}}>
                   <Button color = "primary" type="submit">Submit</Button>
