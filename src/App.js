@@ -14,7 +14,7 @@ import { Fragment, useState } from 'react'
 
 function App() {
 
-  let [calender, setCalender] = useState({})
+  let [calender, setCalender] = useState({tasks: []})
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>    

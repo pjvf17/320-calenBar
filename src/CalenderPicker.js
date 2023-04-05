@@ -7,13 +7,14 @@ export default function CalenderPicker(props){
 
     let [calendars, setCalenders] = useState([])
     // service.getCalenders().then(data => setCalenders(data))
+
     useEffect(() => {
         // Update the document title using the browser API
         service.getCalenders().then(data=>setCalenders(data))
-      });
+      }, []);
     
-    function handleClick(e){
-        props.setCalender(e)
+    function handleClick(cal){
+        props.setCalender(cal)
     }
 
     return (

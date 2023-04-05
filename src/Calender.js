@@ -12,18 +12,19 @@ const dayNames = ["Sunday", "Monday", "Teusday", "Wednesday", "Thursday", "Frida
 
 function Calender(props){
 
-    console.log(props.tasks)
-
     let [year, setYear] = useState(djs.year())
     let [month, setMonth] = useState(djs.month())
 
-    let [tasks, setTasks] = useState(service.getTasksByYearAndMonth(year, month))
-
+    let tasks = props.tasks
+    console.log(tasks)
 
     // daysOfMonth gets both the days and the tasks on a given month
     let stuff = daysOfMonth()
+    // console.log(stuff.tasksInWeeks)
     let [tasksInWeeks, setTasksInWeeks] = useState(stuff.tasksInWeeks) //2D array where each subarray contains the tasks of the corresponding week
     let [days, setDays] = useState(stuff.newDays) //2D array of days
+    // console.log(days, tasksInWeeks)
+
 
     //change year and months
     function nextYear(){
@@ -104,9 +105,9 @@ function Calender(props){
             //start date is between first and last day of week, OR
             //end date is between first and last day of week, OR
             //first day of week is between first and last day of a task
-            if(dayjs(task.startDate).isBetween(week[0], week[week.length-1], "day", "[]") || 
-                    dayjs(task.endDate).isBetween(week[0], week[week.length-1], "day", "[]") || 
-                    week[0].isBetween(task.startDate, task.endDate, "day", "[]")){
+            if(dayjs(task.start_date).isBetween(week[0], week[week.length-1], "hour", "[]") || 
+                    dayjs(task.end_date).isBetween(week[0], week[week.length-1], "hour", "[]") || 
+                    week[0].isBetween(task.start_date, task.end_date, "hour", "[]")){
                         tasksThisWeek.push(task)
                     }
         }
@@ -144,7 +145,8 @@ function Calender(props){
                 {/* Create each week element */}
                 {days.map((w, i) => (
                         <Grid item key={i} xs={1}>
-                            <Week days = {w} tasks={tasksInWeeks[i]}></Week>
+                            {/* {console.log(tasksInWeeks[i])} */}
+                            <Week days = {w} tasks={stuff.tasksInWeeks[i]}></Week>
                         </Grid>
                 ))}
 
