@@ -1,6 +1,13 @@
-const REST_API_URL = 'placeholder'
+const REST_API_URL = 'http://127.0.0.1:8000/'
 
 class Service{
+
+    async getCalenders(){
+        let data = await fetch(REST_API_URL + "calendars/", {method: "GET"})
+        let json = await data.json()
+        // console.log(json)
+        return json
+    }
 
     getTasksByYearAndMonth(year, month){
         let task1 = {

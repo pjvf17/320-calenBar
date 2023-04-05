@@ -10,14 +10,15 @@ let djs = dayjs()
 const months = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 const dayNames = ["Sunday", "Monday", "Teusday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
-function Calender(){
+function Calender(props){
 
+    console.log(props.tasks)
 
     let [year, setYear] = useState(djs.year())
     let [month, setMonth] = useState(djs.month())
-    
 
     let [tasks, setTasks] = useState(service.getTasksByYearAndMonth(year, month))
+
 
     // daysOfMonth gets both the days and the tasks on a given month
     let stuff = daysOfMonth()
