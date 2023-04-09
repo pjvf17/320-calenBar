@@ -15,7 +15,7 @@ export default function AddTask() {
   const [description, setDescription] = useState('')
   const [startDate, setStartDate] = useState(dayjs())
   const [endDate, setEndDate] = useState(dayjs().add(1, 'd'))
-  const [estimateDate, setEstimateDate] = useState(dayjs())
+  const [estimatedCompletion, setEstimatedCompletion] = useState(0)
   const [color, setColor] = React.useState('#ffffff')
 
   function handleSubmit(event) {
@@ -27,8 +27,8 @@ export default function AddTask() {
         description,
         startDate,
         endDate,
-        estimateDate,
-        color
+        estimatedCompletion,
+        color 
       }
       Service.postTask(task)
       handleClose()
@@ -45,7 +45,7 @@ export default function AddTask() {
     setDescription('')
     setStartDate(dayjs())
     setEndDate(dayjs().add(1,'d'))
-    setEstimateDate(dayjs())
+    setEstimatedCompletion()
     setColor('#ffffff')
     setOpen(false);
   };
@@ -96,24 +96,33 @@ export default function AddTask() {
                     multiline
                     sx={{mb: 4}}
                 />
-                <DatePicker 
-                  label="Start Date"
-                  value={startDate}
-                  onChange={(newValue) => setStartDate(newValue)}
-                />
-                <DatePicker 
-                  label="End Date"
-                  value={endDate}
-                  onChange={(newValue) => setEndDate(newValue)}
-                />
+                <Stack spacing={2} direction="row">
+                  <DatePicker 
+                    label="Start Date"
+                    value={startDate}
+                    onChange={(newValue) => setStartDate(newValue)}
+                  />
+                  <DatePicker 
+                    label="End Date"
+                    value={endDate}
+                    onChange={(newValue) => setEndDate(newValue)}
+                  />
+                </Stack>
                 <br/>
                 <br/>
-                <DatePicker 
-                  label="Estimated Completion"
-                  value={estimateDate}
-                  onChange={(newValue) => setEstimateDate(newValue)}
-                />
-                <MuiColorInput value={color} onChange={(newColor) => setColor(newColor)} />
+                <Stack spacing={2} direction="row" sx={{marginBottom: 4}}>
+                  <TextField
+                          type="number"
+                          variant='outlined'
+                          color='secondary'
+                          label="Estimated Time"
+                          onChange={e => setEstimatedCompletion(e.target.value)}
+                          value={estimatedCompletion}
+                          fullWidth
+                          required
+                      />
+                  <MuiColorInput value={color} onChange={(newColor) => setColor(newColor)} />
+                </Stack>
                 <br/>
                 <div style={{textAlign:"right"}}>
                   <Button color = "primary" type="submit">Submit</Button>
@@ -121,10 +130,6 @@ export default function AddTask() {
                 </div>
             </form>  
         </DialogContent>
-        {/* <DialogActions>
-          <Button color = "secondary" onClick={handleClose}>Cancel</Button>
-          <Button type="submit">Add Task</Button>
-        </DialogActions> */}
       </Dialog>
     </div>
   );
