@@ -8,7 +8,7 @@ import service from './Service'
 dayjs.extend(isBetween)
 let djs = dayjs()
 const months = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-const dayNames = ["Sunday", "Monday", "Teusday", "Wednesday", "Thursday", "Friday", "Saturday"]
+const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
 function Calendar(props){
 
