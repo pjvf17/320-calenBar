@@ -101,16 +101,18 @@ export default function AddTask({calendar}) {
                     multiline
                     sx={{mb: 4}}
                 />
-                <DatePicker 
-                  label="Start Date"
-                  value={startDate}
-                  onChange={(newValue) => setStartDate(newValue)}
-                />
-                <DatePicker 
-                  label="End Date"
-                  value={endDate}
-                  onChange={(newValue) => setEndDate(newValue)}
-                />
+                <Stack spacing={2} direction="row">
+                  <DatePicker 
+                    label="Start Date"
+                    value={startDate}
+                    onChange={(newValue) => setStartDate(newValue)}
+                  />
+                  <DatePicker 
+                    label="End Date"
+                    value={endDate}
+                    onChange={(newValue) => setEndDate(newValue)}
+                  />
+                </Stack>
                 <br/>
                 <br/>
                 <TextField
@@ -131,10 +133,6 @@ export default function AddTask({calendar}) {
                 </div>
             </form>  
         </DialogContent>
-        {/* <DialogActions>
-          <Button color = "secondary" onClick={handleClose}>Cancel</Button>
-          <Button type="submit">Add Task</Button>
-        </DialogActions> */}
       </Dialog>
     </div>
   );
