@@ -1,9 +1,8 @@
 import dayjs from 'dayjs'
 import isBetween from 'dayjs/plugin/isBetween'
-import { Fragment, useState } from 'react'
-import { Grid } from '@mui/material'
+import {useState } from 'react'
+import { Button, Grid } from '@mui/material'
 import Week from './Week'
-import service from './Service'
 
 dayjs.extend(isBetween)
 let djs = dayjs()
@@ -126,13 +125,13 @@ function Calendar(props){
         
             {/* display current year and month, with buttons
                 currently this can only show one month at a time */}
-            <button onClick={prevYear}>prev year</button>
-            <button onClick={nextYear}>next year</button>
+            <Button style={{fontSize:"small"}} onClick={prevYear}>prev year</Button>
+            <Button style={{fontSize:"small"}}onClick={nextYear}>next year</Button>
 
-            <button onClick={prevMonth}>prev month</button>
-            <button onClick={nextMonth}>next month</button>
+            <Button style={{fontSize:"small"}} onClick={prevMonth}>prev month</Button>
+            <Button style={{fontSize:"small"}} onClick={nextMonth}>next month</Button>
 
-            <div>{year + " " + months[month]}</div>
+            <div style={{fontSize:"large"}}>{year + " " + months[month]}</div>
 
             
 

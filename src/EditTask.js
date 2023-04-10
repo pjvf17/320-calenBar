@@ -1,4 +1,3 @@
-
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -7,10 +6,9 @@ import { Stack, Link } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { MuiColorInput } from 'mui-color-input'
 import dayjs, { Dayjs } from 'dayjs';
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import Service from './Service';
-import { ReloadCalendarContext } from './App';
-import { EditModalContext } from './App';
+import { ReloadCalendarContext, EditModalContext } from './App';
 
 export default function EditTask({calendar}) {
   const { reloadCalendar, setReloadCalendar } = useContext(ReloadCalendarContext)
