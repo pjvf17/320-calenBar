@@ -41,7 +41,7 @@ export default function Day(props){
                             {/* button looked better than most things I tested */}
                             <Button style={{color: color, fontSize: "small"}} >{t.title}</Button>
                             {/* Fancy tooltip that appears when you hover */}
-                            <Tooltip title={t.title}>
+                            <Tooltip title={t.description}>
                                 <hr style={{border: "4px solid " + t.color, padding:"0px"}}></hr>
                             </Tooltip>
                         </div>
