@@ -1,10 +1,13 @@
+import React, { useContext } from "react"
 import { Badge, Grid } from "@mui/material"
 import dayjs from "dayjs"
 import isBetween from 'dayjs/plugin/isBetween'
+import { EditModalContext } from "./App"
 
 dayjs.extend(isBetween)
 
 export default function Day(props){
+    const { editModalOpen, setEditModalOpen, editTask, setEditTask } = useContext(EditModalContext)
 
     return(
         // Each day is a grid item surrounded by a border
@@ -25,7 +28,11 @@ export default function Day(props){
                 {/* If tasks is today, draw visible line, otherwise make it invisible */}
                 if(d.isBetween(t.start_date, t.end_date, "hour", "[]")){
                     return (
-                        <div key={i}>
+                        <div key={i} onClick={() => {
+                            setEditTask(t)
+                            console.log(t)
+                            setEditModalOpen(true)
+                        }}>
                             <Badge badgeContent={t.title} color="success" invisible={!showBage}></Badge>
                             <hr style={{border: "4px solid " + t.color, padding:"0px"}}></hr>
                         </div>

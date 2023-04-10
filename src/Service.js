@@ -60,10 +60,17 @@ class Service{
 
     }
 
-    editTask(task){
-
+    editTask(calendarId, task, setReloadCalendar){
+        return fetch(`${REST_API_URL}/calendars/${calendarId}/update_task/`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(task)
+        })
+        .then(res => res.json())
+        .catch(err => console.log(err))
     }
-
 }
 
 export default new Service()
