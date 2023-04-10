@@ -43,6 +43,7 @@ function App() {
           <AddTask calendar={calendar}></AddTask>
           <EditTask calendar={calendar}></EditTask>
           <CalendarPicker
+            calendar={calendar}
             setCalendar={setCalendar}
           ></CalendarPicker>
           <Calendar tasks={calendar.tasks}></Calendar>

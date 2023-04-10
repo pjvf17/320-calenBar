@@ -12,7 +12,19 @@ export default function CalendarPicker(props){
 
     useEffect(() => {
         // Update the document title using the browser API
-        service.getCalendars().then(data=>setCalendars(data))
+        service.getCalendars().then(data=> {
+            setCalendars(data)
+            if (data.length > 0){
+                const current = data.find(cal => cal.id === props.calendar.id)
+                if (!current){
+                    props.setCalendar(data[0])
+                } 
+                else {
+                    props.setCalendar(current)
+                }
+            }
+
+        })
       }, [reloadCalendar]);
     
     function handleClick(cal){
