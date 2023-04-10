@@ -1,29 +1,33 @@
+import { useContext, createContext } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Calender from './Calender';
+import Calendar from './Calendar';
 import AddTask from './AddTask'
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import CalenderPicker from './CalenderPicker';
+import CalendarPicker from './CalendarPicker';
 import service from './Service'
 import { Fragment, useState } from 'react'
 
 // const cors = require("cors");
 // app.use(cors());
 
+export const ReloadCalendarContext = createContext({reloadCalendar: false, setReloadCalendar: () => {}})
 
 function App() {
-
-  let [calender, setCalender] = useState({tasks: []})
+  let [calendar, setCalendar] = useState({tasks: []})
+  let [reloadCalendar, setReloadCalendar] = useState(false)
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>    
-    <div className="App">
-      <AddTask></AddTask>
-      <CalenderPicker setCalender={setCalender}></CalenderPicker>
-      <Calender tasks={calender.tasks}></Calender>
-    </div>
-  </LocalizationProvider>
+    <ReloadCalendarContext.Provider value={{reloadCalendar, setReloadCalendar}}>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>    
+      <div className="App">
+        <AddTask calendar={calendar}></AddTask>
+        <CalendarPicker setCalendar={setCalendar}></CalendarPicker>
+        <Calendar tasks={calendar.tasks}></Calendar>
+      </div>
+      </LocalizationProvider>
+    </ReloadCalendarContext.Provider>
   );
 }
 

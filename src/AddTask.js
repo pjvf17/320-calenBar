@@ -6,31 +6,36 @@ import { Stack, Link } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { MuiColorInput } from 'mui-color-input'
 import dayjs, { Dayjs } from 'dayjs';
-import React, {useState} from 'react';
+import React, { useState, useContext } from 'react';
 import Service from './Service';
+import { ReloadCalendarContext } from './App';
 
-export default function AddTask() {
+export default function AddTask({calendar}) {
   const [title, setTitle] = useState('')
   const [priority, setPriority] = useState('')
   const [description, setDescription] = useState('')
   const [startDate, setStartDate] = useState(dayjs())
   const [endDate, setEndDate] = useState(dayjs().add(1, 'd'))
-  const [estimateDate, setEstimateDate] = useState(dayjs())
+  const [estimateTime, setEstimateTime] = useState(1)
   const [color, setColor] = React.useState('#ffffff')
+
+  const { reloadCalendar, setReloadCalendar } = useContext(ReloadCalendarContext)
 
   function handleSubmit(event) {
       event.preventDefault();
       // console.log(title, priority, description) 
       let task = {
-        title,
-        priority,
-        description,
-        startDate,
-        endDate,
-        estimateDate,
+        title: title,
+        priority: priority,
+        description: description,
+        start_date: startDate,
+        end_date: endDate,
+        estimated_time: estimateTime,
         color
       }
-      Service.postTask(task)
+      Service.addTask(calendar.id, task).then(data => {
+        setReloadCalendar(!reloadCalendar)
+      })
       handleClose()
   }
   const [open, setOpen] = React.useState(false);
@@ -45,7 +50,7 @@ export default function AddTask() {
     setDescription('')
     setStartDate(dayjs())
     setEndDate(dayjs().add(1,'d'))
-    setEstimateDate(dayjs())
+    setEstimateTime(1)
     setColor('#ffffff')
     setOpen(false);
   };
@@ -108,10 +113,15 @@ export default function AddTask() {
                 />
                 <br/>
                 <br/>
-                <DatePicker 
-                  label="Estimated Completion"
-                  value={estimateDate}
-                  onChange={(newValue) => setEstimateDate(newValue)}
+                <TextField
+                    type="text"
+                    variant='outlined'
+                    color='secondary'
+                    label="Estimated Time (in hours)"
+                    onChange={e => setEstimateTime(e.target.value)}
+                    value={estimateTime}
+                    required
+                    sx={{mb: 4}}
                 />
                 <MuiColorInput value={color} onChange={(newColor) => setColor(newColor)} />
                 <br/>

@@ -10,7 +10,7 @@ let djs = dayjs()
 const months = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 const dayNames = ["Sunday", "Monday", "Teusday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
-function Calender(props){
+function Calendar(props){
 
     let [year, setYear] = useState(djs.year())
     let [month, setMonth] = useState(djs.month())
@@ -159,4 +159,4 @@ function Calender(props){
 }
 
 
-export default Calender
+export default Calendar
