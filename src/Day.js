@@ -23,10 +23,10 @@ export default function Day(props){
                 {/* A new djs object */}
                 let d = dayjs(props.day) 
                 {/* Figure out whether or not to show the badge (start of week, start of month, or start of task) */}
-                let showBage = props.day !== "0" && (d.day() === "0" || d.date() === 1 || d.isSame(t.start_date) || props.dayOfWeek === 0)
+                let showBage = props.day !== "0" && (d.day() === "0" || d.date() === 1 || d.isSame(t.start_date, 'day') || props.dayOfWeek === 0)
 
                 {/* If tasks is today, draw visible line, otherwise make it invisible */}
-                if(d.isBetween(t.start_date, t.end_date, "hour", "[]")){
+                if(d.isBetween(t.start_date, t.end_date, "day", "[]")){
                     return (
                         <div key={i} onClick={() => {
                             setEditTask(t)

@@ -16,6 +16,7 @@ function Calendar(props){
     let [month, setMonth] = useState(djs.month())
 
     let tasks = props.tasks
+
     console.log(tasks)
 
     // daysOfMonth gets both the days and the tasks on a given month
@@ -101,13 +102,18 @@ function Calendar(props){
     //This finds the all the tasks that are in a given week
     function tasksInWeek(week){
         let tasksThisWeek = []
+        let startOfWeek = dayjs(week[0])
+        let endOfWeek = dayjs(week[week.length-1])
         for(const task of tasks){
+            let startDay = dayjs(task.start_date)
+            let endDay = dayjs(task.end_date)
+            console.log(startDay.isBetween(startOfWeek, endOfWeek, "day", "[]"))
             //start date is between first and last day of week, OR
             //end date is between first and last day of week, OR
             //first day of week is between first and last day of a task
-            if(dayjs(task.start_date).isBetween(week[0], week[week.length-1], "hour", "[]") || 
-                    dayjs(task.end_date).isBetween(week[0], week[week.length-1], "hour", "[]") || 
-                    week[0].isBetween(task.start_date, task.end_date, "hour", "[]")){
+            if(startDay.isBetween(startOfWeek, endOfWeek, "day", "[]") || 
+                    endDay.isBetween(startOfWeek, endOfWeek, "day", "[]") || 
+                    startOfWeek.isBetween(startDay, endDay, "day", "[]")){
                         tasksThisWeek.push(task)
                     }
         }
