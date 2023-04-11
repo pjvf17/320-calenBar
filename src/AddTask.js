@@ -61,7 +61,9 @@ export default function AddTask({ calendar }) {
 
   return (
     <div>
-      <Button onClick={handleClickOpen}>Add Task</Button>
+
+      <Button variant="contained" style={{fontSize:"small"}} onClick={handleClickOpen}>Add Task To {calendar.title}</Button>
+
       <Dialog open={open} onClose={handleClose}>
         {/* <DialogTitle>Add Task</DialogTitle> */}
         <DialogContent>

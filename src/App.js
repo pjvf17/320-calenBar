@@ -1,13 +1,10 @@
-import { useContext, createContext } from "react";
-import logo from "./logo.svg";
+import { createContext, useState } from "react";
 import "./App.css";
 import Calendar from "./Calendar";
 import AddTask from "./AddTask";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import CalendarPicker from "./CalendarPicker";
-import service from "./Service";
-import { Fragment, useState } from "react";
 import EditTask from "./EditTask";
 
 // const cors = require("cors");
@@ -40,12 +37,12 @@ function App() {
     >
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <div className="App">
+          <CalendarPicker
+              calendar={calendar}
+              setCalendar={setCalendar}
+            ></CalendarPicker>
           <AddTask calendar={calendar}></AddTask>
           <EditTask calendar={calendar}></EditTask>
-          <CalendarPicker
-            calendar={calendar}
-            setCalendar={setCalendar}
-          ></CalendarPicker>
           <Calendar tasks={calendar.tasks}></Calendar>
         </div>
       </LocalizationProvider>
