@@ -99,9 +99,14 @@ export default function EditTask({calendar}) {
                 />
                 <MuiColorInput value={editTask.color} onChange={(newColor) => setEditTask({...editTask, color: newColor})} />
                 <br/>
-                <div style={{textAlign:"right"}}>
-                  <Button color = "primary" type="submit">Submit</Button>
-                  <Button color = "secondary" onClick={handleClose}>Cancel</Button>
+                <div style={{flexDirection: "row", display: "flex", justifyContent: "space-between"}}>
+                  <div style={{textAlign: "left"}}>
+                    <Button color = "secondary" onClick={() => Service.deleteTask(calendar.id, editTask.id).then(setReloadCalendar(!reloadCalendar)).then(handleClose())}>Delete Task</Button>
+                  </div>
+                  <div style={{textAlign:"right"}}>
+                    <Button color = "primary" type="submit">Submit</Button>
+                    <Button color = "secondary" onClick={handleClose}>Cancel</Button>
+                  </div>
                 </div>
             </form>  
         </DialogContent>

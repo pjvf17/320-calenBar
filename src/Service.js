@@ -56,10 +56,6 @@ class Service{
         .catch(err => console.log(err))
     }
 
-    deleteTask(task){
-
-    }
-
     editTask(calendarId, task, setReloadCalendar){
         return fetch(`${REST_API_URL}/calendars/${calendarId}/update_task/`, {
             method: "POST",
@@ -69,6 +65,18 @@ class Service{
             body: JSON.stringify(task)
         })
         .then(res => res.json())
+        .catch(err => console.log(err))
+    }
+
+    deleteTask(calendarId, taskId) {
+        return fetch(`${REST_API_URL}/calendars/${calendarId}/delete_task/`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({id: taskId})
+        })
+        .then(res => res.status)
         .catch(err => console.log(err))
     }
 }
