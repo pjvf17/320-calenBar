@@ -45,6 +45,15 @@ class Service{
         .then(res => res.status)
         .catch(err => console.log(err))
     }
+
+    registerUser(user){
+        
+    }
+
+    loginUser(user){
+
+    }
+
 }
 
 export default new Service()
