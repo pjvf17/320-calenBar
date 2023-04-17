@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import {Button, Grid, Tooltip } from "@mui/material"
 import dayjs from "dayjs"
 import isBetween from 'dayjs/plugin/isBetween'
@@ -9,16 +9,26 @@ dayjs.extend(isBetween)
 export default function Day(props){
 
     const { editModalOpen, setEditModalOpen, editTask, setEditTask } = useContext(EditModalContext)
+    const [isVacationDay, setIsVacationDay] = useState(props.day==="0"? true: false)
+
+    function handleClickVacation(){
+        setIsVacationDay(!isVacationDay)
+    }
 
     return(
         // Each day is a grid item surrounded by a border
-        <Grid item xs = {1} style={{textAlign:"left", border:"solid"}}>
+        <Grid item xs = {1} style={{textAlign:"left", border:"solid", backgroundColor: isVacationDay? "gray" : "white"}}>
 
             {/* This displays the current day of the month */}
-            {props.day==="0"? <br></br> : props.day.date()}
+            {props.day === "0" ? <br></br> : <Button 
+                onClick={handleClickVacation}
+                style={{fontSize:"small", textAlign:"left", padding:"1px"}}
+                >
+                {props.day.date()}
+            </Button>}
 
             {/* Create a line for each task */}
-            {props.tasks.map((t, i)=> 
+            {isVacationDay ? <br></br> : props.tasks.map((t, i)=> 
 
             {
                 {/* A new djs object */}
