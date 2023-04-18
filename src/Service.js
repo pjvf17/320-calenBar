@@ -47,11 +47,11 @@ class Service{
     }
 
     registerUser(user){
-        
+        console.log(user)
     }
 
     loginUser(user){
-
+        console.log(user)
     }
 
 }
