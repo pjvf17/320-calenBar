@@ -28,8 +28,8 @@ export default function Login(){
                 type="username"
                 autoComplete="current-username"
                 variant="standard"
-                value={password}
-                onChange={e=>setPassword(e.target.value)}
+                value={userName}
+                onChange={e=>setUserName(e.target.value)}
             />
             </div>
             <div>
@@ -39,8 +39,8 @@ export default function Login(){
                 type="password"
                 autoComplete="current-password"
                 variant="standard"
-                value={userName}
-                onChange={e=>setUserName(e.target.value)}
+                value={password}
+                onChange={e=>setPassword(e.target.value)}
             />
             </div>
 
