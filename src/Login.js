@@ -54,7 +54,7 @@ export default function Login(){
             <Link to={"/register"}>Don't have an account? Register here</Link>
             </div>
 
-            <div>
+            <div style={{paddingTop:"5px"}}>
             <Link to={"/"}>Return to Home</Link>
             </div>
 
