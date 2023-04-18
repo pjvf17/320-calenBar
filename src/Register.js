@@ -69,9 +69,13 @@ export default function Register(){
 
         <div style={{color:"red"}}>{errorMsg}</div>
 
+        <div paddingTop="10px">
+        <Link to={"/login"}>Already have an account? Login here</Link>
+        </div>
         <div style={{paddingTop:"5px"}}>
         <Link to={"/"}>Return to Home</Link>
         </div>
+        
 
     </div>
     )

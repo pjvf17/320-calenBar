@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { Fragment, createContext, useState } from "react";
 import "./App.css";
 import Calendar from "./Calendar";
 import AddTask from "./AddTask";
@@ -27,7 +27,8 @@ export default function CalendarPage(){
         >
         <LocalizationProvider dateAdapter={AdapterDayjs}>
 
-            <Link to={"/login"}>Login</Link>
+            <Link to={"/login"} style={{paddingRight:"10px"}}>Login</Link>
+            <Link to={"/register"}>Register</Link>
 
             <CalendarPicker
                 calendar={calendar}
