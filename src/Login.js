@@ -8,11 +8,12 @@ export default function Login(){
 
     let [userName, setUserName] = useState("")
     let [password, setPassword] = useState("")
-    let [errorMsg, setErrorMsg] = useState("placeholder error")
+    let [errorMsg, setErrorMsg] = useState("")
 
     function attemptLogin(){
         let user = {userName, password}
         Service.loginUser(user)
+        setErrorMsg("YOU FOOL. YOU REALLY THINK YOU CAN LOGIN TO THE APP IN THIS ECONOMY")
     }
 
     return (
@@ -50,7 +51,7 @@ export default function Login(){
             <div style={{color:"red"}}>{errorMsg}</div>
 
             <div>
-            <Link to={"/Register"}>Don't have an account? Register here</Link>
+            <Link to={"/register"}>Don't have an account? Register here</Link>
             </div>
 
             <div>

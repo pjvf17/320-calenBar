@@ -26,14 +26,18 @@ export default function CalendarPage(){
             value={{ editModalOpen, setEditModalOpen, editTask, setEditTask }}
         >
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <Link to={"/Login"}>Login</Link>
+
+            <Link to={"/login"}>Login</Link>
+
             <CalendarPicker
                 calendar={calendar}
                 setCalendar={setCalendar}
             ></CalendarPicker>
+            
             <AddTask calendar={calendar}></AddTask>
             <EditTask calendar={calendar}></EditTask>
             <Calendar tasks={calendar.tasks}></Calendar>
+
         </LocalizationProvider>
         </EditModalContext.Provider>
         </ReloadCalendarContext.Provider>
