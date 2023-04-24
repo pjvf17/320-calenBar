@@ -5,6 +5,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CalendarPage from "./CalendarPage";
 import Register from "./Register"
 
+import { ThemeProvider, createTheme } from "@mui/material";
+import "./styles.css";
+
 export const ReloadCalendarContext = createContext({
   reloadCalendar: false,
   setReloadCalendar: () => {},
