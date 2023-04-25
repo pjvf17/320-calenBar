@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import {Button, Grid, Tooltip } from "@mui/material"
+import {Button, Grid, Tooltip, Typography } from "@mui/material"
 import dayjs from "dayjs"
 import isBetween from 'dayjs/plugin/isBetween'
 import { EditModalContext } from "./App"
@@ -12,10 +12,10 @@ export default function Day(props){
 
     return(
         // Each day is a grid item surrounded by a border
-        <Grid item xs = {1} style={{textAlign:"left", border:"solid"}}>
+        <Grid item xs = {1} style={{textAlign:"left", border:"solid", height: "150px"}}>
 
             {/* This displays the current day of the month */}
-            {props.day==="0"? <br></br> : props.day.date()}
+            <Typography variant="dayNumber">{props.day==="0"? <br></br> : props.day.date()}</Typography>
 
             {/* Create a line for each task */}
             {props.tasks.map((t, i)=> 

@@ -8,9 +8,30 @@ import { ThemeProvider, createTheme } from '@mui/material';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#CCC",
+  typography: {
+    yearMonth: {
+      fontSize: "2.5em",
+      fontWeight: "600"
+    },
+
+    weekDay: {
+      fontFamily: "Merriweather",
+      fontSize: "1.5em",
+    },
+
+    dayNumber: {
+      fontWeight: "light",
+      fontSize: "1.15em",
+      color: "black",
+    }
+  },
+
+  grid: {
+    dayDimensions: {
+      height: "50px",
+      width: "10px",
+      textAlign:"left", 
+      border:"solid"
     }
   }
 });

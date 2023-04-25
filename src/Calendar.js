@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 import isBetween from 'dayjs/plugin/isBetween'
 import { Fragment, useState } from 'react'
-import { Button, Grid } from '@mui/material'
+import { Button, Grid, Typography } from '@mui/material'
 import Week from './Week'
 
 dayjs.extend(isBetween)
@@ -120,26 +120,29 @@ function Calendar(props){
     }
     
 
-    return(
+    return (
         <div>
         
             {/* display current year and month, with buttons
                 currently this can only show one month at a time */}
-            <Button style={{fontSize:"small"}} onClick={prevYear}>prev year</Button>
-            <Button style={{fontSize:"small"}}onClick={nextYear}>next year</Button>
+            <div>
+                <Button style={{fontSize:"small"}} onClick={prevYear}>prev year</Button>
+                <Button style={{fontSize:"small"}}onClick={nextYear}>next year</Button>
 
-            <Button style={{fontSize:"small"}} onClick={prevMonth}>prev month</Button>
-            <Button style={{fontSize:"small"}} onClick={nextMonth}>next month</Button>
-
-            <div style={{fontSize:"large"}}>{year + " " + months[month]}</div>
-
+                <Button style={{fontSize:"small"}} onClick={prevMonth}>prev month</Button>
+                <Button style={{fontSize:"small"}} onClick={nextMonth}>next month</Button>
+            </div>
             
+            <Typography variant="yearMonth">{year + " " + months[month]}</Typography>
 
+            { /* DAYS OF THE WEEK HERE */ }
             <Grid container columns={7} paddingTop={"10px"}>
 
                 {/*Make labels at top of month*/}
                 {dayNames.map((d, i) => (
-                    <Grid item key={i} xs={1}>{d}</Grid>
+                    <Grid item key={i} xs={1}>
+                        <Typography variant="weekDay">{d}</Typography>
+                    </Grid>
                 ))}
 
             </Grid>
@@ -148,12 +151,12 @@ function Calendar(props){
             <Grid container columns={1} padding={"25px"} paddingTop={"0px"}>
 
                 {/* Create each week element */}
-                {days.map((w, i) => (
+                    {days.map((w, i) => (
                         <Grid item key={i} xs={1}>
                             {/* {console.log(tasksInWeeks[i])} */}
                             <Week days = {w} tasks={stuff.tasksInWeeks[i]}></Week>
                         </Grid>
-                ))}
+                    ))}
 
             </Grid>
 
