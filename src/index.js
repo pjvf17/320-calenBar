@@ -10,6 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const theme = createTheme({
   typography: {
     yearMonth: {
+      color: 'red',
       fontSize: "2.5em",
       fontWeight: "600"
     },
