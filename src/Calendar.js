@@ -2,7 +2,26 @@ import dayjs from 'dayjs'
 import isBetween from 'dayjs/plugin/isBetween'
 import { Fragment, useState } from 'react'
 import { Button, Grid, Typography } from '@mui/material'
+import Divider from '@mui/material/Divider';
 import Week from './Week'
+
+const gridLayout = {
+    // border: "5px black solid",
+    borderRadius: "40px"
+}
+
+const gridWeekDays = {
+    borderTop: "1px solid #9F9F9F",
+    borderBottom: "1px solid #9F9F9F",
+    borderLeft: "1px solid #9F9F9F",
+    padding: "0.5em",
+}
+
+const gridWeekendDays = {
+    borderTop: "1px solid #9F9F9F",
+    borderBottom: "1px solid #9F9F9F",
+    padding: "0.5em",
+}
 
 dayjs.extend(isBetween)
 let djs = dayjs()
@@ -132,35 +151,37 @@ function Calendar(props){
                 <Button style={{fontSize:"small"}} onClick={prevMonth}>prev month</Button>
                 <Button style={{fontSize:"small"}} onClick={nextMonth}>next month</Button>
             </div>
-            
-            <Typography variant="yearMonth">{year + " " + months[month]}</Typography>
 
-            { /* DAYS OF THE WEEK HERE */ }
-            <Grid container columns={7} paddingTop={"10px"}>
 
-                {/*Make labels at top of month*/}
-                {dayNames.map((d, i) => (
-                    <Grid item key={i} xs={1}>
-                        <Typography variant="weekDay">{d}</Typography>
-                    </Grid>
-                ))}
+            {/* MAIN CALENDAR VIEW */}
+        
+            <Grid container sx={ gridLayout } columns={1} direction="column" border="2px black solid">
+                
+                <Typography variant="yearMonth">{year + " " + months[month]}</Typography>
+                
+                { /* DAYS OF THE WEEK HERE */ }
+                <Grid item container columns={7}>
 
-            </Grid>
+                        {/*Make labels at top of month*/}
+                        {dayNames.map((d, i) => (
+                            <Grid item key={i} xs={1} 
+                                  sx={ d === ("Sunday") ? gridWeekendDays : gridWeekDays }>
+                                <Typography variant="weekDay">{d}</Typography>
+                            </Grid>
+                        ))}
+                </Grid>
 
-            {/* CALENDAR GRID HERE */}
-            <Grid container columns={1} padding={"25px"} paddingTop={"0px"}>
-
+                {/* CALENDAR GRID HERE */}
+                <Grid item container columns={1}>
                 {/* Create each week element */}
-                    {days.map((w, i) => (
-                        <Grid item key={i} xs={1}>
-                            {/* {console.log(tasksInWeeks[i])} */}
-                            <Week days = {w} tasks={stuff.tasksInWeeks[i]}></Week>
-                        </Grid>
-                    ))}
-
+                        {days.map((w, i) => (
+                            <Grid item key={i} xs={1}>
+                                {/* {console.log(tasksInWeeks[i])} */}
+                                <Week days = {w} tasks={stuff.tasksInWeeks[i]}></Week>
+                            </Grid>
+                        ))}
+                </Grid>
             </Grid>
-
-            
         </div>
     )
 

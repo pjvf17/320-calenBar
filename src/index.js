@@ -11,7 +11,8 @@ const theme = createTheme({
   typography: {
     yearMonth: {
       fontSize: "2.5em",
-      fontWeight: "600"
+      fontWeight: "600",
+      justifyContent: "center"
     },
 
     weekDay: {
@@ -22,7 +23,7 @@ const theme = createTheme({
     dayNumber: {
       fontWeight: "light",
       fontSize: "1.15em",
-      color: "black",
+      color: "#000000",
     }
   },
 
@@ -32,7 +33,7 @@ const theme = createTheme({
       width: "10px",
       textAlign:"left", 
       border:"solid"
-    }
+    },
   }
 });
 
