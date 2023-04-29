@@ -12,14 +12,12 @@ const gridLayout = {
 
 const gridWeekDays = {
     borderTop: "1px solid #9F9F9F",
-    borderBottom: "1px solid #9F9F9F",
     borderLeft: "1px solid #9F9F9F",
     padding: "0.5em",
 }
 
 const gridWeekendDays = {
     borderTop: "1px solid #9F9F9F",
-    borderBottom: "1px solid #9F9F9F",
     padding: "0.5em",
 }
 
@@ -154,32 +152,33 @@ function Calendar(props){
 
 
             {/* MAIN CALENDAR VIEW */}
-        
-            <Grid container sx={ gridLayout } columns={1} direction="column" border="2px black solid">
-                
-                <Typography variant="yearMonth">{year + " " + months[month]}</Typography>
-                
-                { /* DAYS OF THE WEEK HERE */ }
-                <Grid item container columns={7}>
+            <Grid container columns={1} direction="column">
+                <Grid container item sx={ gridLayout } border="2px black solid" columns={1}>
+                    <Grid item container>
+                        <Typography variant="yearMonth" sx={{ padding: "0.5em" }}>{year + " " + months[month]}</Typography>
+                    </Grid>
+                    { /* DAYS OF THE WEEK HERE */ }
+                    <Grid container item columns={7}>
 
-                        {/*Make labels at top of month*/}
-                        {dayNames.map((d, i) => (
-                            <Grid item key={i} xs={1} 
-                                  sx={ d === ("Sunday") ? gridWeekendDays : gridWeekDays }>
-                                <Typography variant="weekDay">{d}</Typography>
-                            </Grid>
-                        ))}
-                </Grid>
+                            {/*Make labels at top of month*/}
+                            {dayNames.map((d, i) => (
+                                <Grid item key={i} xs={1} 
+                                    sx={ d === ("Sunday") ? gridWeekendDays : gridWeekDays }>
+                                    <Typography variant="weekDay">{d}</Typography>
+                                </Grid>
+                            ))}
+                    </Grid>
 
-                {/* CALENDAR GRID HERE */}
-                <Grid item container columns={1}>
-                {/* Create each week element */}
-                        {days.map((w, i) => (
-                            <Grid item key={i} xs={1}>
-                                {/* {console.log(tasksInWeeks[i])} */}
-                                <Week days = {w} tasks={stuff.tasksInWeeks[i]}></Week>
-                            </Grid>
-                        ))}
+                    {/* CALENDAR GRID HERE */}
+                    <Grid item container columns={1}>
+                    {/* Create each week element */}
+                            {days.map((w, i) => (
+                                <Grid item key={i} xs={1}>
+                                    {/* {console.log(tasksInWeeks[i])} */}
+                                    <Week days = {w} tasks={stuff.tasksInWeeks[i]}></Week>
+                                </Grid>
+                            ))}
+                    </Grid>
                 </Grid>
             </Grid>
         </div>

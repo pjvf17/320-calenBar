@@ -12,7 +12,8 @@ const theme = createTheme({
     yearMonth: {
       fontSize: "2.5em",
       fontWeight: "600",
-      justifyContent: "center"
+      flexGrow: 1,
+      alignItems: "center"
     },
 
     weekDay: {
