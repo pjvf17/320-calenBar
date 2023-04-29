@@ -5,10 +5,11 @@ import isBetween from 'dayjs/plugin/isBetween'
 import { EditModalContext } from "./App"
 
 const weekDayStyles = {
-    height: "6em",
+    height: "8em",
     textAlign: "left",
     borderTop: "1px solid #9F9F9F",
     borderLeft: "1px solid #9F9F9F",
+    margin: "0px",
 }
 
 const weekendDayStyles = {
@@ -25,12 +26,31 @@ export default function Day(props){
 
     const { editModalOpen, setEditModalOpen, editTask, setEditTask } = useContext(EditModalContext)
 
+    function getThickness(){
+        let sum = 0;
+        let thickness = [];
+        for(let i = 0; i < props.tasks.length; i++){
+            if(dayjs(props.day).isBetween(props.tasks[i].start_date, props.tasks[i].end_date, "day", "[]") && props.day != 0){
+                let daysRemaining = dayjs(props.tasks[i].end_date).diff(dayjs(props.day), 'day');
+                let value = props.tasks[i].estimated_time/(daysRemaining+1);
+                thickness.push(value);
+                sum += value;
+            }
+        }
+        thickness = thickness.map((t)=>Math.floor((t/sum)*50));
+        let remainder = 50 - thickness.reduce((sum, t)=>sum+t, 0);
+        if(remainder > 0){
+            thickness[0] += remainder;
+        }
+        return thickness;
+    }
+    let thickness = getThickness();
     return(
         // Each day is a grid item surrounded by a border
         <Grid item xs = {1} sx={ ( (count++) % 7) === 0 ? weekendDayStyles : weekDayStyles }>
 
             {/* This displays the current day of the month */}
-            <Typography variant="dayNumber">{props.day==="0"? <br></br> : props.day.date()}</Typography>
+            <Typography variant="dayNumber" style={{padding:"0px", margin: "0px"}}>{props.day==="0"? <br></br> : props.day.date()}</Typography>
 
             {/* Create a line for each task */}
             {props.tasks.map((t, i)=> 
@@ -45,7 +65,7 @@ export default function Day(props){
                 {/* If tasks is today, draw visible line, otherwise make it invisible */}
                 if(d.isBetween(t.start_date, t.end_date, "day", "[]")){
 
-                    let color = showBage ? t.color : "white"
+                    let color = showBage ? "black" : "transparent"
 
                     return (
                         <div key={i} onClick={() => {
@@ -54,20 +74,11 @@ export default function Day(props){
                             setEditModalOpen(true)
                         }}>
                             {/* button looked better than most things I tested */}
-                            <Button style={{color: color, fontSize: "small"}} >{t.title}</Button>
+                            <Button style={{color: color, fontSize: "small", zIndex: 1, position: "absolute"}} >{t.title}</Button>
                             {/* Fancy tooltip that appears when you hover */}
                             <Tooltip title={t.description}>
-                                <hr style={{border: "4px solid " + t.color, padding:"0px"}}></hr>
+                                <hr style={{border: thickness.shift() + "px solid " + t.color, padding:"0px", margin: "0px"}}></hr>
                             </Tooltip>
-                        </div>
-                    )
-                }
-                else {
-                    {/* This is the invisible line to make it all line up */}
-                    return(
-                        <div key={i}>
-                            <Button style={{color: "white" , fontSize:"small"}}>test</Button>
-                            <hr style={{border: "4px solid white", padding:"0px"}}></hr>
                         </div>
                     )
                 }
