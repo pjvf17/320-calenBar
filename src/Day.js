@@ -26,19 +26,33 @@ export default function Day(props){
 
     const { editModalOpen, setEditModalOpen, editTask, setEditTask } = useContext(EditModalContext)
 
+    // function to get thickness of all tasks on the current day
     function getThickness(){
+        //need sum for getting relative weight
         let sum = 0;
+        //queue datastructure
         let thickness = [];
+        // loop over all tasks in week
         for(let i = 0; i < props.tasks.length; i++){
-            if(dayjs(props.day).isBetween(props.tasks[i].start_date, props.tasks[i].end_date, "day", "[]") && props.day != 0){
-                let daysRemaining = dayjs(props.tasks[i].end_date).diff(dayjs(props.day), 'day');
-                let value = props.tasks[i].estimated_time/(daysRemaining+1);
+            let task = props.tasks[i];
+            let start = dayjs(task.start_date);
+            let end = dayjs(task.end_date);
+            let today = dayjs(props.day);
+            let timeToComplete = props.tasks[i].estimated_time
+            // if task is on the current day
+            if(today.isBetween(start, end, "day", "[]") && props.day != 0){
+                let daysRemaining = end.diff(today, 'day');
+                // make the value according the the following algorithm
+                let value = timeToComplete/(daysRemaining+1);
+                // add thickness to the queue
                 thickness.push(value);
                 sum += value;
             }
         }
-        thickness = thickness.map((t)=>Math.floor((t/sum)*50));
-        let remainder = 50 - thickness.reduce((sum, t)=>sum+t, 0);
+        let pixel_space = 100;
+        thickness = thickness.map((t)=>Math.floor((t/sum)*pixel_space));
+        // fill missing pixels in pixel space (simply give it to the top task)
+        let remainder = pixel_space - thickness.reduce((sum, t)=>sum+t, 0);
         if(remainder > 0){
             thickness[0] += remainder;
         }
@@ -61,11 +75,13 @@ export default function Day(props){
 
                 {/* Figure out whether or not to show the badge (start of week, start of month, or start of task) */}
                 let showBage = props.day !== "0" && (d.day() === "0" || d.date() === 1 || d.isSame(t.start_date, 'day') || props.dayOfWeek === 0)
-                
+                {/* figure out whether or not to show end indicator (end of task) */}
+                let showEnd = props.day !== "0" && d.isSame(t.end_date, 'day');
                 {/* If tasks is today, draw visible line, otherwise make it invisible */}
                 if(d.isBetween(t.start_date, t.end_date, "day", "[]")){
 
                     let color = showBage ? "black" : "transparent"
+                    let fill = showEnd ? "black": "transparent"
 
                     return (
                         <div key={i} onClick={() => {
@@ -77,7 +93,11 @@ export default function Day(props){
                             <Button style={{color: color, fontSize: "small", zIndex: 1, position: "absolute"}} >{t.title}</Button>
                             {/* Fancy tooltip that appears when you hover */}
                             <Tooltip title={t.description}>
-                                <hr style={{border: thickness.shift() + "px solid " + t.color, padding:"0px", margin: "0px"}}></hr>
+                                {/* line thickness determined by getThickness function (zindex used to accomodate badge) */}
+                                <div style={{height: thickness.shift() + "px", background: t.color, padding:"0px", margin: "0px", zIndex: 0}}>
+                                    {/* Due indicator */}
+                                    <div style={{height: "100%", width: "4%", background: fill, padding:"0px", marginRight: "0px", marginLeft: "auto"}}></div>
+                                </div>
                             </Tooltip>
                         </div>
                     )
