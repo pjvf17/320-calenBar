@@ -102,13 +102,16 @@ export default function Day(props){
                 let showBage = props.day !== "0" && (d.day() === "0" || d.date() === 1 || d.isSame(t.start_date, 'day') || props.dayOfWeek === 0)
                 /* figure out whether or not to show end indicator (end of task) */
                 let showEnd = props.day !== "0" && d.isSame(t.end_date, 'day');
+                /* figure out whether or not to show start indicator (end of task) */
+                let showStart = props.day !== "0" && d.isSame(t.start_date, 'day');
                 /* If tasks is today, draw visible line, otherwise make it invisible */
                 if(d.isBetween(t.start_date, t.end_date, "day", "[]")){
 
                     let primary = showBage ? t.color : "transparent"
                     let borderColor = showBage ?  darken(t.color, 0.3) : "transparent"
                     let textColor = showBage ? "black" : "transparent"
-                    let fill = showEnd ? "black": "transparent"
+                    let endFill = showEnd ? "black": "transparent"
+                    let startFill = showStart ? "black": "transparent"
 
                     return (
                         <div key={i} onClick={() => {
@@ -124,8 +127,13 @@ export default function Day(props){
                                     <Button style={{color: textColor, background: primary, border: "3px solid " + borderColor, fontSize: "60%", fontWeight: "bold", textAlign: "center", height: "20%", width: "50%", bottom: "0px", left:"25%", position: "absolute"}}>{t.title}</Button>
                                     {/* Due indicator */}
                                     <div>
-                                        <div style={{width: 0, height: 0, borderTop: "5px solid transparent", borderBottom: "5px solid transparent", borderRight: "10px solid " + fill, right: "3%", position: "absolute"}}></div>
-                                        <div style={{background: fill, height: "100%", width: "4%", right: "0px", position: "absolute"}}></div>
+                                        <div style={{width: 0, height: 0, borderTop: "5px solid transparent", borderBottom: "5px solid transparent", borderRight: "7px solid " + endFill, right: "4%", top: "10%", position: "absolute"}}></div>
+                                        <div style={{background: endFill, height: "100%", width: "4%", right: "0px", position: "absolute"}}></div>
+                                    </div>
+                                    {/* Start indicator */}
+                                    <div>
+                                        <div style={{background: startFill, height: "100%", width: "4%", left: "0px", position: "absolute"}}></div>
+                                        <div style={{width: 0, height: 0, borderTop: "5px solid transparent", borderBottom: "5px solid transparent", borderLeft: "7px solid " + startFill, left: "4%", top: "10%", position: "absolute"}}></div>
                                     </div>
                                 </div>
                             </Tooltip>
