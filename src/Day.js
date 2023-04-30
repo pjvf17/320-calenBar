@@ -61,6 +61,9 @@ export default function Day(props){
         //find remainder for fixing
         let remainder = pixel_space - thickness.reduce((sum, t)=>sum+t, 0);
         let i = 0
+        if(thickness.every((t)=>t===0)){
+            return null;
+        }
         while(remainder > 0){
             if(thickness[i] > 0){
                 thickness[i] += 1;
@@ -70,7 +73,7 @@ export default function Day(props){
             i++;
         }
         while(remainder < 0){
-            if(thickness[i] > 0){
+            if(thickness[i] > 0 && thickness[i] > min){
                 thickness[i] -= 1;
                 remainder += 1;
             }
@@ -79,7 +82,8 @@ export default function Day(props){
         }
         return thickness;
     }
-    let thickness = getThickness(20);
+    let thickness = getThickness(15);
+    console.log(thickness);
     return(
         // Each day is a grid item surrounded by a border
         <Grid item xs = {1} sx={ ( (count++) % 7) === 0 ? weekendDayStyles : weekDayStyles }>
