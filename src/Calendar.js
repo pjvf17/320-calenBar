@@ -6,7 +6,6 @@ import Divider from '@mui/material/Divider';
 import Week from './Week'
 
 const gridLayout = {
-    // border: "5px black solid",
     borderRadius: "40px"
 }
 
@@ -152,13 +151,14 @@ function Calendar(props){
 
 
             {/* MAIN CALENDAR VIEW */}
-            <Grid container columns={1} direction="column">
-                <Grid container item sx={ gridLayout } border="2px black solid" columns={1}>
+            <Grid container columns={1} direction="column" display={"inline-flex"} justifyContent={"center"}
+                  maxWidth={"90%"}>
+                <Grid item container sx={ gridLayout } border="1px black solid">
                     <Grid item container>
                         <Typography variant="yearMonth" sx={{ padding: "0.5em" }}>{year + " " + months[month]}</Typography>
                     </Grid>
                     { /* DAYS OF THE WEEK HERE */ }
-                    <Grid container item columns={7}>
+                    <Grid item container columns={7}>
 
                             {/*Make labels at top of month*/}
                             {dayNames.map((d, i) => (

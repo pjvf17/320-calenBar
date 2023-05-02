@@ -16,9 +16,17 @@ export default function Register(){
             setErrorMsg("Password does not match")
             return
         }
-        let user = {userName, password}
+        let user = {'username': userName, 'password': password}
         Service.registerUser(user)
-        setErrorMsg("WHO'S MORE FOOLISH, THE FOOL, OR THE FOOL WHO FOLLOWS HIM")
+        .then(res => {
+            if(res['status'] === 201){
+                window.location.href = "/login"
+            }
+            else{
+                setErrorMsg("Username already exists")
+            }
+        }
+        )
     }
 
 
@@ -61,7 +69,7 @@ export default function Register(){
         />
         </div>
 
-        <div style={{color: "red"}}>{password === confirmPassword? <br></br> : "Password does not match"}</div>
+        {/* <div style={{color: "red"}}>{password === confirmPassword? <br></br> : "Password does not match"}</div> */}
 
         <div className="Register">
         <Button type='submit' color='primary' variant='contained' fullWidth onClick={attemptRegister}>Register</Button>
