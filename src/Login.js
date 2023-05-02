@@ -11,9 +11,23 @@ export default function Login(){
     let [errorMsg, setErrorMsg] = useState("")
 
     function attemptLogin(){
-        let user = {userName, password}
+        let user = {username: userName, password: password}
         Service.loginUser(user)
-        setErrorMsg("YOU FOOL. YOU REALLY THINK YOU CAN LOGIN TO THE APP IN THIS ECONOMY")
+        .then(res => {
+            if(res['status'] === 200){
+                window.location.href = "/"
+            }
+            else{
+                setErrorMsg("Invalid username or password")
+            }
+            return res
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            localStorage.setItem("token", data["token"]);
+            return data;
+        })
+
     }
 
     return (
