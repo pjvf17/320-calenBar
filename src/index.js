@@ -10,33 +10,28 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const theme = createTheme({
   typography: {
     yearMonth: {
-      color: 'red',
+      fontFamily: "Merriweather",
       fontSize: "2.5em",
       fontWeight: "600",
       flexGrow: 1,
-      alignItems: "center"
+      alignItems: "center",
     },
 
     weekDay: {
       fontFamily: "Merriweather",
-      fontSize: "1.5em",
+      // 1.5em
+      fontSize: "1.25em",
     },
 
     dayNumber: {
       fontWeight: "light",
+      fontFamily: "Merriweather",
+      // 1.15em
       fontSize: "1.15em",
       color: "#000000",
+      padding: "0.25em",
     }
   },
-
-  grid: {
-    dayDimensions: {
-      height: "50px",
-      width: "10px",
-      textAlign:"left", 
-      border:"solid"
-    },
-  }
 });
 
 root.render(
