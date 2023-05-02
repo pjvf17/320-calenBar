@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { TextField, Stack, Button } from "@mui/material"
+import { TextField, Stack, Button, FormControlLabel } from "@mui/material"
 import Service from "./Service"
 import { Link } from "react-router-dom"
 
@@ -31,9 +31,9 @@ export default function Register(){
 
 
     return(
-    <div style={{textAlign:"center"}}>
+    <div className="authentication" style={{textAlign:"center"}}>
 
-        <h2>Create an Account</h2>
+        <h2 className="registerTitle">Create an Account</h2>
 
         <div>
         <TextField
@@ -71,20 +71,23 @@ export default function Register(){
 
         {/* <div style={{color: "red"}}>{password === confirmPassword? <br></br> : "Password does not match"}</div> */}
 
-        <div>
-        <Button onClick={attemptRegister}>Register</Button>
+        <div className="Register">
+        <Button type='submit' color='primary' variant='contained' fullWidth onClick={attemptRegister}>Register</Button>
         </div>
 
         <div style={{color:"red"}}>{errorMsg}</div>
+        {/* <FormControlLabel>
+            control={
+                <Check
+            }
+        </FormControlLabel> */}
 
-        <div paddingTop="10px">
+        <div className="haveaccount" paddingTop="10px">
         <Link to={"/login"}>Already have an account? Login here</Link>
         </div>
-        <div style={{paddingTop:"5px"}}>
+        <div className="return" style={{paddingTop:"5px"}}>
         <Link to={"/"}>Return to Home</Link>
         </div>
-        
-
     </div>
     )
 

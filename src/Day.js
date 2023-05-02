@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import {Button, Grid, Tooltip, Typography } from "@mui/material"
 import dayjs from "dayjs"
 import isBetween from 'dayjs/plugin/isBetween'
@@ -6,18 +6,20 @@ import { EditModalContext } from "./App"
 import {darken} from "@mui/material";
 
 const weekDayStyles = {
-    height: "150px",
+    // height: "6em",
     textAlign: "left",
     borderTop: "1px solid #9F9F9F",
     borderLeft: "1px solid #9F9F9F",
-    margin: "0px",
+    
 }
 
 const weekendDayStyles = {
-    height: "6em",
+    // height: "6em",
     textAlign: "left",
     borderTop: "1px solid #9F9F9F",
 }
+
+
 
 let count = -1;
 
@@ -89,7 +91,9 @@ export default function Day(props){
     const { editModalOpen, setEditModalOpen, editTask, setEditTask } = useContext(EditModalContext);
     return(
         // Each day is a grid item surrounded by a border
-        <Grid item xs = {1} sx={ ( (count++) % 7) === 0 ? weekendDayStyles : weekDayStyles }>
+
+
+        <Grid item xs = {1} sx={ ( (count++) % 7) === 0 ? weekendDayStyles : weekDayStyles } >
 
             {/* This displays the current day of the month */}
             <Typography variant="dayNumber" style={{padding:"0px", margin: "0px"}}>{props.day==="0"? <br></br> : props.day.date()}</Typography>
@@ -145,7 +149,12 @@ export default function Day(props){
                 }
             })}
 
+        {props.tasks.length < 3? <br></br> : ""}
+        {props.tasks.length < 2? <br></br> : ""}
+        {props.tasks.length < 1? <br></br> : ""}
+        {props.tasks.length < 1? <br></br> : ""}
+
         </Grid>
-    )
+)
 
 }
