@@ -17,9 +17,9 @@ export default function Login(){
     }
 
     return (
-        <div style={{textAlign:"center"}}>
+        <div className="login" style={{textAlign:"center"}}>
 
-            <h2>Login to calenBar</h2>
+            <h2>Login to CalenBar</h2>
 
             <div>
             <TextField
@@ -44,17 +44,20 @@ export default function Login(){
             />
             </div>
 
-            <div>
-            <Button onClick={attemptLogin}>Login</Button>
+            <div className="Login">
+            <Button type='submit' color='primary' variant='contained' fullWidth onClick={attemptLogin}>Login</Button>
             </div>
 
-            <div style={{color:"red"}}>{errorMsg}</div>
-
-            <div>
+            <div className="Lerror">
+                {/* <div className="error"> */}
+                    <div style={{color:"red"}}>{errorMsg}</div>
+                {/* </div> */}
+            </div>
+            <div className="haveaccount2">
             <Link to={"/register"}>Don't have an account? Register here</Link>
             </div>
 
-            <div style={{paddingTop:"5px"}}>
+            <div className="return2" style={{paddingTop:"5px"}}>
             <Link to={"/"}>Return to Home</Link>
             </div>
 
