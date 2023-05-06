@@ -5,8 +5,6 @@ import '@testing-library/user-event';
 import {expect, jest, test} from '@jest/globals';
 import Service from './Service.js';
 
-const s = new Service();
-
 // Black box testing examples
 const testLoginUser = (user) =>  {
   Service.loginUser(user)
@@ -23,7 +21,7 @@ const testDeleteTaskFromBackend = (calendarId, taskId) => {
 }
 
 test("testLoginUser logs in a user successfully", () => {
-
+  console.log("...Hi!!")
 });
 
 test("testDeleteTaskFromBackend", () => {
