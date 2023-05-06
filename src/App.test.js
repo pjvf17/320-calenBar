@@ -20,9 +20,9 @@ const testDeleteTaskFromBackend = (calendarId, taskId) => {
   return !(tasks.includes(task));
 }
 
-test("testLoginUser logs in a user successfully", () => {
-  console.log("...Hi!!")
-});
+// test("testLoginUser logs in a user successfully", () => {
+//   console.log("...Hi!!")
+// });
 
 test("testDeleteTaskFromBackend", () => {
   const testCalendarId = 1;
@@ -73,7 +73,7 @@ test("calenBar renders CalendarUI Properly", () => {
     expect(linkElementSaturday).toBeInTheDocument();
   });
 
-  test("nextMonth displays next month's calendar view properly 2023 May", () => {
+  test("nextMonth displays next month's calendar view properly for 2023 May", () => {
     render(<App />);
     
     const linkElementYearMonthHeader = screen.getByText(/2023 May/);
