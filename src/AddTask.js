@@ -16,6 +16,7 @@ export default function AddTask({ calendar }) {
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState(dayjs());
   const [endDate, setEndDate] = useState(dayjs().add(1, "d"));
+  const [completionGoal, setCompletionGoal] = useState(dayjs().add(1, "d"));
   const [estimateTime, setEstimateTime] = useState(1);
   const [color, setColor] = React.useState("#ffffff");
 
@@ -34,6 +35,7 @@ export default function AddTask({ calendar }) {
       end_date: endDate,
       estimated_time: estimateTime,
       color,
+      completionGoal
     };
     Service.addTask(calendar.id, task).then((data) => {
       setReloadCalendar(!reloadCalendar);
@@ -67,7 +69,7 @@ export default function AddTask({ calendar }) {
       <Dialog open={open} onClose={handleClose}>
         {/* <DialogTitle>Add Task</DialogTitle> */}
         <DialogContent>
-          <h2>Add Task</h2>
+          <h2>Add Task: {title}</h2>
           <form onSubmit={handleSubmit} action={<Link to="/login" />}>
             <Stack spacing={2} direction="row" sx={{ marginBottom: 4 }}>
               <TextField
@@ -113,6 +115,11 @@ export default function AddTask({ calendar }) {
                 label="End Date"
                 value={endDate}
                 onChange={(newValue) => setEndDate(newValue)}
+              />
+              <DatePicker
+                label="Completion Goal Date"
+                value={completionGoal}
+                onChange={(newValue) => setCompletionGoal(newValue)}
               />
             </Stack>
             <br />

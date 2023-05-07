@@ -35,7 +35,7 @@ export default function EditTask({calendar}) {
       <Dialog open={editModalOpen} onClose={handleClose}>
         {/* <DialogTitle>Add Task</DialogTitle> */}
         <DialogContent>
-        <h2>Edit Task</h2>
+        <h2>Edit Task: {editTask.title}</h2>
             <form onSubmit={handleSubmit} action={<Link to="/login" />}>
                 <Stack spacing={2} direction="row" sx={{marginBottom: 4}}>
                     <TextField
@@ -81,6 +81,11 @@ export default function EditTask({calendar}) {
                     label="End Date"
                     value={dayjs(editTask.end_date)}
                     onChange={(newValue) => setEditTask({...editTask, end_date: newValue})}
+                  />
+                  <DatePicker 
+                    label="Completion Goal Date"
+                    value={dayjs(editTask.completionGoal)}
+                    onChange={(newValue) => setEditTask({...editTask, completionGoal: newValue})}
                   />
                 </Stack>
                 <br/>
