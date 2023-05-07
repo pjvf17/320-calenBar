@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import { Stack, Link } from "@mui/material";
+import { Stack, Link, Checkbox, FormControlLabel } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { MuiColorInput } from "mui-color-input";
 import dayjs, { Dayjs } from "dayjs";
@@ -16,9 +16,10 @@ export default function AddTask({ calendar }) {
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState(dayjs());
   const [endDate, setEndDate] = useState(dayjs().add(1, "d"));
-  const [completionGoal, setCompletionGoal] = useState(dayjs().add(1, "d"));
+  const [goalEndDate, setGoalEndDate] = useState(dayjs().add(1, "d"));
   const [estimateTime, setEstimateTime] = useState(1);
-  const [color, setColor] = React.useState("#ffffff");
+  const [color, setColor] = React.useState("red");
+  const [matchGoalToReal, setMatchGoalToReal] = useState(true)
 
   const { reloadCalendar, setReloadCalendar } = useContext(
     ReloadCalendarContext
@@ -35,7 +36,7 @@ export default function AddTask({ calendar }) {
       end_date: endDate,
       estimated_time: estimateTime,
       color,
-      completionGoal
+      goalEndDate
     };
     Service.addTask(calendar.id, task).then((data) => {
       setReloadCalendar(!reloadCalendar);
@@ -54,8 +55,10 @@ export default function AddTask({ calendar }) {
     setDescription("");
     setStartDate(dayjs());
     setEndDate(dayjs().add(1, "d"));
+    setGoalEndDate(dayjs().add(1, "d"));
+    setMatchGoalToReal(true)
     setEstimateTime(1);
-    setColor("#ffffff");
+    setColor("red");
     setOpen(false);
   };
 
@@ -67,10 +70,13 @@ export default function AddTask({ calendar }) {
       <Button variant="contained" style={{fontSize:"small"}} onClick={handleClickOpen}>Add Task To {calendar.title}</Button>
 
       <Dialog open={open} onClose={handleClose}>
-        {/* <DialogTitle>Add Task</DialogTitle> */}
+
         <DialogContent>
+
           <h2>Add Task: {title}</h2>
+
           <form onSubmit={handleSubmit} action={<Link to="/login" />}>
+
             <Stack spacing={2} direction="row" sx={{ marginBottom: 4 }}>
               <TextField
                 type="text"
@@ -93,6 +99,7 @@ export default function AddTask({ calendar }) {
                 required
               />
             </Stack>
+
             <TextField
               type="text"
               variant="outlined"
@@ -105,6 +112,7 @@ export default function AddTask({ calendar }) {
               multiline
               sx={{ mb: 4 }}
             />
+
             <Stack spacing={2} direction="row">
               <DatePicker
                 label="Start Date"
@@ -112,18 +120,33 @@ export default function AddTask({ calendar }) {
                 onChange={(newValue) => setStartDate(newValue)}
               />
               <DatePicker
-                label="End Date"
+                label="Real End Date"
                 value={endDate}
                 onChange={(newValue) => setEndDate(newValue)}
               />
-              <DatePicker
-                label="Completion Goal Date"
-                value={completionGoal}
-                onChange={(newValue) => setCompletionGoal(newValue)}
-              />
             </Stack>
+
+            <br></br>
+
+            <Stack spacing={2} direction="row">
+              <DatePicker
+                  label="Goal End Date"
+                  value={matchGoalToReal? endDate : goalEndDate}
+                  onChange={(newValue) => {setGoalEndDate(newValue); setMatchGoalToReal(false)}}
+                />
+              <FormControlLabel
+                  label="Match Goal to Real End Date"
+                  control={<Checkbox
+                    checked={matchGoalToReal}
+                    onChange={() => setMatchGoalToReal(!matchGoalToReal)}
+                    size="small"
+                  ></Checkbox>}
+                />  
+            </Stack>
+
             <br />
             <br />
+
             <TextField
               type="text"
               variant="outlined"
@@ -134,11 +157,14 @@ export default function AddTask({ calendar }) {
               required
               sx={{ mb: 4 }}
             />
+
             <MuiColorInput
               value={color}
               onChange={(newColor) => setColor(newColor)}
             />
+
             <br />
+
             <div style={{ textAlign: "right" }}>
               <Button color="primary" type="submit">
                 Submit
@@ -147,6 +173,7 @@ export default function AddTask({ calendar }) {
                 Cancel
               </Button>
             </div>
+
           </form>
         </DialogContent>
       </Dialog>
