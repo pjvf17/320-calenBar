@@ -6,7 +6,8 @@ import Box from '@mui/material/Box';
 import Week from './Week'
 
 const gridLayout = {
-    borderRadius: "40px"
+    borderRadius: "40px",
+    boxShadow: "11px 12px 13px 12px rgb(207, 207, 207)",
 }
 
 const gridWeekDays = {
@@ -153,7 +154,7 @@ function Calendar(props){
             {/* MAIN CALENDAR VIEW */}
             <Grid container columns={1} direction="column" display={"inline-flex"} justifyContent={"center"}
                   maxWidth={"90%"}>
-                <Grid item container sx={ gridLayout } border="1px black solid">
+                <Grid item container sx={ gridLayout }>
                     <Grid item container>
                         <Typography variant="yearMonth" sx={{ padding: "0.5em" }}>{year + " " + months[month]}</Typography>
                     </Grid>
