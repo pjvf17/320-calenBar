@@ -8,6 +8,7 @@ import CalendarPicker from "./CalendarPicker";
 import EditTask from "./EditTask";
 import { ReloadCalendarContext, EditModalContext } from "./App";
 import { Link } from "react-router-dom";
+import AddCalendar from "./AddCalendar";
 
 
 
@@ -30,6 +31,7 @@ export default function CalendarPage(){
             <Link to={"/login"} style={{paddingRight:"10px"}}>Login</Link>
             <Link to={"/register"}>Register</Link>
 
+            <AddCalendar></AddCalendar>
             <CalendarPicker
                 calendar={calendar}
                 setCalendar={setCalendar}
