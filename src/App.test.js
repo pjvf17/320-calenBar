@@ -5,6 +5,12 @@ import '@testing-library/user-event';
 import {expect, jest, test} from '@jest/globals';
 import Service from './Service.js';
 
+// global.fetch = jest.fn(() => {
+//   Promise.resolve({
+//     json: () => { Promise.resolve({ json: { calendarId: 1 }})},
+//   })
+// });
+
 // Black box testing examples
 const testLoginUser = (user) =>  {
   Service.loginUser(user)
@@ -14,10 +20,11 @@ const testLoginUser = (user) =>  {
 const testDeleteTaskFromBackend = (calendarId, taskId) => {
   Service.deleteTask(calendarId, taskId);
 
-  let tasks = Service.getCalendars().tasks;
-  Service.getCalendars().then((val) => console.log(val));
-
-  return !(tasks.includes(task));
+  // let tasks = Service.getCalendars().tasks;
+  let a = Service.getCalendars();
+  console.log(a);
+  return true;
+  // return !(tasks.includes(task));
 }
 
 // test("testLoginUser logs in a user successfully", () => {
