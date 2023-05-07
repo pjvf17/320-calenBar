@@ -2,7 +2,7 @@ import dayjs from 'dayjs'
 import isBetween from 'dayjs/plugin/isBetween'
 import { Fragment, useState } from 'react'
 import { Button, Grid, Typography } from '@mui/material'
-import Divider from '@mui/material/Divider';
+import Box from '@mui/material/Box';
 import Week from './Week'
 
 const gridLayout = {
@@ -137,17 +137,17 @@ function Calendar(props){
     
 
     return (
-        <div>
+        <Box>
         
             {/* display current year and month, with buttons
                 currently this can only show one month at a time */}
-            <div>
-                <Button style={{fontSize:"small"}} onClick={prevYear}>prev year</Button>
-                <Button style={{fontSize:"small"}}onClick={nextYear}>next year</Button>
+            <Box flex-direction="row">
+                <Button onClick={prevYear}>prev year</Button>
+                <Button onClick={nextYear}>next year</Button>
 
-                <Button style={{fontSize:"small"}} onClick={prevMonth}>prev month</Button>
-                <Button style={{fontSize:"small"}} onClick={nextMonth}>next month</Button>
-            </div>
+                <Button onClick={prevMonth}>prev month</Button>
+                <Button onClick={nextMonth}>next month</Button>
+            </Box>
 
 
             {/* MAIN CALENDAR VIEW */}
@@ -181,7 +181,7 @@ function Calendar(props){
                     </Grid>
                 </Grid>
             </Grid>
-        </div>
+        </Box>
     )
 
 }
