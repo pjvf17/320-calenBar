@@ -48,7 +48,7 @@ export default function EventDisplay({ events, day }) {
                 }}
                 >
                     
-                <div style={{paddingTop:"3px"}} key={i} fontSize="large">{e.title}</div>
+                <div style={{paddingTop:"3px"}} key={i} fontSize="large">{e.title} (more info here, time, etc.)</div>
                 
                 </div>
                 
