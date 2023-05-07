@@ -84,9 +84,8 @@ export default function Day(props){
         return thickness;
     }
     let thickness = []
-    let dayHeight = Number(weekDayStyles.height.slice(0, -2));
     if(props.tasks.length > 0){
-        thickness = getThickness(15, 5, dayHeight-(dayHeight/4));
+        thickness = getThickness(15, 5, 100);
     }
     const { editModalOpen, setEditModalOpen, editTask, setEditTask } = useContext(EditModalContext);
     return(
