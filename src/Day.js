@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react"
-import {Button, Grid, Tooltip, Typography } from "@mui/material"
+import React, { useContext } from "react"
+import {Button, Grid, Stack, Tooltip, Typography, darken } from "@mui/material"
 import dayjs from "dayjs"
 import isBetween from 'dayjs/plugin/isBetween'
 import { EditModalContext } from "./App"
-import {darken} from "@mui/material";
+import EventDisplay from "./EventDisplay"
 
 const weekDayStyles = {
     // height: "6em",
@@ -26,6 +26,7 @@ let count = -1;
 dayjs.extend(isBetween)
 
 export default function Day(props){
+
     // function to get thickness of top numStacks tasks on the current day
     // numStacks accepts any positive integer
     // min accepts any positive integer <= pixelSpace/numStacks
@@ -33,13 +34,12 @@ export default function Day(props){
         //queue datastructure
         let thickness = [];
         // loop over all tasks in week
-        for(let i = 0; i < props.tasks.length; i++){
+        for(const task of props.tasks){
             // grab important variables
-            let task = props.tasks[i];
             let start = dayjs(task.start_date);
             let end = dayjs(task.end_date);
             let today = dayjs(props.day);
-            let timeToComplete = props.tasks[i].estimated_time
+            let timeToComplete = task.estimated_time
             // if task is on the current day
             if(today.isBetween(start, end, "day", "[]") && props.day !== 0){
                 let daysRemaining = end.diff(today, 'day');
@@ -83,19 +83,41 @@ export default function Day(props){
         }
         return thickness;
     }
+
+    function getEvents(){
+        let newEvents = []
+        for(const task of props.tasks){
+            if(task.isEvent){
+                newEvents.push(task)
+            }
+        }
+        return [{title:"test1"}, {title:"test2"}]
+    }
+
     let thickness = []
+    let events = []
     if(props.tasks.length > 0){
         thickness = getThickness(15, 5, 100);
+        events = getEvents()
     }
+
+
     const { editModalOpen, setEditModalOpen, editTask, setEditTask } = useContext(EditModalContext);
     return(
         // Each day is a grid item surrounded by a border
 
 
-        <Grid item xs = {1} sx={ ( (count++) % 7) === 0 ? weekendDayStyles : weekDayStyles } >
+        <Grid item xs = {1} sx={ ( (count++) % 7) === 0 ? weekendDayStyles : weekDayStyles } position={"relative"}>
+
 
             {/* This displays the current day of the month */}
-            <Typography variant="dayNumber" style={{padding:"0px", margin: "0px"}}>{props.day==="0"? <br></br> : props.day.date()}</Typography>
+            <Stack direction={"row"} spacing={10}>
+                <Typography variant="dayNumber">{props.day==="0"? <br></br> : props.day.date()}</Typography>
+                {props.day !== "0"? <EventDisplay events={events} day={dayjs(props.day)}></EventDisplay> : <br></br>}
+            </Stack>
+
+        
+
 
             {/* Create a line for each task */}
             {props.tasks.map((t, i)=> 

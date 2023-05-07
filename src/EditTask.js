@@ -5,7 +5,7 @@ import DialogContent from '@mui/material/DialogContent';
 import { Stack, Link } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { MuiColorInput } from 'mui-color-input'
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import React, { useContext } from 'react';
 import Service from './Service';
 import { ReloadCalendarContext, EditModalContext } from './App';

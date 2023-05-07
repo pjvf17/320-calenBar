@@ -14,6 +14,7 @@ export default function CalendarPicker(props){
         // Update the document title using the browser API
         service.getCalendars()
         .then(data=> {
+            console.log(data)
             setCalendars(data)
             if (data.length > 0){
                 const current = data.find(cal => cal.id === props.calendar.id)
