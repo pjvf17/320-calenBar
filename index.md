@@ -13,5 +13,4 @@ The purpose of this calendar is to give users a detailed visualization of their 
    
 2. Back-end
  
-   The back-end is hosted on AWS EC2. It is comprised of two layers: the application and data layer. The application layer hosts a React server that uses Node.js and a  
-   Django server that uses REST API and Python. The data layer is a SQLite database which sends and recieves SQL queries from the application layer. 
+   The back-end is hosted on AWS EC2. It is comprised of two layers: the application and data layer. The application layer hosts a React server that uses Node.js and a      Django server that uses REST API and Python. The data layer is a SQLite database which sends and recieves SQL queries from the application layer. 
