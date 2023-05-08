@@ -83,12 +83,12 @@ export default function EditTask({calendar}) {
                   onChange={(newValue) => setEditTask({...editTask, start_date: newValue})}
                 />
                 <DatePicker 
-                  label="End Date"
+                  label="Real End Date"
                   value={dayjs(editTask.end_date)}
                   onChange={(newValue) => setEditTask({...editTask, end_date: newValue})}
                 />
                 <DatePicker 
-                  label="Completion Goal Date"
+                  label="Goal End Date"
                   value={dayjs(editTask.goalEndDate)}
                   onChange={(newValue) => setEditTask({...editTask, goalEndDate: newValue})}
                 />

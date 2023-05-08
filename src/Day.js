@@ -87,11 +87,11 @@ export default function Day(props){
     function getEvents(){
         let newEvents = []
         for(const task of props.tasks){
-            if(task.isEvent){
+            if(task.isEvent && dayjs(props.day).isSame(task.start_date, "day")){
                 newEvents.push(task)
             }
         }
-        return [{title:"test1"}, {title:"test2"}]
+        return [{title:"test1"}, {title:"test2"}] //newEvents stub
     }
 
     let thickness = []
@@ -111,9 +111,9 @@ export default function Day(props){
 
 
             {/* This displays the current day of the month */}
-            <Stack direction={"row"} spacing={10}>
-                <Typography variant="dayNumber">{props.day==="0"? <br></br> : props.day.date()}</Typography>
-                {props.day !== "0"? <EventDisplay events={events} day={dayjs(props.day)}></EventDisplay> : <br></br>}
+            <Stack direction={"row"} spacing={15}>
+                <Typography variant="dayNumber" paddingTop={1}>{props.day==="0"? <br></br> : props.day.date()}</Typography>
+                {props.day !== "0" && events.length > 0? <EventDisplay events={events} day={dayjs(props.day)}></EventDisplay> : <br></br>}
             </Stack>
 
         

@@ -9,6 +9,7 @@ import EditTask from "./EditTask";
 import { ReloadCalendarContext, EditModalContext } from "./App";
 import { Link } from "react-router-dom";
 import AddCalendar from "./AddCalendar";
+import { Stack } from "@mui/material";
 
 
 
@@ -31,11 +32,13 @@ export default function CalendarPage(){
             <Link to={"/login"} style={{paddingRight:"10px"}}>Login</Link>
             <Link to={"/register"}>Register</Link>
 
-            <AddCalendar></AddCalendar>
-            <CalendarPicker
-                calendar={calendar}
-                setCalendar={setCalendar}
-            ></CalendarPicker>
+            <Stack direction={"row"} justifyContent={"center"}>
+                <CalendarPicker
+                    calendar={calendar}
+                    setCalendar={setCalendar}
+                ></CalendarPicker>
+                <AddCalendar></AddCalendar>
+            </Stack>
             
             <AddTask calendar={calendar}></AddTask>
             <EditTask calendar={calendar}></EditTask>
