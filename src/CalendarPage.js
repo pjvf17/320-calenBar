@@ -9,7 +9,8 @@ import EditTask from "./EditTask";
 import { ReloadCalendarContext, EditModalContext } from "./App";
 import { Link } from "react-router-dom";
 import AddCalendar from "./AddCalendar";
-import { Stack } from "@mui/material";
+import { AppBar, Stack } from "@mui/material";
+import ResponsiveAppBar from "./AppBar";
 
 
 
@@ -29,6 +30,11 @@ export default function CalendarPage(){
         >
         <LocalizationProvider dateAdapter={AdapterDayjs}>
 
+            <ResponsiveAppBar 
+                calendar={calendar}
+                setCalendar={setCalendar}
+            ></ResponsiveAppBar>
+{/* 
             <Link to={"/login"} style={{paddingRight:"10px"}}>Login</Link>
             <Link to={"/register"}>Register</Link>
 
@@ -38,11 +44,14 @@ export default function CalendarPage(){
                     setCalendar={setCalendar}
                 ></CalendarPicker>
                 <AddCalendar></AddCalendar>
-            </Stack>
-            
-            <AddTask calendar={calendar}></AddTask>
-            <EditTask calendar={calendar}></EditTask>
-            <Calendar tasks={calendar.tasks}></Calendar>
+            </Stack> */}
+
+            <div style={{marginTop:"60px"}}>
+                <AddTask calendar={calendar}></AddTask>
+                <EditTask calendar={calendar}></EditTask>
+                <Calendar tasks={calendar.tasks}></Calendar>
+            </div>
+                
 
         </LocalizationProvider>
         </EditModalContext.Provider>

@@ -40,7 +40,7 @@ export default function AddCalendar({ calendar }) {
     <div>
 
       <IconButton onClick={handleClickOpen}>
-        <AddCircle color="secondary"></AddCircle>
+        <AddCircle sx={{color:"white"}}></AddCircle>
       </IconButton>
 
       <Dialog open={open} onClose={handleClose}>

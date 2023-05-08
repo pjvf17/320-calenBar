@@ -4,7 +4,7 @@ import { EditModalContext } from "./App";
 import React, { useContext } from "react";
 import { Icon, IconButton, Stack, Typography } from "@mui/material";
 import AssignmentIcon from '@mui/icons-material/Assignment';
-import { Edit } from "@mui/icons-material";
+import { Edit, EventNote } from "@mui/icons-material";
 
 export default function EventDisplay({ events, day }) {
 
@@ -30,7 +30,7 @@ export default function EventDisplay({ events, day }) {
     <div>
 
       <IconButton onClick={handleClickOpen}>
-        <AssignmentIcon color="secondary"></AssignmentIcon>
+        <EventNote color="secondary"></EventNote>
       </IconButton>
 
       <Dialog open={open} onClose={handleClose}>
@@ -54,6 +54,7 @@ export default function EventDisplay({ events, day }) {
                     </IconButton>
                         
                     <Typography style={{paddingTop:"3px"}} key={i} fontSize="large">{e.title} (more info here, time, etc.)</Typography>
+                    
                   </Stack>
                 </div>
                 
