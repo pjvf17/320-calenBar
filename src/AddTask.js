@@ -18,7 +18,7 @@ export default function AddTask({ calendar }) {
   const [endDate, setEndDate] = useState(dayjs().add(1, "d"));
   const [goalEndDate, setGoalEndDate] = useState(dayjs().add(1, "d"));
   const [estimateTime, setEstimateTime] = useState(1);
-  const [color, setColor] = React.useState("red");
+  const [color, setColor] = React.useState("#0096FF");
   const [matchGoalToReal, setMatchGoalToReal] = useState(true)
 
   const { reloadCalendar, setReloadCalendar } = useContext(
@@ -58,7 +58,7 @@ export default function AddTask({ calendar }) {
     setGoalEndDate(dayjs().add(1, "d"));
     setMatchGoalToReal(true)
     setEstimateTime(1);
-    setColor("red");
+    setColor("#0096FF");
     setOpen(false);
   };
 
