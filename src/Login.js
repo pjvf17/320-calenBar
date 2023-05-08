@@ -33,7 +33,7 @@ export default function Login(){
     return (
         <div className="login" style={{textAlign:"center"}}>
 
-            <h2>Login to CalenBar</h2>
+            <h2>Login to calenBar</h2>
 
             <div>
             <TextField
