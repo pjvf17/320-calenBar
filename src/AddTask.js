@@ -164,21 +164,24 @@ export default function AddTask({ calendar }) {
                 <DatePicker
                   label="End Date"
                   value={endDate}
-                  onChange={(newValue) => setEndDate(newValue)}
+                  onChange={(newValue) => {setEndDate(newValue); 
+                                          if(matchGoalToReal){setGoalEndDate(newValue)}}}
                   />
                   </Stack>
                   <br/>
                   <Stack spacing={2} direction="row">
                     <DatePicker
                         label="Goal End Date"
-                        value={matchGoalToReal? endDate : goalEndDate}
-                        onChange={(newValue) => {setGoalEndDate(newValue); setMatchGoalToReal(false)}}
+                        value={goalEndDate}
+                        onChange={(newValue) => {setGoalEndDate(newValue); 
+                                                  setMatchGoalToReal(false)}}
                       />
                     <FormControlLabel
                         label="Match Goal to Real End Date"
                         control={<Checkbox
                           checked={matchGoalToReal}
-                          onChange={() => setMatchGoalToReal(!matchGoalToReal)}
+                          onChange={() => {if(!matchGoalToReal){setGoalEndDate(endDate);} 
+                                            setMatchGoalToReal(!matchGoalToReal);}}
                           size="small"
                         ></Checkbox>}
                       />  
