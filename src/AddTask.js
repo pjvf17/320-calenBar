@@ -1,9 +1,15 @@
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import { Stack, Link, Checkbox, FormControlLabel } from "@mui/material";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import {
+  Stack,
+  Link,
+  Switch,
+  Dialog,
+  DialogContent,
+  TextField,
+  Button,
+  FormControlLabel,
+  Checkbox
+} from "@mui/material";
+import { DatePicker, DateTimePicker } from "@mui/x-date-pickers";
 import { MuiColorInput } from "mui-color-input";
 import dayjs, { Dayjs } from "dayjs";
 import React, { useState, useContext } from "react";
@@ -20,6 +26,8 @@ export default function AddTask({ calendar }) {
   const [estimateTime, setEstimateTime] = useState(1);
   const [color, setColor] = React.useState("#0096FF");
   const [matchGoalToReal, setMatchGoalToReal] = useState(true)
+  const [isEvent, setIsEvent] = useState(false);
+  const [eventDuration, setEventDuration] = useState(-1);
 
   const { reloadCalendar, setReloadCalendar } = useContext(
     ReloadCalendarContext
@@ -27,7 +35,6 @@ export default function AddTask({ calendar }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    // console.log(title, priority, description)
     let task = {
       title: title,
       priority: priority,
@@ -35,6 +42,8 @@ export default function AddTask({ calendar }) {
       start_date: startDate,
       end_date: endDate,
       estimated_time: estimateTime,
+      is_event: isEvent,
+      event_duration: eventDuration,
       color,
       goalEndDate
     };
@@ -60,17 +69,23 @@ export default function AddTask({ calendar }) {
     setEstimateTime(1);
     setColor("#0096FF");
     setOpen(false);
+    setIsEvent(false);
+    setEventDuration(1);
   };
 
   // https://www.copycat.dev/blog/material-ui-form/
 
   return (
     <div>
-
-      <Button variant="contained" style={{fontSize:"small"}} onClick={handleClickOpen}>Add Task To {calendar.title}</Button>
+      <Button
+        variant="contained"
+        style={{ fontSize: "small" }}
+        onClick={handleClickOpen}
+      >
+        Add Task To {calendar.title}
+      </Button>
 
       <Dialog open={open} onClose={handleClose}>
-
         <DialogContent>
 
           <h2>Add Task: {title}</h2>
@@ -113,36 +128,73 @@ export default function AddTask({ calendar }) {
               sx={{ mb: 4 }}
             />
 
-            <Stack spacing={2} direction="row">
-              <DatePicker
+              {isEvent ?
+              <div>
+                <Stack spacing={2} direction="row">
+              <DateTimePicker
                 label="Start Date"
                 value={startDate}
                 onChange={(newValue) => setStartDate(newValue)}
-              />
-              <DatePicker
-                label="Real End Date"
-                value={endDate}
-                onChange={(newValue) => setEndDate(newValue)}
-              />
-            </Stack>
+                />
+                <TextField
+                  id="outlined-number"
+                  label="Duration (in hours)"
+                  type="number"
+                  value={eventDuration}
+                  onChange={(newValue) => setEventDuration(newValue)}
+                  required
+                />
+                </Stack>
+                <FormControlLabel
+                        label="One Time Event"
+                        control={<Checkbox
+                          checked={isEvent}
+                          onChange={() => setIsEvent(!isEvent)}
+                          size="small"
+                        ></Checkbox>}
+                      /> 
+              </div>
+              : <div>
+                <Stack spacing={2} direction="row">
+                <DatePicker
+                  label="Start Date"
+                  value={startDate}
+                  onChange={(newValue) => setStartDate(newValue)}
+                  />
+                <DatePicker
+                  label="End Date"
+                  value={endDate}
+                  onChange={(newValue) => setEndDate(newValue)}
+                  />
+                  </Stack>
+                  <br/>
+                  <Stack spacing={2} direction="row">
+                    <DatePicker
+                        label="Goal End Date"
+                        value={matchGoalToReal? endDate : goalEndDate}
+                        onChange={(newValue) => {setGoalEndDate(newValue); setMatchGoalToReal(false)}}
+                      />
+                    <FormControlLabel
+                        label="Match Goal to Real End Date"
+                        control={<Checkbox
+                          checked={matchGoalToReal}
+                          onChange={() => setMatchGoalToReal(!matchGoalToReal)}
+                          size="small"
+                        ></Checkbox>}
+                      />  
+                  <FormControlLabel
+                        label="One Time Event"
+                        control={<Checkbox
+                          checked={isEvent}
+                          onChange={() => setIsEvent(!isEvent)}
+                          size="small"
+                        ></Checkbox>}
+                      />  
+                  </Stack>
+              </div>
+              }
 
             <br></br>
-
-            <Stack spacing={2} direction="row">
-              <DatePicker
-                  label="Goal End Date"
-                  value={matchGoalToReal? endDate : goalEndDate}
-                  onChange={(newValue) => {setGoalEndDate(newValue); setMatchGoalToReal(false)}}
-                />
-              <FormControlLabel
-                  label="Match Goal to Real End Date"
-                  control={<Checkbox
-                    checked={matchGoalToReal}
-                    onChange={() => setMatchGoalToReal(!matchGoalToReal)}
-                    size="small"
-                  ></Checkbox>}
-                />  
-            </Stack>
 
             <br />
             <br />
