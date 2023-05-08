@@ -1,4 +1,4 @@
-import { Fragment, createContext, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import Calendar from "./Calendar";
 import AddTask from "./AddTask";
@@ -8,6 +8,9 @@ import CalendarPicker from "./CalendarPicker";
 import EditTask from "./EditTask";
 import { ReloadCalendarContext, EditModalContext } from "./App";
 import { Link } from "react-router-dom";
+import AddCalendar from "./AddCalendar";
+import { AppBar, Stack } from "@mui/material";
+import ResponsiveAppBar from "./AppBar";
 
 
 
@@ -27,17 +30,28 @@ export default function CalendarPage(){
         >
         <LocalizationProvider dateAdapter={AdapterDayjs}>
 
+            <ResponsiveAppBar 
+                calendar={calendar}
+                setCalendar={setCalendar}
+            ></ResponsiveAppBar>
+{/* 
             <Link to={"/login"} style={{paddingRight:"10px"}}>Login</Link>
             <Link to={"/register"}>Register</Link>
 
-            <CalendarPicker
-                calendar={calendar}
-                setCalendar={setCalendar}
-            ></CalendarPicker>
-            
-            <AddTask calendar={calendar}></AddTask>
-            <EditTask calendar={calendar}></EditTask>
-            <Calendar tasks={calendar.tasks}></Calendar>
+            <Stack direction={"row"} justifyContent={"center"}>
+                <CalendarPicker
+                    calendar={calendar}
+                    setCalendar={setCalendar}
+                ></CalendarPicker>
+                <AddCalendar></AddCalendar>
+            </Stack> */}
+
+            <div style={{marginTop:"60px"}}>
+                <AddTask calendar={calendar}></AddTask>
+                <EditTask calendar={calendar}></EditTask>
+                <Calendar tasks={calendar.tasks}></Calendar>
+            </div>
+                
 
         </LocalizationProvider>
         </EditModalContext.Provider>

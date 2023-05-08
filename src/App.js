@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CalendarPage from "./CalendarPage";
 import Register from "./Register"
 
+
 import { ThemeProvider, createTheme } from "@mui/material";
 import "./styles.css";
 
@@ -24,7 +25,6 @@ function App() {
 
   return (
         <div className="App">
-
           <BrowserRouter>
             <Routes>
 

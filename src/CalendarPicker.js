@@ -14,6 +14,7 @@ export default function CalendarPicker(props){
         // Update the document title using the browser API
         service.getCalendars()
         .then(data=> {
+            console.log(data)
             setCalendars(data)
             if (data.length > 0){
                 const current = data.find(cal => cal.id === props.calendar.id)
@@ -39,7 +40,7 @@ export default function CalendarPicker(props){
             const isCurrent = cal.id === props.calendar.id
             const color = isCurrent? "green" : "red"
             return(
-                <Button style={{color: color}} key={i} onClick={e => handleClick(cal)}>{cal.title}</Button>
+                <Button variant="contained" style={{backgroundColor: "white", color: color, paddingTop:"7px"}} key={i} onClick={e => handleClick(cal)}>{cal.title}</Button>
             )
         })}
 

@@ -6,12 +6,19 @@ class Service {
       method: "GET",
       headers: { Authorization: `Token ${localStorage.getItem("token")}` },
     });
+
+    console.log(data);
+    
     if (data.status === 401) {
       window.location.href = "/login";
     }
     let json = await data.json();
     // console.log(json)
     return json;
+  }
+  
+  addCalendar(calendar){
+    console.log(calendar)
   }
 
   addTask(calendarId, task, setReloadCalendar) {

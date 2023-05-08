@@ -1,12 +1,13 @@
 import dayjs from 'dayjs'
 import isBetween from 'dayjs/plugin/isBetween'
-import { Fragment, useState } from 'react'
+import { useState } from 'react'
 import { Button, Grid, Typography } from '@mui/material'
-import Divider from '@mui/material/Divider';
+import Box from '@mui/material/Box';
 import Week from './Week'
 
 const gridLayout = {
-    borderRadius: "40px"
+    borderRadius: "40px",
+    boxShadow: "11px 12px 13px 12px rgb(207, 207, 207)",
 }
 
 const gridWeekDays = {
@@ -137,23 +138,23 @@ function Calendar(props){
     
 
     return (
-        <div>
+        <Box>
         
             {/* display current year and month, with buttons
                 currently this can only show one month at a time */}
-            <div>
-                <Button style={{fontSize:"small"}} onClick={prevYear}>prev year</Button>
-                <Button style={{fontSize:"small"}}onClick={nextYear}>next year</Button>
+            <Box flex-direction="row">
+                <Button onClick={prevYear}>prev year</Button>
+                <Button onClick={nextYear}>next year</Button>
 
-                <Button style={{fontSize:"small"}} onClick={prevMonth}>prev month</Button>
-                <Button style={{fontSize:"small"}} onClick={nextMonth}>next month</Button>
-            </div>
+                <Button onClick={prevMonth}>prev month</Button>
+                <Button onClick={nextMonth}>next month</Button>
+            </Box>
 
 
             {/* MAIN CALENDAR VIEW */}
             <Grid container columns={1} direction="column" display={"inline-flex"} justifyContent={"center"}
                   maxWidth={"90%"}>
-                <Grid item container sx={ gridLayout } border="1px black solid">
+                <Grid item container sx={ gridLayout }>
                     <Grid item container>
                         <Typography variant="yearMonth" sx={{ padding: "0.5em" }}>{year + " " + months[month]}</Typography>
                     </Grid>
@@ -181,7 +182,7 @@ function Calendar(props){
                     </Grid>
                 </Grid>
             </Grid>
-        </div>
+        </Box>
     )
 
 }
