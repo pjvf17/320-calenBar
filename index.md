@@ -15,4 +15,7 @@ The purpose of this calendar is to give users a detailed visualization of their 
  
    The back-end is hosted on AWS EC2. It is comprised of two layers: the application and data layer. The application layer hosts a React server that uses Node.js and a      Django server that uses REST API and Python. The data layer is a SQLite database which sends and recieves SQL queries from the application layer. 
 
+## Visualization
+
 ![alt text](https://github.com/pjvf17/320-calenBar/blob/main/images/Screenshot%202023-05-09%20at%206.51.07%20PM.png)
+
