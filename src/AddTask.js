@@ -140,7 +140,7 @@ export default function AddTask({ calendar }) {
                   id="outlined-number"
                   label="Duration (in hours)"
                   type="number"
-                  value={eventDuration}
+                  inputProps={{ min: 0 }} 
                   onChange={(newValue) => setEventDuration(newValue)}
                   required
                 />
@@ -201,7 +201,7 @@ export default function AddTask({ calendar }) {
 
             <br />
             <br />
-
+            {(!isEvent) && 
             <TextField
               type="text"
               variant="outlined"
@@ -212,6 +212,7 @@ export default function AddTask({ calendar }) {
               required
               sx={{ mb: 4 }}
             />
+            }
 
             <MuiColorInput
               value={color}
