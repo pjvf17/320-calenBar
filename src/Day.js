@@ -94,11 +94,42 @@ export default function Day(props){
         return [{title:"test1"}, {title:"test2"}] //newEvents stub
     }
 
+    function getPriorityList(){
+        let priority = []
+        for(const task of props.tasks){
+            // grab important variables
+            let start = dayjs(task.start_date);
+            let end = dayjs(task.end_date);
+            let today = dayjs(props.day);
+            let timeToComplete = task.estimated_time
+            // if task is on the current day
+            if(today.isBetween(start, end, "day", "[]") && props.day !== 0){
+                let daysRemaining = end.diff(today, 'day');
+                // make the value according the the following algorithm
+                let value = timeToComplete/(daysRemaining+1);
+                // add thickness to the queue
+                priority.push({title:task.title, value: value});
+            }
+        }
+        priority.sort((a, b) => b.value - a.value);
+        priority = priority.map((t) => t.title);
+        return priority;
+    }
+    function formatPrioList(priority){
+        let string = "";
+        for(let i = 1; i <= priority.length; i++){
+            string += i + ": " + priority[i-1] + "\n";
+        }
+        return string;
+    }
+
     let thickness = []
     let events = []
+    let prioString = ""
     if(props.tasks.length > 0){
         thickness = getThickness(15, 5, 100);
-        events = getEvents()
+        events = getEvents();
+        prioString = formatPrioList(getPriorityList());
     }
 
 
@@ -107,6 +138,7 @@ export default function Day(props){
         // Each day is a grid item surrounded by a border
 
 
+        <Tooltip title={<div style={{ whiteSpace: 'pre-line' }}>{prioString}</div>}>
         <Grid item xs = {1} sx={ ( (count++) % 7) === 0 ? weekendDayStyles : weekDayStyles } position={"relative"}>
 
 
@@ -176,6 +208,7 @@ export default function Day(props){
         {props.tasks.length < 1? <br></br> : ""}
 
         </Grid>
+        </Tooltip>
 )
 
 }
