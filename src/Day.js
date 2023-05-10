@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import {Button, Grid, Stack, Tooltip, Typography, darken } from "@mui/material"
+import {Button, Grid, Stack, Tooltip, Typography, darken, Box } from "@mui/material"
 import dayjs from "dayjs"
 import isBetween from 'dayjs/plugin/isBetween'
 import { EditModalContext } from "./App"
@@ -142,10 +142,10 @@ export default function Day(props){
 
 
             {/* This displays the current day of the month */}
-            <Stack direction={"row"} spacing={15}>
+            <Box display={"flex"} justifyContent={"space-between"}>
                 <Typography variant="dayNumber" paddingTop={1}>{props.day==="0"? <br></br> : props.day.date()}</Typography>
                 {props.day !== "0" && events.length > 0? <EventDisplay events={events} day={dayjs(props.day)} calendar={props.calendar}></EventDisplay> : <br></br>}
-            </Stack>
+            </Box>
 
             <Tooltip title={<div style={{ whiteSpace: 'pre-line' }}>{prioString}</div>}>
             <div>
