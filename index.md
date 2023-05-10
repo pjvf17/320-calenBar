@@ -17,6 +17,12 @@ The purpose of this calendar is to give users a detailed visualization of their 
 
 ## Visualization
 
-![alt text](https://github.com/pjvf17/320-calenBar/blob/main/images/Screenshot%202023-05-09%20at%206.51.07%20PM.png)
+![alt text](https://github.com/pjvf17/320-calenBar/blob/main/images/mainUI.png)
 
-Above, is the main calendar interface, which we created using material-ui. Once, a user has logged in, this is the main page that our users will interact with. The calendar is comprised of tasks and events. A task is represented with a bar that adjusts in height based on the expected number of hours to complete and the proximity to the deadline. Events, which occur on a single day, are viewable from the purple calendar icon in the top right of each day of the calendar. A user may view the events for agiven day by clicking on the purple icon of the specified day. 
+Above, is the main calendar interface, which we created using material-ui. Once, a user has logged in, this is the main page that our users will interact with. The calendar is comprised of tasks and events. A task is represented with a bar that adjusts in height based on the expected number of hours to complete and the proximity to the deadline. Events, which occur on a single day, are viewable from the purple calendar icon in the top right of each day of the calendar. A user may view the events for a given day by clicking on the purple icon of the specified day. 
+
+## Data Representation
+
+![alt text](https://github.com/pjvf17/320-calenBar/blob/main/images/data.png)
+
+Above, is the json representation of a task. When a user adds a new task, a json file like this is passed to the back-end where it is read and stored. 
