@@ -70,7 +70,7 @@ export default function EventDisplay({ events, day, calendar }) {
             )
         })}
 
-        <Stack textAlign={"center"}>
+        <Stack textAlign={"center"} paddingTop={"20px"}>
           <AddTask calendar={calendar} event={true} defaultDay={day}></AddTask>
 
           <Button color="secondary" onClick={handleClose}>

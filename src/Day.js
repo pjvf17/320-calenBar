@@ -138,7 +138,6 @@ export default function Day(props){
         // Each day is a grid item surrounded by a border
 
 
-        <Tooltip title={<div style={{ whiteSpace: 'pre-line' }}>{prioString}</div>}>
         <Grid item xs = {1} sx={ ( (count++) % 7) === 0 ? weekendDayStyles : weekDayStyles } position={"relative"}>
 
 
@@ -148,9 +147,8 @@ export default function Day(props){
                 {props.day !== "0" && events.length > 0? <EventDisplay events={events} day={dayjs(props.day)} calendar={props.calendar}></EventDisplay> : <br></br>}
             </Stack>
 
-        
-
-
+            <Tooltip title={<div style={{ whiteSpace: 'pre-line' }}>{prioString}</div>}>
+            <div>
             {/* Create a line for each task */}
             {props.tasks.map((t, i)=> 
 
@@ -197,18 +195,23 @@ export default function Day(props){
                                     </div>
                                 </div>
                             </Tooltip>
+
                         </div>
                     )
                 }
             })}
 
+
         {props.tasks.length < 3? <br></br> : ""}
         {props.tasks.length < 2? <br></br> : ""}
         {props.tasks.length < 1? <br></br> : ""}
         {props.tasks.length < 1? <br></br> : ""}
+        </div>
+
+        </Tooltip>
+
 
         </Grid>
-        </Tooltip>
 )
 
 }
