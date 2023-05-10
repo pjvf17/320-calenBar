@@ -11,7 +11,7 @@ export default function Week(props){
             {props.days.map((d, i) => {
                 {/* console.log(props.tasks) */}
                 return(
-                    <Day key={i} day={d} tasks = {props.tasks} dayOfWeek = {i}></Day>
+                    <Day key={i} day={d} tasks = {props.tasks} dayOfWeek = {i} calendar={props.calendar}></Day>
                 )
             })}
         </Grid>

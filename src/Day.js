@@ -91,7 +91,7 @@ export default function Day(props){
                 newEvents.push(task)
             }
         }
-        return [{title:"test1"}, {title:"test2"}] //newEvents stub
+        return [{title:"test1", description: "description1", start_date:"start time", estimated_time:"duration", color:"blue"}, {title:"test2", description: "description2", start_date:"start time", estimated_time:"duration", color:"red"}] //newEvents stub
     }
 
     function getPriorityList(){
@@ -145,7 +145,7 @@ export default function Day(props){
             {/* This displays the current day of the month */}
             <Stack direction={"row"} spacing={15}>
                 <Typography variant="dayNumber" paddingTop={1}>{props.day==="0"? <br></br> : props.day.date()}</Typography>
-                {props.day !== "0" && events.length > 0? <EventDisplay events={events} day={dayjs(props.day)}></EventDisplay> : <br></br>}
+                {props.day !== "0" && events.length > 0? <EventDisplay events={events} day={dayjs(props.day)} calendar={props.calendar}></EventDisplay> : <br></br>}
             </Stack>
 
         

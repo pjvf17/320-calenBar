@@ -5,8 +5,9 @@ import React, { useContext } from "react";
 import { Icon, IconButton, Stack, Typography } from "@mui/material";
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import { Edit, EventNote } from "@mui/icons-material";
+import AddTask from "./AddTask";
 
-export default function EventDisplay({ events, day }) {
+export default function EventDisplay({ events, day, calendar }) {
 
 
     const { editModalOpen, setEditModalOpen, editTask, setEditTask } = useContext(EditModalContext);
@@ -37,10 +38,9 @@ export default function EventDisplay({ events, day }) {
 
       <h2>Events Today: {day.format('MM/DD/YYYY')}</h2>
 
-
         {events.map((e, i) => {
             return(
-                <div key={i} padding="10">
+                <div key={i} padding="10" style={{paddingTop:"8px"}}>
 
                   <Stack direction={"row"}>
                     <IconButton
@@ -49,17 +49,30 @@ export default function EventDisplay({ events, day }) {
                           console.log(e)
                           setEditModalOpen(true)
                       }}
+                      style={{color:e.color}}
                     >
                     <Edit></Edit>
                     </IconButton>
                         
-                    <Typography style={{paddingTop:"3px"}} key={i} fontSize="large">{e.title} (more info here, time, etc.)</Typography>
-                    
+                    <Stack>
+                    <Typography fontSize="large">{e.title}</Typography>
+                    <Typography fontSize="medium">{e.description}</Typography>
+                    <Typography fontSize="medium">{e.start_date}</Typography>
+                    <Typography fontSize="medium">{e.estimated_time}</Typography>
+                    </Stack>
+
                   </Stack>
+
                 </div>
+
+                
                 
             )
         })}
+
+        <div style={{justifyItems:"center"}}>
+          <AddTask calendar={calendar} event={true} defaultDay={day}></AddTask>
+        </div>
 
         <Button color="secondary" onClick={handleClose}>
             Close

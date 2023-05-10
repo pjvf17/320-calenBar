@@ -16,17 +16,17 @@ import React, { useState, useContext } from "react";
 import Service from "./Service";
 import { ReloadCalendarContext } from "./App";
 
-export default function AddTask({ calendar }) {
+export default function AddTask({ calendar, event, defaultDay }) {
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState("");
   const [description, setDescription] = useState("");
-  const [startDate, setStartDate] = useState(dayjs());
+  const [startDate, setStartDate] = useState(defaultDay === undefined? dayjs() : dayjs(defaultDay));
   const [endDate, setEndDate] = useState(dayjs().add(1, "d"));
   const [goalEndDate, setGoalEndDate] = useState(dayjs().add(1, "d"));
   const [estimateTime, setEstimateTime] = useState(1);
   const [color, setColor] = React.useState("#0096FF");
   const [matchGoalToReal, setMatchGoalToReal] = useState(true)
-  const [isEvent, setIsEvent] = useState(false);
+  const [isEvent, setIsEvent] = useState(event);
   const [eventDuration, setEventDuration] = useState(-1);
 
   const { reloadCalendar, setReloadCalendar } = useContext(
@@ -62,14 +62,14 @@ export default function AddTask({ calendar }) {
     setTitle("");
     setPriority("");
     setDescription("");
-    setStartDate(dayjs());
+    setStartDate(defaultDay === undefined? dayjs() : defaultDay);
     setEndDate(dayjs().add(1, "d"));
     setGoalEndDate(dayjs().add(1, "d"));
     setMatchGoalToReal(true)
     setEstimateTime(1);
     setColor("#0096FF");
     setOpen(false);
-    setIsEvent(false);
+    setIsEvent(event);
     setEventDuration(1);
   };
 
@@ -79,18 +79,27 @@ export default function AddTask({ calendar }) {
     <div>
       <Button
         variant="contained"
-        style={{ fontSize: "small" }}
+        style={{ fontSize: "small", justifyContent:"center" }}
         onClick={handleClickOpen}
       >
-        Add Task To {calendar.title}
+        Add {event? "Event" : "Task"} To {defaultDay === undefined? calendar.title : defaultDay.format('MM/DD/YYYY')}
       </Button>
 
       <Dialog open={open} onClose={handleClose}>
         <DialogContent>
 
-          <h2>Add Task: {title}</h2>
+          {isEvent? <h2>Add Event: {title}</h2> : <h2>Add Task: {title}</h2>}
 
           <form onSubmit={handleSubmit} action={<Link to="/login" />}>
+
+            <FormControlLabel
+                label="One Time Event"
+                control={<Checkbox
+                  checked={isEvent}
+                  onChange={() => setIsEvent(!isEvent)}
+                  size="small"
+                ></Checkbox>}
+              />  
 
             <Stack spacing={2} direction="row" sx={{ marginBottom: 4 }}>
               <TextField
@@ -145,14 +154,6 @@ export default function AddTask({ calendar }) {
                   required
                 />
                 </Stack>
-                <FormControlLabel
-                        label="One Time Event"
-                        control={<Checkbox
-                          checked={isEvent}
-                          onChange={() => setIsEvent(!isEvent)}
-                          size="small"
-                        ></Checkbox>}
-                      /> 
               </div>
               : <div>
                 <Stack spacing={2} direction="row">
@@ -185,14 +186,7 @@ export default function AddTask({ calendar }) {
                           size="small"
                         ></Checkbox>}
                       />  
-                  <FormControlLabel
-                        label="One Time Event"
-                        control={<Checkbox
-                          checked={isEvent}
-                          onChange={() => setIsEvent(!isEvent)}
-                          size="small"
-                        ></Checkbox>}
-                      />  
+
                   </Stack>
               </div>
               }

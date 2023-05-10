@@ -31,7 +31,7 @@ function Calendar(props){
     let [year, setYear] = useState(djs.year())
     let [month, setMonth] = useState(djs.month())
 
-    let tasks = props.tasks
+    let tasks = props.calendar.tasks
 
     console.log(tasks)
 
@@ -176,7 +176,7 @@ function Calendar(props){
                             {days.map((w, i) => (
                                 <Grid item key={i} xs={1}>
                                     {/* {console.log(tasksInWeeks[i])} */}
-                                    <Week days = {w} tasks={stuff.tasksInWeeks[i]}></Week>
+                                    <Week days = {w} tasks={stuff.tasksInWeeks[i]} calendar={props.calendar}></Week>
                                 </Grid>
                             ))}
                     </Grid>
