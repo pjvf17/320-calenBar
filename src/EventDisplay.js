@@ -70,13 +70,13 @@ export default function EventDisplay({ events, day, calendar }) {
             )
         })}
 
-        <div style={{justifyItems:"center"}}>
+        <Stack textAlign={"center"}>
           <AddTask calendar={calendar} event={true} defaultDay={day}></AddTask>
-        </div>
 
-        <Button color="secondary" onClick={handleClose}>
-            Close
-        </Button>
+          <Button color="secondary" onClick={handleClose}>
+              Close
+          </Button>
+        </Stack>
         
       </Dialog>
     </div>
