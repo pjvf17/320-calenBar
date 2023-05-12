@@ -51,21 +51,22 @@ export default function EditTask({calendar}) {
                       fullWidth
                       required
                   />
+                  <TextField
+                      type="text"
+                      variant='outlined'
+                      color='secondary'
+                      label="Description"
+                      onChange={e => setEditTask({...editTask, description: e.target.value})}
+                      value={editTask.description}
+                      fullWidth
+                      required
+                      multiline
+                      sx={{mb: 4}}
+                  />
 
               </Stack>
 
-              <TextField
-                  type="text"
-                  variant='outlined'
-                  color='secondary'
-                  label="Description"
-                  onChange={e => setEditTask({...editTask, description: e.target.value})}
-                  value={editTask.description}
-                  fullWidth
-                  required
-                  multiline
-                  sx={{mb: 4}}
-              />
+              
 
               <Stack spacing={2} direction="row">
                 <DatePicker 

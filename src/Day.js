@@ -84,18 +84,6 @@ export default function Day(props){
         return thickness;
     }
 
-    function getEvents(){
-        let newEvents = []
-        for(const task of props.tasks){
-            if(dayjs(props.day).isSame(task.start_date, "day")){
-                newEvents.push(task)
-                    return [{title:"test1", description: "description1", start_date:"start time", event_duration:"duration", color:"blue", isEvent:true}, 
-                    {title:"test2", description: "description2", start_date:"start time", event_duration:"duration", color:"red", isEvent:true}] //newEvents stub
-            }
-        }
-       return newEvents
-    }
-
     function getPriorityList(){
         let priority = []
         for(const task of props.tasks){
@@ -123,6 +111,18 @@ export default function Day(props){
             string += i + ": " + priority[i-1] + "\n";
         }
         return string;
+    }
+
+    function getEvents(){
+        let newEvents = []
+        for(const task of props.tasks){
+            if(dayjs(props.day).isSame(task.start_date, "day")){
+                newEvents.push(task)
+                    return [{title:"test1", description: "description1", start_date:"start time", event_duration:"duration", color: "#00FFFF", isEvent:true}, 
+                    {title:"test2", description: "description2", start_date:"start time", event_duration:"duration", color: "#AA4A44", isEvent:true}] //newEvents stub
+            }
+        }
+       return newEvents
     }
 
     let thickness = []

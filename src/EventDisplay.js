@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import { EditModalContext } from "./App";
 import React, { useContext } from "react";
-import {  IconButton, Stack, Typography } from "@mui/material";
+import {  IconButton, Stack, Typography, lighten, darken } from "@mui/material";
 import {  Edit, EventBusy, EventNote } from "@mui/icons-material";
 import AddTask from "./AddTask";
 
@@ -39,7 +39,7 @@ export default function EventDisplay({ events, day, calendar }) {
 
         {events.map((e, i) => {
             return(
-                <div key={i} padding="10" style={{paddingTop:"8px"}}>
+                <div key={i} padding="10" style={{paddingTop:"8px", background: lighten(e.color, 0.7)}}>
 
                   <Stack direction={"row"}>
                     <IconButton
@@ -48,7 +48,7 @@ export default function EventDisplay({ events, day, calendar }) {
                           console.log(e)
                           setEditModalOpen(true)
                       }}
-                      style={{color:e.color}}
+                      style={{color: darken(e.color, 0.3)}}
                     >
                     <Edit></Edit>
                     </IconButton>
@@ -57,7 +57,7 @@ export default function EventDisplay({ events, day, calendar }) {
                     <Typography fontSize="large">{e.title}</Typography>
                     <Typography fontSize="medium">{e.description}</Typography>
                     <Typography fontSize="medium">{e.start_date}</Typography>
-                    <Typography fontSize="medium">{e.estimated_time}</Typography>
+                    <Typography fontSize="medium">{e.event_duration}</Typography>
                     </Stack>
 
                   </Stack>

@@ -113,20 +113,20 @@ export default function AddTask({ calendar, event, defaultDay }) {
                 fullWidth
                 required
               />
+              <TextField
+                type="text"
+                variant="outlined"
+                color="secondary"
+                label="Description"
+                onChange={(e) => setDescription(e.target.value)}
+                value={description}
+                fullWidth
+                required
+                multiline
+                sx={{ mb: 4 }}
+              />
             </Stack>
 
-            <TextField
-              type="text"
-              variant="outlined"
-              color="secondary"
-              label="Description"
-              onChange={(e) => setDescription(e.target.value)}
-              value={description}
-              fullWidth
-              required
-              multiline
-              sx={{ mb: 4 }}
-            />
 
               {isEvent ?
               <div>
