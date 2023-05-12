@@ -30,7 +30,7 @@ export default function EventDisplay({ events, day, calendar }) {
     <div>
 
       <IconButton onClick={handleClickOpen} color={events.length > 0? "secondary": "gray"}>
-        {events.length > 0 ? <EventNote></EventNote> : <EventBusy></EventBusy>}
+        {events.length > 0 ? <EventNote></EventNote> : <EventBusy style={{opacity: 0.5}}></EventBusy>}
       </IconButton>
 
       <Dialog open={open} onClose={handleClose}>
