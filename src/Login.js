@@ -33,7 +33,7 @@ export default function Login(){
     return (
         <div className="login" style={{textAlign:"center"}}>
 
-            <h2>Login to calenBar</h2>
+            <h2 className="loginTitle">Login to calenBar</h2>
 
             <div>
             <TextField
@@ -68,12 +68,17 @@ export default function Login(){
                 {/* </div> */}
             </div>
             <div className="haveaccount2">
-            <Link to={"/register"}>Don't have an account? Register here</Link>
+                <Link to={"/register"}>Don't have an account? Register here</Link>
             </div>
 
-            <div className="return2" style={{paddingTop:"5px"}}>
+            {/* <div className="return2" style={{paddingTop:"5px"}}>
             <Link to={"/"}>Return to Home</Link>
-            </div>
+            </div> */}
+            <div className="return2">
+            <Link to={"/"}>
+                <Button type='submit' color='primary' variant='contained' fullWidth>Return Home</Button>
+            </Link>
+        </div>
 
         </div>
     )
