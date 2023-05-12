@@ -141,19 +141,19 @@ export default function AddTask({ calendar, event, defaultDay }) {
               {isEvent ?
               <div>
                 <Stack spacing={2} direction="row">
-              <DateTimePicker
-                label="Start Date"
-                value={startDate}
-                onChange={(newValue) => setStartDate(newValue)}
-                />
-                <TextField
-                  id="outlined-number"
-                  label="Duration (in hours)"
-                  type="number"
-                  inputProps={{ min: 0 }} 
-                  onChange={(newValue) => setEventDuration(newValue)}
-                  required
-                />
+                    <DateTimePicker
+                      label="Start Date"
+                      value={startDate}
+                      onChange={(newValue) => setStartDate(newValue)}
+                    />
+                    <TextField
+                      id="outlined-number"
+                      label="Duration (in hours)"
+                      type="number"
+                      inputProps={{ min: 0 }} 
+                      onChange={(newValue) => setEventDuration(newValue)}
+                      required
+                    />
                 </Stack>
               </div>
               : <div>
@@ -192,27 +192,30 @@ export default function AddTask({ calendar, event, defaultDay }) {
               </div>
               }
 
+
+            <br />
             <br></br>
 
-            <br />
-            <br />
-            {(!isEvent) && 
-            <TextField
-              type="text"
-              variant="outlined"
-              color="secondary"
-              label="Estimated Time (in hours)"
-              onChange={(e) => setEstimateTime(e.target.value)}
-              value={estimateTime}
-              required
-              sx={{ mb: 4 }}
-            />
-            }
+            <Stack direction={"row"} spacing={2}>
+              {(!isEvent) && 
+              <TextField
+                type="text"
+                variant="outlined"
+                color="secondary"
+                label="Estimated Time (in hours)"
+                onChange={(e) => setEstimateTime(e.target.value)}
+                value={estimateTime}
+                required
+                sx={{ mb: 4 }}
+              />
+              }
 
-            <MuiColorInput
-              value={color}
-              onChange={(newColor) => setColor(newColor)}
-            />
+              <MuiColorInput
+                label={"color"}
+                value={color}
+                onChange={(newColor) => setColor(newColor)}
+              />
+            </Stack>
 
             <br />
 

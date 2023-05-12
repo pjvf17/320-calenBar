@@ -36,7 +36,7 @@ export default function EditTask({calendar}) {
 
         <DialogContent>
 
-          <h2>Edit Task: {editTask.title}</h2>
+          <h2>Edit {editTask.isEvent? "Event" : "Task"}: {editTask.title}</h2>
 
           <form onSubmit={handleSubmit} action={<Link to="/login" />}>
 
@@ -82,39 +82,59 @@ export default function EditTask({calendar}) {
                   value={dayjs(editTask.start_date)}
                   onChange={(newValue) => setEditTask({...editTask, start_date: newValue})}
                 />
-                <DatePicker 
-                  label="Real End Date"
-                  value={dayjs(editTask.end_date)}
-                  onChange={(newValue) => setEditTask({...editTask, end_date: newValue})}
-                />
-                <DatePicker 
-                  label="Goal End Date"
-                  value={dayjs(editTask.goalEndDate)}
-                  onChange={(newValue) => setEditTask({...editTask, goalEndDate: newValue})}
-                />
+
+                {editTask.isEvent? 
+                    <TextField
+                      type="text"
+                      variant='outlined'
+                      color='secondary'
+                      label="Duration"
+                      onChange={e => setEditTask({...editTask, event_duration: e.target.value})}
+                      value={editTask.event_duration}
+                      required
+                      sx={{mb: 4}}
+                    />
+                   :
+                    <Stack spacing={2}>
+                      <DatePicker 
+                        label="Real End Date"
+                        value={dayjs(editTask.end_date)}
+                        onChange={(newValue) => setEditTask({...editTask, end_date: newValue})}
+                      />
+                      <DatePicker 
+                        label="Goal End Date"
+                        value={dayjs(editTask.goalEndDate)}
+                        onChange={(newValue) => setEditTask({...editTask, goalEndDate: newValue})}
+                      />
+                  </Stack>
+                }
+
               </Stack>
 
               <br/>
               <br/>
 
-              <TextField
-                  type="text"
-                  variant='outlined'
-                  color='secondary'
-                  label="Estimated Time (in hours)"
-                  onChange={e => setEditTask({...editTask, estimated_time: e.target.value})}
-                  value={editTask.estimated_time}
-                  required
-                  sx={{mb: 4}}
-              />
+              <Stack direction={"row"} spacing={2}>
+                {(!editTask.isEvent) &&  <TextField
+                    type="text"
+                    variant='outlined'
+                    color='secondary'
+                    label="Estimated Time (in hours)"
+                    onChange={e => setEditTask({...editTask, estimated_time: e.target.value})}
+                    value={editTask.estimated_time}
+                    required
+                    sx={{mb: 4}}
+                />}
 
-              <MuiColorInput value={editTask.color} onChange={(newColor) => setEditTask({...editTask, color: newColor})} />
+                <MuiColorInput label={"color"} value={editTask.color} onChange={(newColor) => setEditTask({...editTask, color: newColor})} />
+
+              </Stack>
 
               <br/>
 
               <div style={{flexDirection: "row", display: "flex", justifyContent: "space-between"}}>
                 <div style={{textAlign: "left"}}>
-                  <Button color = "secondary" onClick={() => Service.deleteTask(calendar.id, editTask.id).then(setReloadCalendar(!reloadCalendar)).then(handleClose())}>Delete Task</Button>
+                  <Button color = "secondary" onClick={() => Service.deleteTask(calendar.id, editTask.id).then(setReloadCalendar(!reloadCalendar)).then(handleClose())}>Delete {editTask.isEvent? "Event" : "Task"}</Button>
                 </div>
                 <div style={{textAlign:"right"}}>
                   <Button color = "primary" type="submit">Submit</Button>

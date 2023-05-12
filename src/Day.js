@@ -87,11 +87,13 @@ export default function Day(props){
     function getEvents(){
         let newEvents = []
         for(const task of props.tasks){
-            if(task.isEvent && dayjs(props.day).isSame(task.start_date, "day")){
+            if(dayjs(props.day).isSame(task.start_date, "day")){
                 newEvents.push(task)
+                    return [{title:"test1", description: "description1", start_date:"start time", event_duration:"duration", color:"blue", isEvent:true}, 
+                    {title:"test2", description: "description2", start_date:"start time", event_duration:"duration", color:"red", isEvent:true}] //newEvents stub
             }
         }
-        return [{title:"test1", description: "description1", start_date:"start time", estimated_time:"duration", color:"blue"}, {title:"test2", description: "description2", start_date:"start time", estimated_time:"duration", color:"red"}] //newEvents stub
+       return newEvents
     }
 
     function getPriorityList(){
@@ -144,7 +146,7 @@ export default function Day(props){
             {/* This displays the current day of the month */}
             <Box display={"flex"} justifyContent={"space-between"}>
                 <Typography variant="dayNumber" paddingTop={1}>{props.day==="0"? <br></br> : props.day.date()}</Typography>
-                {props.day !== "0" && events.length > 0? <EventDisplay events={events} day={dayjs(props.day)} calendar={props.calendar}></EventDisplay> : <br></br>}
+                {props.day !== "0"? <EventDisplay events={events} day={dayjs(props.day)} calendar={props.calendar}></EventDisplay> : <br></br>}
             </Box>
 
             <Tooltip title={<div style={{ whiteSpace: 'pre-line' }}>{prioString}</div>}>
