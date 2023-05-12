@@ -113,16 +113,6 @@ export default function AddTask({ calendar, event, defaultDay }) {
                 fullWidth
                 required
               />
-              <TextField
-                type="text"
-                variant="outlined"
-                color="secondary"
-                label="Priority"
-                onChange={(e) => setPriority(e.target.value)}
-                value={priority}
-                fullWidth
-                required
-              />
             </Stack>
 
             <TextField

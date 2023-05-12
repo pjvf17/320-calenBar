@@ -51,16 +51,7 @@ export default function EditTask({calendar}) {
                       fullWidth
                       required
                   />
-                  <TextField
-                      type="text"
-                      variant='outlined'
-                      color='secondary'
-                      label="Priority"
-                      onChange={e => setEditTask({...editTask, priority: e.target.value})}
-                      value={editTask.priority}
-                      fullWidth
-                      required
-                  />
+
               </Stack>
 
               <TextField

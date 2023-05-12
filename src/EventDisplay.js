@@ -2,7 +2,8 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import { EditModalContext } from "./App";
 import React, { useContext } from "react";
-import { IconButton, Stack, Typography } from "@mui/material";
+import {  IconButton, Stack, Typography } from "@mui/material";
+import {  Edit, EventBusy, EventNote } from "@mui/icons-material";
 import AddTask from "./AddTask";
 
 export default function EventDisplay({ events, day, calendar }) {
