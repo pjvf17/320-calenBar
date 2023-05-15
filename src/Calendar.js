@@ -172,7 +172,7 @@ function Calendar(props){
                     <Button onClick={nextMonth} 
                             sx={{ color: "black", left: "-100px", border: "2px #A1A1A1 solid", 
                             borderRadius: "10px", backgroundColor: "white" }}>
-                            <Typography sx={{ paddingRight: "10px", textTransform: "capitalize", fontFamily: "Merriweather", fontSize: "20px"}}>
+                            <Typography sx={{ paddingLeft: "10px", textTransform: "capitalize", fontFamily: "Merriweather", fontSize: "20px"}}>
                                 prev month
                             </Typography>
                             <ArrowForwardIosTwoToneIcon fontSize="small" sx={{ marginLeft: "10px", color: "#A1A1A1" }}></ArrowForwardIosTwoToneIcon>
@@ -180,7 +180,7 @@ function Calendar(props){
                     <Button onClick={nextYear} 
                             sx={{ color: "black", left: "-50px", border: "2px #A1A1A1 solid", 
                             borderRadius: "10px", backgroundColor: "white" }}>
-                            <Typography sx={{ paddingRight: "10px", textTransform: "capitalize", fontFamily: "Merriweather", fontSize: "20px"}}>
+                            <Typography sx={{ paddingLeft: "10px", textTransform: "capitalize", fontFamily: "Merriweather", fontSize: "20px"}}>
                                 next year
                             </Typography>
                             <ArrowForwardIosTwoToneIcon fontSize="small" sx={{ marginLeft: "10px", color: "#A1A1A1" }}></ArrowForwardIosTwoToneIcon>
