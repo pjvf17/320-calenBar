@@ -142,12 +142,22 @@ function Calendar(props){
         
             {/* display current year and month, with buttons
                 currently this can only show one month at a time */}
-            <Box flex-direction="row">
-                <Button onClick={prevYear}>prev year</Button>
-                <Button onClick={nextYear}>next year</Button>
-
-                <Button onClick={prevMonth}>prev month</Button>
-                <Button onClick={nextMonth}>next month</Button>
+            <Box flex-direction="row" sx={{ border: "1px black solid", marginTop: "10px", marginBottom: "10px" }}
+                 display={"inline-flex"} maxWidth={"90%"} backgroundColor={"#EEEEEE"}
+                 borderRadius={"25px"} width={"1275px"} paddingTop={"25px"} paddingBottom={"25px"}
+                 justifyContent={"space-between"}>
+                <Box flex-direction="row" display="block" justifyContent={"start"}>
+                    <Button onClick={prevYear} 
+                            sx={{ color: "black", left: "50px"  }} >prev year</Button>
+                    <Button onClick={prevMonth} 
+                            sx={{ color: "black", left: "100px" }} > prev month</Button>
+                </Box>
+                <Box>
+                    <Button onClick={nextMonth} 
+                            sx={{ color: "black", left: "-100px" }}>next month</Button>
+                    <Button onClick={nextYear} 
+                            sx={{ color: "black", left: "-50px" }}>next year</Button>
+                </Box>
             </Box>
 
 
