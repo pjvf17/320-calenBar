@@ -173,7 +173,7 @@ function Calendar(props){
                             sx={{ color: "black", left: "-100px", border: "2px #A1A1A1 solid", 
                             borderRadius: "10px", backgroundColor: "white" }}>
                             <Typography sx={{ paddingLeft: "10px", textTransform: "capitalize", fontFamily: "Merriweather", fontSize: "20px"}}>
-                                prev month
+                                next month
                             </Typography>
                             <ArrowForwardIosTwoToneIcon fontSize="small" sx={{ marginLeft: "10px", color: "#A1A1A1" }}></ArrowForwardIosTwoToneIcon>
                     </Button>
