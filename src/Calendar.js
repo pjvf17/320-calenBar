@@ -147,14 +147,12 @@ function Calendar(props){
         
             {/* display current year and month, with buttons
                 currently this can only show one month at a time */}
-            <Box flex-direction="row" sx={{ border: "1px black solid", marginTop: "15px", 
-                 marginBottom: "10px" }}
-                 display={"inline-flex"} maxWidth={"90%"} backgroundColor={"#EEEEEE"}
-                 borderRadius={"25px"} width={"1275px"} paddingTop={"25px"} paddingBottom={"25px"}
-                 justifyContent={"space-between"}>
-                <Box flex-direction="row" display="flex" justifyContent={"start"}>
+            <Box flex-direction="row" sx={{ border: "1px black solid" }} display="inline-flex" justifyContent="space-between"
+                 maxWidth={"90%"} backgroundColor={"#EEEEEE"}
+                 borderRadius={"25px"} width={"1275px"} paddingTop={"25px"} paddingBottom={"25px"}>
+                <Box flex-direction="row" display="inline-flex" justifyContent={"start"} columnGap={"10px"} paddingLeft={"10px"}>
                     <Button onClick={prevYear} 
-                            sx={{ color: "black", left: "50px", border: "2px #A1A1A1 solid", 
+                            sx={{ color: "black", border: "2px #A1A1A1 solid", 
                             borderRadius: "10px", backgroundColor: "white" }}>
                                 <ArrowBackIosNewTwoToneIcon fontSize="small" sx={{ marginRight: "-10px", color: "#A1A1A1" }}></ArrowBackIosNewTwoToneIcon>
                                 <ArrowBackIosNewTwoToneIcon fontSize="small" sx={{ marginRight: "10px", color: "#A1A1A1"}}></ArrowBackIosNewTwoToneIcon>
@@ -163,7 +161,7 @@ function Calendar(props){
                                 </Typography>
                     </Button>
                     <Button onClick={prevMonth} 
-                            sx={{ color: "black", left: "90px", border: "2px #A1A1A1 solid", 
+                            sx={{ color: "black", border: "2px #A1A1A1 solid", 
                             borderRadius: "10px", backgroundColor: "white" }}>
                                 <ArrowBackIosNewTwoToneIcon fontSize="small" sx={{ marginRight: "10px", color: "#A1A1A1" }}></ArrowBackIosNewTwoToneIcon>
                                 <Typography sx={{ paddingRight: "10px", textTransform: "capitalize", fontFamily: "Merriweather", fontSize: "20px"}}>
@@ -171,12 +169,12 @@ function Calendar(props){
                                 </Typography>
                     </Button>
                 </Box>
-                <Box flex-direction="row" display="flex" justifyContent={"end"}>
+                <Box flex-direction="row" display="inline-flex" justifyContent={"center"}>
                     <AddTask calendar={props.calendar} event={false}></AddTask>
                 </Box>
-                <Box>
+                <Box flex-direction="row" display="inline-flex" columnGap={"10px"} paddingRight={"10px"}>
                     <Button onClick={nextMonth} 
-                            sx={{ color: "black", left: "-90px", border: "2px #A1A1A1 solid", 
+                            sx={{ color: "black", border: "2px #A1A1A1 solid", 
                             borderRadius: "10px", backgroundColor: "white" }}>
                             <Typography sx={{ paddingLeft: "10px", textTransform: "capitalize", fontFamily: "Merriweather", fontSize: "20px" }}>
                                 next month
@@ -184,12 +182,12 @@ function Calendar(props){
                             <ArrowForwardIosTwoToneIcon fontSize="small" sx={{ marginLeft: "10px", color: "#A1A1A1" }}></ArrowForwardIosTwoToneIcon>
                     </Button>
                     <Button onClick={nextYear} 
-                            sx={{ color: "black", left: "-50px", border: "2px #A1A1A1 solid", 
-                            borderRadius: "10px", backgroundColor: "white" }}>
-                            <Typography sx={{ paddingLeft: "10px", textTransform: "capitalize", fontFamily: "Merriweather", fontSize: "20px"}}>
+                            sx={{ color: "black", border: "2px #A1A1A1 solid", 
+                            borderRadius: "10px", backgroundColor: "white", paddingLeft: "20px" }}>
+                            <Typography sx={{ textTransform: "capitalize", fontFamily: "Merriweather", fontSize: "20px"}}>
                                 next year
                             </Typography>
-                            <ArrowForwardIosTwoToneIcon fontSize="small" sx={{ marginLeft: "10px", color: "#A1A1A1" }}></ArrowForwardIosTwoToneIcon>
+                            <ArrowForwardIosTwoToneIcon fontSize="small" sx={{ marginLeft: "10px", color: "#A1A1A1", }}></ArrowForwardIosTwoToneIcon>
                             <ArrowForwardIosTwoToneIcon fontSize="small" sx={{ marginLeft: "-10px", color: "#A1A1A1" }}></ArrowForwardIosTwoToneIcon>
                     </Button>
                 </Box>

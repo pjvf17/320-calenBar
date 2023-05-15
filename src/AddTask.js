@@ -80,7 +80,7 @@ export default function AddTask({ calendar, event, defaultDay }) {
         variant="contained"
         style={{ fontSize: "large", justifyContent:"center", borderRadius: "20px", 
                  backgroundColor: "#1976d2", textTransform: "capitalize", 
-                 fontFamily: "Merriweather", width: "11.5em", left: "-10px" }}
+                 fontFamily: "Merriweather", width: "11.5em", textAlign: "center", left: "-2px" }}
         onClick={handleClickOpen}
       >
         Add {event? "Event" : "Task"} To {defaultDay === undefined? calendar.title : defaultDay.format('MM/DD/YYYY')}
