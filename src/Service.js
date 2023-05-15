@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 let REST_API_URL = "http://ec2-34-225-95-209.compute-1.amazonaws.com:8000";
-// REST_API_URL = "http://localhost:8000"; // for local testing
+REST_API_URL = "http://localhost:8000"; // for local testing
 
 class Service {
   async getCalendars() {
