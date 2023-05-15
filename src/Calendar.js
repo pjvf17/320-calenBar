@@ -151,26 +151,40 @@ function Calendar(props){
                  justifyContent={"space-between"}>
                 <Box flex-direction="row" display="block" justifyContent={"start"}>
                     <Button onClick={prevYear} 
-                            sx={{ color: "black", left: "50px"  }}>
-                                <ArrowBackIosNewTwoToneIcon fontSize="small" sx={{ marginRight: "-10px" }}></ArrowBackIosNewTwoToneIcon>
-                                <ArrowBackIosNewTwoToneIcon fontSize="small" sx={{ marginRight: "10px" }}></ArrowBackIosNewTwoToneIcon>
-                                prev year
+                            sx={{ color: "black", left: "50px", border: "2px #A1A1A1 solid", 
+                            borderRadius: "10px", backgroundColor: "white" }}>
+                                <ArrowBackIosNewTwoToneIcon fontSize="small" sx={{ marginRight: "-10px", color: "#A1A1A1" }}></ArrowBackIosNewTwoToneIcon>
+                                <ArrowBackIosNewTwoToneIcon fontSize="small" sx={{ marginRight: "10px", color: "#A1A1A1"}}></ArrowBackIosNewTwoToneIcon>
+                                <Typography sx={{ paddingRight: "10px", textTransform: "capitalize", fontFamily: "Merriweather", fontSize: "20px"}}>
+                                    prev month
+                                </Typography>
                     </Button>
                     <Button onClick={prevMonth} 
-                            sx={{ color: "black", left: "100px" }} >
-                                <ArrowBackIosNewTwoToneIcon fontSize="small" sx={{ marginRight: "10px" }}></ArrowBackIosNewTwoToneIcon>
-                                prev month
+                            sx={{ color: "black", left: "100px", border: "2px #A1A1A1 solid", 
+                            borderRadius: "10px", backgroundColor: "white" }}>
+                                <ArrowBackIosNewTwoToneIcon fontSize="small" sx={{ marginRight: "10px", color: "#A1A1A1" }}></ArrowBackIosNewTwoToneIcon>
+                                <Typography sx={{ paddingRight: "10px", textTransform: "capitalize", fontFamily: "Merriweather", fontSize: "20px"}}>
+                                    prev month
+                                </Typography>
                     </Button>
                 </Box>
                 <Box>
                     <Button onClick={nextMonth} 
-                            sx={{ color: "black", left: "-100px" }}>next month
-                            <ArrowForwardIosTwoToneIcon fontSize="small" sx={{ marginLeft: "10px" }}></ArrowForwardIosTwoToneIcon>
+                            sx={{ color: "black", left: "-100px", border: "2px #A1A1A1 solid", 
+                            borderRadius: "10px", backgroundColor: "white" }}>
+                            <Typography sx={{ paddingRight: "10px", textTransform: "capitalize", fontFamily: "Merriweather", fontSize: "20px"}}>
+                                prev month
+                            </Typography>
+                            <ArrowForwardIosTwoToneIcon fontSize="small" sx={{ marginLeft: "10px", color: "#A1A1A1" }}></ArrowForwardIosTwoToneIcon>
                     </Button>
                     <Button onClick={nextYear} 
-                            sx={{ color: "black", left: "-50px" }}>next year
-                            <ArrowForwardIosTwoToneIcon fontSize="small" sx={{ marginLeft: "10px" }}></ArrowForwardIosTwoToneIcon>
-                            <ArrowForwardIosTwoToneIcon fontSize="small" sx={{ marginLeft: "-10px" }}></ArrowForwardIosTwoToneIcon>
+                            sx={{ color: "black", left: "-50px", border: "2px #A1A1A1 solid", 
+                            borderRadius: "10px", backgroundColor: "white" }}>
+                            <Typography sx={{ paddingRight: "10px", textTransform: "capitalize", fontFamily: "Merriweather", fontSize: "20px"}}>
+                                next year
+                            </Typography>
+                            <ArrowForwardIosTwoToneIcon fontSize="small" sx={{ marginLeft: "10px", color: "#A1A1A1" }}></ArrowForwardIosTwoToneIcon>
+                            <ArrowForwardIosTwoToneIcon fontSize="small" sx={{ marginLeft: "-10px", color: "#A1A1A1" }}></ArrowForwardIosTwoToneIcon>
                     </Button>
                 </Box>
             </Box>
