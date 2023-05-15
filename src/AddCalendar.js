@@ -19,7 +19,9 @@ export default function AddCalendar({ calendar }) {
     // console.log(title, priority, description)
     let calendar = {
       title,
-      description
+      description,
+      color_theme:"none",
+      tasks: ""
     };
     console.log(calendar);
     Service.addCalendar(calendar)

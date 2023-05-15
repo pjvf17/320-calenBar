@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import {Button, Grid, Stack, Tooltip, Typography, darken } from "@mui/material"
+import {Button, Grid, Stack, Tooltip, Typography, darken, Box } from "@mui/material"
 import dayjs from "dayjs"
 import isBetween from 'dayjs/plugin/isBetween'
 import { EditModalContext } from "./App"
@@ -84,21 +84,54 @@ export default function Day(props){
         return thickness;
     }
 
+    function getPriorityList(){
+        let priority = []
+        for(const task of props.tasks){
+            // grab important variables
+            let start = dayjs(task.start_date);
+            let end = dayjs(task.end_date);
+            let today = dayjs(props.day);
+            let timeToComplete = task.estimated_time
+            // if task is on the current day
+            if(today.isBetween(start, end, "day", "[]") && props.day !== 0){
+                let daysRemaining = end.diff(today, 'day');
+                // make the value according the the following algorithm
+                let value = timeToComplete/(daysRemaining+1);
+                // add thickness to the queue
+                priority.push({title:task.title, value: value});
+            }
+        }
+        priority.sort((a, b) => b.value - a.value);
+        priority = priority.map((t) => t.title);
+        return priority;
+    }
+    function formatPrioList(priority){
+        let string = "";
+        for(let i = 1; i <= priority.length; i++){
+            string += i + ": " + priority[i-1] + "\n";
+        }
+        return string;
+    }
+
     function getEvents(){
         let newEvents = []
         for(const task of props.tasks){
-            if(task.isEvent && dayjs(props.day).isSame(task.start_date, "day")){
+            if(dayjs(props.day).isSame(task.start_date, "day")){
                 newEvents.push(task)
+                    return [{title:"test1", description: "description1", start_date:"start time", event_duration:"duration", color: "#00FFFF", isEvent:true}, 
+                    {title:"test2", description: "description2", start_date:"start time", event_duration:"duration", color: "#AA4A44", isEvent:true}] //newEvents stub
             }
         }
-        return [{title:"test1"}, {title:"test2"}] //newEvents stub
+       return newEvents
     }
 
     let thickness = []
     let events = []
+    let prioString = ""
     if(props.tasks.length > 0){
         thickness = getThickness(15, 5, 100);
-        events = getEvents()
+        events = getEvents();
+        prioString = formatPrioList(getPriorityList());
     }
 
 
@@ -111,14 +144,13 @@ export default function Day(props){
 
 
             {/* This displays the current day of the month */}
-            <Stack direction={"row"} spacing={15}>
+            <Box display={"flex"} justifyContent={"space-between"}>
                 <Typography variant="dayNumber" paddingTop={1}>{props.day==="0"? <br></br> : props.day.date()}</Typography>
-                {props.day !== "0" && events.length > 0? <EventDisplay events={events} day={dayjs(props.day)}></EventDisplay> : <br></br>}
-            </Stack>
+                {props.day !== "0"? <EventDisplay events={events} day={dayjs(props.day)} calendar={props.calendar}></EventDisplay> : <br></br>}
+            </Box>
 
-        
-
-
+            <Tooltip title={<div style={{ whiteSpace: 'pre-line' }}>{prioString}</div>}>
+            <div>
             {/* Create a line for each task */}
             {props.tasks.map((t, i)=> 
 
@@ -165,15 +197,21 @@ export default function Day(props){
                                     </div>
                                 </div>
                             </Tooltip>
+
                         </div>
                     )
                 }
             })}
 
+
         {props.tasks.length < 3? <br></br> : ""}
         {props.tasks.length < 2? <br></br> : ""}
         {props.tasks.length < 1? <br></br> : ""}
         {props.tasks.length < 1? <br></br> : ""}
+        </div>
+
+        </Tooltip>
+
 
         </Grid>
 )

@@ -16,17 +16,17 @@ import React, { useState, useContext } from "react";
 import Service from "./Service";
 import { ReloadCalendarContext } from "./App";
 
-export default function AddTask({ calendar }) {
+export default function AddTask({ calendar, event, defaultDay }) {
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState("");
   const [description, setDescription] = useState("");
-  const [startDate, setStartDate] = useState(dayjs());
+  const [startDate, setStartDate] = useState(defaultDay === undefined? dayjs() : dayjs(defaultDay));
   const [endDate, setEndDate] = useState(dayjs().add(1, "d"));
   const [goalEndDate, setGoalEndDate] = useState(dayjs().add(1, "d"));
   const [estimateTime, setEstimateTime] = useState(1);
   const [color, setColor] = React.useState("#0096FF");
   const [matchGoalToReal, setMatchGoalToReal] = useState(true)
-  const [isEvent, setIsEvent] = useState(false);
+  const [isEvent, setIsEvent] = useState(event);
   const [eventDuration, setEventDuration] = useState(-1);
 
   const { reloadCalendar, setReloadCalendar } = useContext(
@@ -62,14 +62,14 @@ export default function AddTask({ calendar }) {
     setTitle("");
     setPriority("");
     setDescription("");
-    setStartDate(dayjs());
+    setStartDate(defaultDay === undefined? dayjs() : defaultDay);
     setEndDate(dayjs().add(1, "d"));
     setGoalEndDate(dayjs().add(1, "d"));
     setMatchGoalToReal(true)
     setEstimateTime(1);
     setColor("#0096FF");
     setOpen(false);
-    setIsEvent(false);
+    setIsEvent(event);
     setEventDuration(1);
   };
 
@@ -77,20 +77,32 @@ export default function AddTask({ calendar }) {
 
   return (
     <div>
+    
       <Button
         variant="contained"
-        style={{ fontSize: "small" }}
+        style={{ fontSize: "large", justifyContent:"center", borderRadius: "20px", 
+                 backgroundColor: "#1976d2", textTransform: "capitalize", 
+                 fontFamily: "Merriweather", width: "11.5em", left: "-10px" }}
         onClick={handleClickOpen}
       >
-        Add Task To {calendar.title}
+        Add {event? "Event" : "Task"} To {defaultDay === undefined? calendar.title : defaultDay.format('MM/DD/YYYY')}
       </Button>
 
       <Dialog open={open} onClose={handleClose}>
         <DialogContent>
 
-          <h2>Add Task: {title}</h2>
+          {isEvent? <h2>Add Event: {title}</h2> : <h2>Add Task: {title}</h2>}
 
           <form onSubmit={handleSubmit} action={<Link to="/login" />}>
+
+            <FormControlLabel
+                label="One Time Event"
+                control={<Checkbox
+                  checked={isEvent}
+                  onChange={() => setIsEvent(!isEvent)}
+                  size="small"
+                ></Checkbox>}
+              />  
 
             <Stack spacing={2} direction="row" sx={{ marginBottom: 4 }}>
               <TextField
@@ -107,52 +119,34 @@ export default function AddTask({ calendar }) {
                 type="text"
                 variant="outlined"
                 color="secondary"
-                label="Priority"
-                onChange={(e) => setPriority(e.target.value)}
-                value={priority}
+                label="Description"
+                onChange={(e) => setDescription(e.target.value)}
+                value={description}
                 fullWidth
                 required
+                multiline
+                sx={{ mb: 4 }}
               />
             </Stack>
 
-            <TextField
-              type="text"
-              variant="outlined"
-              color="secondary"
-              label="Description"
-              onChange={(e) => setDescription(e.target.value)}
-              value={description}
-              fullWidth
-              required
-              multiline
-              sx={{ mb: 4 }}
-            />
 
               {isEvent ?
               <div>
                 <Stack spacing={2} direction="row">
-              <DateTimePicker
-                label="Start Date"
-                value={startDate}
-                onChange={(newValue) => setStartDate(newValue)}
-                />
-                <TextField
-                  id="outlined-number"
-                  label="Duration (in hours)"
-                  type="number"
-                  value={eventDuration}
-                  onChange={(newValue) => setEventDuration(newValue)}
-                  required
-                />
+                    <DateTimePicker
+                      label="Start Date"
+                      value={startDate}
+                      onChange={(newValue) => setStartDate(newValue)}
+                    />
+                    <TextField
+                      id="outlined-number"
+                      label="Duration (in hours)"
+                      type="number"
+                      inputProps={{ min: 0 }} 
+                      onChange={(newValue) => setEventDuration(newValue)}
+                      required
+                    />
                 </Stack>
-                <FormControlLabel
-                        label="One Time Event"
-                        control={<Checkbox
-                          checked={isEvent}
-                          onChange={() => setIsEvent(!isEvent)}
-                          size="small"
-                        ></Checkbox>}
-                      /> 
               </div>
               : <div>
                 <Stack spacing={2} direction="row">
@@ -185,38 +179,35 @@ export default function AddTask({ calendar }) {
                           size="small"
                         ></Checkbox>}
                       />  
-                  <FormControlLabel
-                        label="One Time Event"
-                        control={<Checkbox
-                          checked={isEvent}
-                          onChange={() => setIsEvent(!isEvent)}
-                          size="small"
-                        ></Checkbox>}
-                      />  
+
                   </Stack>
               </div>
               }
 
+
+            <br />
             <br></br>
 
-            <br />
-            <br />
+            <Stack direction={"row"} spacing={2}>
+              {(!isEvent) && 
+              <TextField
+                type="text"
+                variant="outlined"
+                color="secondary"
+                label="Estimated Time (in hours)"
+                onChange={(e) => setEstimateTime(e.target.value)}
+                value={estimateTime}
+                required
+                sx={{ mb: 4 }}
+              />
+              }
 
-            <TextField
-              type="text"
-              variant="outlined"
-              color="secondary"
-              label="Estimated Time (in hours)"
-              onChange={(e) => setEstimateTime(e.target.value)}
-              value={estimateTime}
-              required
-              sx={{ mb: 4 }}
-            />
-
-            <MuiColorInput
-              value={color}
-              onChange={(newColor) => setColor(newColor)}
-            />
+              <MuiColorInput
+                label={"color"}
+                value={color}
+                onChange={(newColor) => setColor(newColor)}
+              />
+            </Stack>
 
             <br />
 

@@ -47,9 +47,8 @@ export default function CalendarPage(){
             </Stack> */}
 
             <div style={{marginTop:"60px"}}>
-                <AddTask calendar={calendar}></AddTask>
                 <EditTask calendar={calendar}></EditTask>
-                <Calendar tasks={calendar.tasks}></Calendar>
+                <Calendar calendar={calendar}></Calendar>
             </div>
                 
 

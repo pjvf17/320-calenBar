@@ -74,7 +74,7 @@ export default function Register(){
         {/* <div style={{color: "red"}}>{password === confirmPassword? <br></br> : "Password does not match"}</div> */}
 
         <div className="Register">
-        <Button type='submit' color='primary' variant='contained' fullWidth onClick={attemptRegister}>Register</Button>
+            <Button type='submit' color='primary' variant='contained' fullWidth onClick={attemptRegister}>Register</Button>
         </div>
 
         <div style={{color:"red"}}>{errorMsg}</div>
@@ -84,11 +84,13 @@ export default function Register(){
             }
         </FormControlLabel> */}
 
-        <div className="haveaccount" paddingTop="10px">
+        <div className="haveaccount">
         <Link to={"/login"}>Already have an account? Login here</Link>
         </div>
-        <div className="return" style={{paddingTop:"5px"}}>
-        <Link to={"/"}>Return to Home</Link>
+        <div className="return">
+            <Link to={"/"}>
+                <Button type='submit' color='primary' variant='contained' fullWidth>Return Home</Button>
+            </Link>
         </div>
     </div>
     )

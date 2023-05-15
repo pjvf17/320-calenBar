@@ -4,6 +4,11 @@ import { useState } from 'react'
 import { Button, Grid, Typography } from '@mui/material'
 import Box from '@mui/material/Box';
 import Week from './Week'
+import { SvgIcon } from '@mui/material'
+import ArrowForwardIosTwoToneIcon from '@mui/icons-material/ArrowForwardIosTwoTone'
+import ArrowBackIosNewTwoToneIcon from '@mui/icons-material/ArrowBackIosNewTwoTone';
+
+import AddTask from "./AddTask";
 
 const gridLayout = {
     borderRadius: "40px",
@@ -31,7 +36,7 @@ function Calendar(props){
     let [year, setYear] = useState(djs.year())
     let [month, setMonth] = useState(djs.month())
 
-    let tasks = props.tasks
+    let tasks = props.calendar.tasks
 
     console.log(tasks)
 
@@ -142,12 +147,52 @@ function Calendar(props){
         
             {/* display current year and month, with buttons
                 currently this can only show one month at a time */}
-            <Box flex-direction="row">
-                <Button onClick={prevYear}>prev year</Button>
-                <Button onClick={nextYear}>next year</Button>
-
-                <Button onClick={prevMonth}>prev month</Button>
-                <Button onClick={nextMonth}>next month</Button>
+            <Box flex-direction="row" sx={{ border: "1px black solid", marginTop: "15px", 
+                 marginBottom: "10px" }}
+                 display={"inline-flex"} maxWidth={"90%"} backgroundColor={"#EEEEEE"}
+                 borderRadius={"25px"} width={"1275px"} paddingTop={"25px"} paddingBottom={"25px"}
+                 justifyContent={"space-between"}>
+                <Box flex-direction="row" display="flex" justifyContent={"start"}>
+                    <Button onClick={prevYear} 
+                            sx={{ color: "black", left: "50px", border: "2px #A1A1A1 solid", 
+                            borderRadius: "10px", backgroundColor: "white" }}>
+                                <ArrowBackIosNewTwoToneIcon fontSize="small" sx={{ marginRight: "-10px", color: "#A1A1A1" }}></ArrowBackIosNewTwoToneIcon>
+                                <ArrowBackIosNewTwoToneIcon fontSize="small" sx={{ marginRight: "10px", color: "#A1A1A1"}}></ArrowBackIosNewTwoToneIcon>
+                                <Typography sx={{ paddingRight: "10px", textTransform: "capitalize", fontFamily: "Merriweather", fontSize: "20px"}}>
+                                    prev year
+                                </Typography>
+                    </Button>
+                    <Button onClick={prevMonth} 
+                            sx={{ color: "black", left: "90px", border: "2px #A1A1A1 solid", 
+                            borderRadius: "10px", backgroundColor: "white" }}>
+                                <ArrowBackIosNewTwoToneIcon fontSize="small" sx={{ marginRight: "10px", color: "#A1A1A1" }}></ArrowBackIosNewTwoToneIcon>
+                                <Typography sx={{ paddingRight: "10px", textTransform: "capitalize", fontFamily: "Merriweather", fontSize: "20px"}}>
+                                    prev month
+                                </Typography>
+                    </Button>
+                </Box>
+                <Box flex-direction="row" display="flex" justifyContent={"end"}>
+                    <AddTask calendar={props.calendar} event={false}></AddTask>
+                </Box>
+                <Box>
+                    <Button onClick={nextMonth} 
+                            sx={{ color: "black", left: "-90px", border: "2px #A1A1A1 solid", 
+                            borderRadius: "10px", backgroundColor: "white" }}>
+                            <Typography sx={{ paddingLeft: "10px", textTransform: "capitalize", fontFamily: "Merriweather", fontSize: "20px" }}>
+                                next month
+                            </Typography>
+                            <ArrowForwardIosTwoToneIcon fontSize="small" sx={{ marginLeft: "10px", color: "#A1A1A1" }}></ArrowForwardIosTwoToneIcon>
+                    </Button>
+                    <Button onClick={nextYear} 
+                            sx={{ color: "black", left: "-50px", border: "2px #A1A1A1 solid", 
+                            borderRadius: "10px", backgroundColor: "white" }}>
+                            <Typography sx={{ paddingLeft: "10px", textTransform: "capitalize", fontFamily: "Merriweather", fontSize: "20px"}}>
+                                next year
+                            </Typography>
+                            <ArrowForwardIosTwoToneIcon fontSize="small" sx={{ marginLeft: "10px", color: "#A1A1A1" }}></ArrowForwardIosTwoToneIcon>
+                            <ArrowForwardIosTwoToneIcon fontSize="small" sx={{ marginLeft: "-10px", color: "#A1A1A1" }}></ArrowForwardIosTwoToneIcon>
+                    </Button>
+                </Box>
             </Box>
 
 
@@ -176,7 +221,7 @@ function Calendar(props){
                             {days.map((w, i) => (
                                 <Grid item key={i} xs={1}>
                                     {/* {console.log(tasksInWeeks[i])} */}
-                                    <Week days = {w} tasks={stuff.tasksInWeeks[i]}></Week>
+                                    <Week days = {w} tasks={stuff.tasksInWeeks[i]} calendar={props.calendar}></Week>
                                 </Grid>
                             ))}
                     </Grid>
