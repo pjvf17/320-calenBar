@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react"
 import { ReloadCalendarContext } from "./App"
 import service from "./Service"
 import { Button } from "@mui/material"
+import { useNavigate } from "react-router-dom"
 
 
 export default function CalendarPicker(props){
@@ -10,10 +11,15 @@ export default function CalendarPicker(props){
     let [calendars, setCalendars] = useState([])
     // service.getCalendars().then(data => setCalendars(data))
 
+    let navigate = useNavigate()
+
     useEffect(() => {
         // Update the document title using the browser API
         service.getCalendars()
         .then(data=> {
+            if (data['detail'] === "Invalid token."){
+                return navigate("/login")
+            }
             console.log(data)
             setCalendars(data)
             if (data.length > 0){
@@ -32,6 +38,7 @@ export default function CalendarPicker(props){
     function handleClick(cal){
         props.setCalendar(cal)
     }
+
 
     return (
         <div>

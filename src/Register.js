@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { TextField, Stack, Button, FormControlLabel } from "@mui/material"
 import Service from "./Service"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 
 export default function Register(){
@@ -10,6 +10,8 @@ export default function Register(){
     let [password, setPassword] = useState("")
     let [confirmPassword, setConfirmPassword] = useState("")
     let [errorMsg, setErrorMsg] = useState("")
+
+    let navigate = useNavigate()
 
     function attemptRegister(){
         if(password !== confirmPassword){
@@ -20,7 +22,7 @@ export default function Register(){
         Service.registerUser(user)
         .then(res => {
             if(res['status'] === 201){
-                window.location.href = "/login"
+                navigate("/login")
             }
             else{
                 setErrorMsg("Username already exists")

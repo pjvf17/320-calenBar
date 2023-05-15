@@ -3,13 +3,15 @@ import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import { IconButton, Link, Stack } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Service from "./Service";
 import { AddCircle } from "@mui/icons-material";
+import { ReloadCalendarContext } from "./App";
 
 export default function AddCalendar({ calendar }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("")
+  const { reloadCalendar, setReloadCalendar } = useContext(ReloadCalendarContext);
 
 
   function handleSubmit(event) {
@@ -19,7 +21,11 @@ export default function AddCalendar({ calendar }) {
       title,
       description
     };
+    console.log(calendar);
     Service.addCalendar(calendar)
+    .then(res => {
+      setReloadCalendar(!reloadCalendar);
+    })
     handleClose();
   }
   const [open, setOpen] = React.useState(false);
