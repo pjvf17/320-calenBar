@@ -12,7 +12,7 @@ import AddTask from "./AddTask";
 
 const gridLayout = {
     borderRadius: "40px",
-    boxShadow: "5px 5px 10px 10px rgb(207, 207, 207)",
+    boxShadow: "11px 12px 13px 12px rgb(207, 207, 207)",
 }
 
 const gridWeekDays = {
@@ -147,8 +147,8 @@ function Calendar(props){
         
             {/* display current year and month, with buttons
                 currently this can only show one month at a time */}
-            <Box flex-direction="row" sx={{ border: "1px black solid", marginTop: "5px", 
-                 marginBottom: "5px" }}
+            <Box flex-direction="row" sx={{ border: "1px black solid", marginTop: "15px", 
+                 marginBottom: "10px" }}
                  display={"inline-flex"} maxWidth={"90%"} backgroundColor={"#EEEEEE"}
                  borderRadius={"25px"} width={"1275px"} paddingTop={"25px"} paddingBottom={"25px"}
                  justifyContent={"space-between"}>
@@ -159,7 +159,7 @@ function Calendar(props){
                                 <ArrowBackIosNewTwoToneIcon fontSize="small" sx={{ marginRight: "-10px", color: "#A1A1A1" }}></ArrowBackIosNewTwoToneIcon>
                                 <ArrowBackIosNewTwoToneIcon fontSize="small" sx={{ marginRight: "10px", color: "#A1A1A1"}}></ArrowBackIosNewTwoToneIcon>
                                 <Typography sx={{ paddingRight: "10px", textTransform: "capitalize", fontFamily: "Merriweather", fontSize: "20px"}}>
-                                    prev month
+                                    prev year
                                 </Typography>
                     </Button>
                     <Button onClick={prevMonth} 
