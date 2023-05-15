@@ -8,6 +8,8 @@ import { SvgIcon } from '@mui/material'
 import ArrowForwardIosTwoToneIcon from '@mui/icons-material/ArrowForwardIosTwoTone'
 import ArrowBackIosNewTwoToneIcon from '@mui/icons-material/ArrowBackIosNewTwoTone';
 
+import AddTask from "./AddTask";
+
 const gridLayout = {
     borderRadius: "40px",
     boxShadow: "11px 12px 13px 12px rgb(207, 207, 207)",
@@ -145,11 +147,12 @@ function Calendar(props){
         
             {/* display current year and month, with buttons
                 currently this can only show one month at a time */}
-            <Box flex-direction="row" sx={{ border: "1px black solid", marginTop: "10px", marginBottom: "10px" }}
+            <Box flex-direction="row" sx={{ border: "1px black solid", marginTop: "10px", 
+                 marginBottom: "10px" }}
                  display={"inline-flex"} maxWidth={"90%"} backgroundColor={"#EEEEEE"}
                  borderRadius={"25px"} width={"1275px"} paddingTop={"25px"} paddingBottom={"25px"}
                  justifyContent={"space-between"}>
-                <Box flex-direction="row" display="block" justifyContent={"start"}>
+                <Box flex-direction="row" display="flex" justifyContent={"start"}>
                     <Button onClick={prevYear} 
                             sx={{ color: "black", left: "50px", border: "2px #A1A1A1 solid", 
                             borderRadius: "10px", backgroundColor: "white" }}>
@@ -160,7 +163,7 @@ function Calendar(props){
                                 </Typography>
                     </Button>
                     <Button onClick={prevMonth} 
-                            sx={{ color: "black", left: "100px", border: "2px #A1A1A1 solid", 
+                            sx={{ color: "black", left: "90px", border: "2px #A1A1A1 solid", 
                             borderRadius: "10px", backgroundColor: "white" }}>
                                 <ArrowBackIosNewTwoToneIcon fontSize="small" sx={{ marginRight: "10px", color: "#A1A1A1" }}></ArrowBackIosNewTwoToneIcon>
                                 <Typography sx={{ paddingRight: "10px", textTransform: "capitalize", fontFamily: "Merriweather", fontSize: "20px"}}>
@@ -168,11 +171,14 @@ function Calendar(props){
                                 </Typography>
                     </Button>
                 </Box>
+                <Box flex-direction="row" display="flex" justifyContent={"end"}>
+                    <AddTask calendar={props.calendar} event={false}></AddTask>
+                </Box>
                 <Box>
                     <Button onClick={nextMonth} 
-                            sx={{ color: "black", left: "-100px", border: "2px #A1A1A1 solid", 
+                            sx={{ color: "black", left: "-90px", border: "2px #A1A1A1 solid", 
                             borderRadius: "10px", backgroundColor: "white" }}>
-                            <Typography sx={{ paddingLeft: "10px", textTransform: "capitalize", fontFamily: "Merriweather", fontSize: "20px"}}>
+                            <Typography sx={{ paddingLeft: "10px", textTransform: "capitalize", fontFamily: "Merriweather", fontSize: "20px" }}>
                                 next month
                             </Typography>
                             <ArrowForwardIosTwoToneIcon fontSize="small" sx={{ marginLeft: "10px", color: "#A1A1A1" }}></ArrowForwardIosTwoToneIcon>
