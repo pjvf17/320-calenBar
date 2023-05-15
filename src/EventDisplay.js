@@ -5,6 +5,7 @@ import React, { useContext } from "react";
 import {  IconButton, Stack, Typography, lighten, darken } from "@mui/material";
 import {  Edit, EventBusy, EventNote } from "@mui/icons-material";
 import AddTask from "./AddTask";
+import dayjs from "dayjs";
 
 export default function EventDisplay({ events, day, calendar }) {
 
@@ -56,8 +57,8 @@ export default function EventDisplay({ events, day, calendar }) {
                     <Stack>
                     <Typography fontSize="large">{e.title}</Typography>
                     <Typography fontSize="medium">{e.description}</Typography>
-                    <Typography fontSize="medium">{e.start_date}</Typography>
-                    <Typography fontSize="medium">{e.event_duration}</Typography>
+                    <Typography fontSize="medium">{dayjs(e.start_date).format("h:mm A")}</Typography>
+                    <Typography fontSize="medium">{e.event_duration + " hours long"}</Typography>
                     </Stack>
 
                   </Stack>

@@ -36,7 +36,7 @@ export default function EditTask({calendar}) {
 
         <DialogContent>
 
-          <h2>Edit {editTask.isEvent? "Event" : "Task"}: {editTask.title}</h2>
+          <h2>Edit {editTask.is_event? "Event" : "Task"}: {editTask.title}</h2>
 
           <form onSubmit={handleSubmit} action={<Link to="/login" />}>
 
@@ -75,7 +75,7 @@ export default function EditTask({calendar}) {
                   onChange={(newValue) => setEditTask({...editTask, start_date: newValue})}
                 />
 
-                {editTask.isEvent? 
+                {editTask.is_event? 
                     <TextField
                       type="text"
                       variant='outlined'
@@ -107,7 +107,7 @@ export default function EditTask({calendar}) {
               <br/>
 
               <Stack direction={"row"} spacing={2}>
-                {(!editTask.isEvent) &&  <TextField
+                {(!editTask.is_event) &&  <TextField
                     type="text"
                     variant='outlined'
                     color='secondary'

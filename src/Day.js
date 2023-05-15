@@ -35,6 +35,9 @@ export default function Day(props){
         let thickness = [];
         // loop over all tasks in week
         for(const task of props.tasks){
+            if(task.is_event){
+                continue
+            }
             // grab important variables
             let start = dayjs(task.start_date);
             let end = dayjs(task.end_date);
@@ -87,6 +90,9 @@ export default function Day(props){
     function getPriorityList(){
         let priority = []
         for(const task of props.tasks){
+            if(task.is_event){
+                continue
+            }
             // grab important variables
             let start = dayjs(task.start_date);
             let end = dayjs(task.end_date);
@@ -116,10 +122,8 @@ export default function Day(props){
     function getEvents(){
         let newEvents = []
         for(const task of props.tasks){
-            if(dayjs(props.day).isSame(task.start_date, "day")){
+            if(task.is_event && dayjs(props.day).isSame(task.start_date, "day")){
                 newEvents.push(task)
-                    return [{title:"test1", description: "description1", start_date:"start time", event_duration:"duration", color: "#00FFFF", isEvent:true}, 
-                    {title:"test2", description: "description2", start_date:"start time", event_duration:"duration", color: "#AA4A44", isEvent:true}] //newEvents stub
             }
         }
        return newEvents
@@ -165,7 +169,7 @@ export default function Day(props){
                 /* figure out whether or not to show start indicator (end of task) */
                 let showStart = props.day !== "0" && thickness[0] && d.isSame(t.start_date, 'day');
                 /* If tasks is today, draw visible line, otherwise make it invisible */
-                if(d.isBetween(t.start_date, t.end_date, "day", "[]")){
+                if(!t.is_event && d.isBetween(t.start_date, t.end_date, "day", "[]")){
 
                     let primary = showBage ? t.color : "transparent"
                     let borderColor = showBage ?  darken(t.color, 0.3) : "transparent"
