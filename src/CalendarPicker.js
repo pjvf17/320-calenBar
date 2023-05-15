@@ -47,7 +47,7 @@ export default function CalendarPicker(props){
             const isCurrent = cal.id === props.calendar.id
             const color = isCurrent? "green" : "red"
             return(
-                <Button variant="contained" style={{backgroundColor: "white", color: color, paddingTop:"7px"}} key={i} onClick={e => handleClick(cal)}>{cal.title}</Button>
+                <Button variant="contained" style={{backgroundColor: "white", color: color, paddingTop:"7px", marginRight:"8px"}} key={i} onClick={e => handleClick(cal)}>{cal.title}</Button>
             )
         })}
 
