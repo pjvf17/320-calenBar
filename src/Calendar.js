@@ -4,6 +4,9 @@ import { useState } from 'react'
 import { Button, Grid, Typography } from '@mui/material'
 import Box from '@mui/material/Box';
 import Week from './Week'
+import { SvgIcon } from '@mui/material'
+import ArrowForwardIosTwoToneIcon from '@mui/icons-material/ArrowForwardIosTwoTone'
+import ArrowBackIosNewTwoToneIcon from '@mui/icons-material/ArrowBackIosNewTwoTone';
 
 const gridLayout = {
     borderRadius: "40px",
@@ -148,15 +151,27 @@ function Calendar(props){
                  justifyContent={"space-between"}>
                 <Box flex-direction="row" display="block" justifyContent={"start"}>
                     <Button onClick={prevYear} 
-                            sx={{ color: "black", left: "50px"  }} >prev year</Button>
+                            sx={{ color: "black", left: "50px"  }}>
+                                <ArrowBackIosNewTwoToneIcon fontSize="small" sx={{ marginRight: "-10px" }}></ArrowBackIosNewTwoToneIcon>
+                                <ArrowBackIosNewTwoToneIcon fontSize="small" sx={{ marginRight: "10px" }}></ArrowBackIosNewTwoToneIcon>
+                                prev year
+                    </Button>
                     <Button onClick={prevMonth} 
-                            sx={{ color: "black", left: "100px" }} > prev month</Button>
+                            sx={{ color: "black", left: "100px" }} >
+                                <ArrowBackIosNewTwoToneIcon fontSize="small" sx={{ marginRight: "10px" }}></ArrowBackIosNewTwoToneIcon>
+                                prev month
+                    </Button>
                 </Box>
                 <Box>
                     <Button onClick={nextMonth} 
-                            sx={{ color: "black", left: "-100px" }}>next month</Button>
+                            sx={{ color: "black", left: "-100px" }}>next month
+                            <ArrowForwardIosTwoToneIcon fontSize="small" sx={{ marginLeft: "10px" }}></ArrowForwardIosTwoToneIcon>
+                    </Button>
                     <Button onClick={nextYear} 
-                            sx={{ color: "black", left: "-50px" }}>next year</Button>
+                            sx={{ color: "black", left: "-50px" }}>next year
+                            <ArrowForwardIosTwoToneIcon fontSize="small" sx={{ marginLeft: "10px" }}></ArrowForwardIosTwoToneIcon>
+                            <ArrowForwardIosTwoToneIcon fontSize="small" sx={{ marginLeft: "-10px" }}></ArrowForwardIosTwoToneIcon>
+                    </Button>
                 </Box>
             </Box>
 
