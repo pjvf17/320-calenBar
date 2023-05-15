@@ -18,7 +18,6 @@ import { ReloadCalendarContext } from "./App";
 
 export default function AddTask({ calendar, event, defaultDay }) {
   const [title, setTitle] = useState("");
-  const [priority, setPriority] = useState("");
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState(defaultDay === undefined? dayjs() : dayjs(defaultDay));
   const [endDate, setEndDate] = useState(dayjs().add(1, "d"));
@@ -37,7 +36,6 @@ export default function AddTask({ calendar, event, defaultDay }) {
     event.preventDefault();
     let task = {
       title: title,
-      priority: priority,
       description: description,
       start_date: startDate,
       end_date: endDate,
@@ -45,8 +43,9 @@ export default function AddTask({ calendar, event, defaultDay }) {
       is_event: isEvent,
       event_duration: eventDuration,
       color,
-      goalEndDate
+      goal_end_date: goalEndDate,
     };
+    console.log(task);
     Service.addTask(calendar.id, task).then((data) => {
       setReloadCalendar(!reloadCalendar);
     });
@@ -60,7 +59,6 @@ export default function AddTask({ calendar, event, defaultDay }) {
 
   const handleClose = () => {
     setTitle("");
-    setPriority("");
     setDescription("");
     setStartDate(defaultDay === undefined? dayjs() : defaultDay);
     setEndDate(dayjs().add(1, "d"));
@@ -143,7 +141,7 @@ export default function AddTask({ calendar, event, defaultDay }) {
                       label="Duration (in hours)"
                       type="number"
                       inputProps={{ min: 0 }} 
-                      onChange={(newValue) => setEventDuration(newValue)}
+                      onChange={(newValue) => setEventDuration(newValue.target.value)}
                       required
                     />
                 </Stack>
