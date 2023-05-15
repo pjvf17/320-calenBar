@@ -147,7 +147,7 @@ function Calendar(props){
         
             {/* display current year and month, with buttons
                 currently this can only show one month at a time */}
-            <Box flex-direction="row" sx={{ border: "1px black solid", marginTop: "10px", 
+            <Box flex-direction="row" sx={{ border: "1px black solid", marginTop: "15px", 
                  marginBottom: "10px" }}
                  display={"inline-flex"} maxWidth={"90%"} backgroundColor={"#EEEEEE"}
                  borderRadius={"25px"} width={"1275px"} paddingTop={"25px"} paddingBottom={"25px"}
