@@ -156,7 +156,7 @@ export default function Day(props){
         // Each day is a grid item surrounded by a border
 
 
-        <Grid item xs = {1} sx={ ( (count++) % 7) === 0 ? weekendDayStyles : weekDayStyles } position={"relative"}>
+        <Grid item xs = {1} sx={ props.dayOfWeek === 0 || props.dayOfWeek === 7 ? weekendDayStyles : weekDayStyles } position={"relative"}>
 
 
             {/* This displays the current day of the month */}
