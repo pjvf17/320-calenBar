@@ -26,7 +26,7 @@ export default function AddTask({ calendar, event, defaultDay }) {
   const [endDate, setEndDate] = useState(dayjs().add(1, "d"));
   const [goalEndDate, setGoalEndDate] = useState(dayjs().add(1, "d"));
   const [estimateTime, setEstimateTime] = useState(1);
-  const [color, setColor] = React.useState("#0096FF");
+  const [color, setColor] = React.useState("#b43138");
   const [matchGoalToReal, setMatchGoalToReal] = useState(true)
   const [isEvent, setIsEvent] = useState(event);
   const [eventDuration, setEventDuration] = useState(-1);
@@ -68,7 +68,7 @@ export default function AddTask({ calendar, event, defaultDay }) {
     setGoalEndDate(dayjs().add(1, "d"));
     setMatchGoalToReal(true)
     setEstimateTime(1);
-    setColor("#0096FF");
+    setColor("#b43138");
     setOpen(false);
     setIsEvent(event);
     setEventDuration(1);
@@ -218,16 +218,9 @@ export default function AddTask({ calendar, event, defaultDay }) {
             />
             }
 
-            <MuiColorInput
-                label={"color"}
-                value={color}
-                onChange={(newColor) => setColor(newColor)}
-                disabled
-                format="hex"
-            />
              <Button variant="outlined" onClick={colorPopoverHandleClick}
               style={{ fontSize: "Medium", justifyContent:"center", borderRadius: "20px", 
-               textTransform: "capitalize", 
+               textTransform: "capitalize", backgroundColor:color, color:"white",
               fontFamily: "Merriweather", width: "11.5em", textAlign: "center", left: "-2px" }}
              >
               Color Palette

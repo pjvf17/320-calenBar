@@ -40,7 +40,7 @@ export default function EventDisplay({ events, day, calendar }) {
 
         {events.map((e, i) => {
             return(
-                <div key={i} padding="10" style={{paddingTop:"8px", background: lighten(e.color, 0.7)}}>
+                <div key={i} padding="10" style={{paddingTop:"8px", background: e.color}}>
 
                   <Stack direction={"row"}>
                     <IconButton
@@ -49,7 +49,7 @@ export default function EventDisplay({ events, day, calendar }) {
                           console.log(e)
                           setEditModalOpen(true)
                       }}
-                      style={{color: darken(e.color, 0.3)}}
+                      style={{color: darken(e.color, 0.5)}}
                     >
                     <Edit></Edit>
                     </IconButton>
