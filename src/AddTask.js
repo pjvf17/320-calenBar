@@ -222,6 +222,8 @@ export default function AddTask({ calendar, event, defaultDay }) {
                 label={"color"}
                 value={color}
                 onChange={(newColor) => setColor(newColor)}
+                disabled
+                format="hex"
             />
              <Button variant="outlined" onClick={colorPopoverHandleClick}
               style={{ fontSize: "Medium", justifyContent:"center", borderRadius: "20px", 
