@@ -4,7 +4,6 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import { Stack, Link, Popover, Container } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { MuiColorInput } from "mui-color-input";
 import dayjs from "dayjs";
 import React, { useContext } from "react";
 import Service from "./Service";
@@ -128,9 +127,9 @@ export default function EditTask({ calendar }) {
                   />
                   <DatePicker
                     label="Goal End Date"
-                    value={dayjs(editTask.goalEndDate)}
+                    value={dayjs(editTask.goal_end_date)}
                     onChange={(newValue) =>
-                      setEditTask({ ...editTask, goalEndDate: newValue })
+                      setEditTask({ ...editTask, goal_end_date: newValue })
                     }
                   />
                 </Stack>
