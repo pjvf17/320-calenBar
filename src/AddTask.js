@@ -7,8 +7,11 @@ import {
   TextField,
   Button,
   FormControlLabel,
-  Checkbox
+  Checkbox,
+  Popover,
+  Container
 } from "@mui/material";
+import ColorPalettePicker from "./ColorPalettePicker"
 import { DatePicker, DateTimePicker } from "@mui/x-date-pickers";
 import { MuiColorInput } from "mui-color-input";
 import dayjs, { Dayjs } from "dayjs";
@@ -71,6 +74,20 @@ export default function AddTask({ calendar, event, defaultDay }) {
     setEventDuration(1);
   };
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const colorPopoverHandleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const colorPopoverHandleClose = () => {
+    setAnchorEl(null);
+  };
+
+
+  const colorPopoverOpen = Boolean(anchorEl);
+  const colorPopoverId = open ? 'simple-popover' : undefined;
+
   // https://www.copycat.dev/blog/material-ui-form/
 
   return (
@@ -114,18 +131,18 @@ export default function AddTask({ calendar, event, defaultDay }) {
                 fullWidth
                 required
               />
-              <TextField
-                type="text"
-                variant="outlined"
-                color="secondary"
-                label="Description"
-                onChange={(e) => setDescription(e.target.value)}
-                value={description}
-                fullWidth
-                required
-                multiline
-                sx={{ mb: 4 }}
-              />
+            <TextField
+              type="text"
+              variant="outlined"
+              color="secondary"
+              label="Description"
+              onChange={(e) => setDescription(e.target.value)}
+              value={description}
+              fullWidth
+              required
+              multiline
+              sx={{ mb: 4 }}
+            />
             </Stack>
 
 
@@ -188,24 +205,49 @@ export default function AddTask({ calendar, event, defaultDay }) {
             <br></br>
 
             <Stack direction={"row"} spacing={2}>
-              {(!isEvent) && 
-              <TextField
-                type="text"
-                variant="outlined"
-                color="secondary"
-                label="Estimated Time (in hours)"
-                onChange={(e) => setEstimateTime(e.target.value)}
-                value={estimateTime}
-                required
-                sx={{ mb: 4 }}
-              />
-              }
+            {(!isEvent) && 
+            <TextField
+              type="text"
+              variant="outlined"
+              color="secondary"
+              label="Estimated Time (in hours)"
+              onChange={(e) => setEstimateTime(e.target.value)}
+              value={estimateTime}
+              required
+              sx={{ mb: 4 }}
+            />
+            }
 
-              <MuiColorInput
+            <MuiColorInput
                 label={"color"}
                 value={color}
                 onChange={(newColor) => setColor(newColor)}
-              />
+            />
+             <Button variant="outlined" onClick={colorPopoverHandleClick}
+              style={{ fontSize: "Medium", justifyContent:"center", borderRadius: "20px", 
+               textTransform: "capitalize", 
+              fontFamily: "Merriweather", width: "11.5em", textAlign: "center", left: "-2px" }}
+             >
+              Color Palette
+            </Button>
+            <Popover
+              id={colorPopoverId}
+              open={colorPopoverOpen}
+              anchorEl={anchorEl}
+              onClose={colorPopoverHandleClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+            >
+              
+              <Container>
+               <ColorPalettePicker
+                onChange={newColor=>{setColor(newColor)}}
+               /> 
+              </Container>
+            
+            </Popover>
             </Stack>
 
             <br />

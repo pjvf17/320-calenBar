@@ -16,29 +16,33 @@ const Item = styled(Paper)(({ theme, color }) => ({
 
 export default function ColorPalettePicker({onChange}) {
   const palette = {
-    oceanicNextLightBrown: "#966a5b",
-    oceanicNextRed: "#ec5f67",
-    nordAurora3: "#ebcb8b",
-    nordAurora4: "#a3be8c",
-    nordAurora1: "#bf616a",
-    oceanicNextLightOrange: "#db804d",
-    nordAurora5: "#b48ead",
-    
-    oceanicNextBrown: "#ab7967",
-    oceanicNextOrange: "#f99157",
-    oceanicNextYellow: "#fac863",
-    oceanicNextGreen: "#99c794",
-    oceanicNextCyan: "#62b3b2",
-    oceanicNextBlue: "#6699cc",
-    oceanicNextPurple: "#c594c5",
-    
-    nordAurora2: "#d08770",
-    oceanicNextLightRed: "#d0545b",
-    oceanicNextLightYellow: "#dcb057",
-    oceanicNextLightGreen: "#87af82",
-    oceanicNextLightCyan: "#569e9d",
-    oceanicNextLightBlue: "#5a87b4",
-    oceanicNextLightPurple: "#ad82ad",
+    /* Col 1 */
+    /* 1 */ brown1: "#d08770",
+    /* 2 */ red1: "#f28d92",
+    /* 2 */ orange1: "#fbad84",
+    /* 3 */ yellow1: "#ebcb8b",
+    /* 4 */ green1: "#afd3ab",
+    /* 5 */ cyan1: "#87c5c4",
+    /* 6 */ blue1: "#8cb2d9",
+    /* 7 */ purple1: "#ccb3c7",
+    /* Col 2 */
+    /* 1 */ brown2: "#ab7967",
+    /* 2 */ red2: "#d97378",
+    /* 2 */ orange2: "#f88649",
+    /* 3 */ yellow2: "#fac863",
+    /* 4 */ green2: "#80b979",
+    /* 5 */ cyan2: "#62b3b2",
+    /* 6 */ blue2: "#6699cc",
+    /* 7 */ purple2: "#c18bc1",
+    /* Col 3 */
+    /* 1 */ brown3: "#966a5b",
+    /* 2 */ red3: "#b43138",
+    /* 2 */ orange3: "#dd5308",
+    /* 3 */ yellow3: "#dcb057",
+    /* 4 */ green3: "#5f8c5a",
+    /* 5 */ cyan3: "#4b8b8a",
+    /* 6 */ blue3: "#47739e",
+    /* 7 */ purple3: "#946194",
   };
   return (
     <Box sx={{ flexGrow: 1 }} id="colorPalettePickerGrid" theme={colorPaletteTheme}>
@@ -46,7 +50,7 @@ export default function ColorPalettePicker({onChange}) {
         container
         spacing={0.1}
         columnSpacing={0.0005}
-        columns={7}
+        columns={8}
       >
         {Object.entries(palette).map(([key,value]) => (
           <Grid item xs={1} key={key} onClick={() => onChange(value)}>
