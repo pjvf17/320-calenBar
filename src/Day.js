@@ -129,6 +129,17 @@ export default function Day(props){
        return newEvents
     }
 
+    function getNumTasks(){
+        let num = 0
+        for(const task of props.tasks){
+            if(!task.is_event){
+                num++
+            }
+        }
+        return num
+    }
+
+    let numTasks = getNumTasks()
     let thickness = []
     let events = []
     let prioString = ""
@@ -208,10 +219,10 @@ export default function Day(props){
             })}
 
 
-        {props.tasks.length < 3? <br></br> : ""}
-        {props.tasks.length < 2? <br></br> : ""}
-        {props.tasks.length < 1? <br></br> : ""}
-        {props.tasks.length < 1? <br></br> : ""}
+        {numTasks < 3? <br></br> : ""}
+        {numTasks < 2? <br></br> : ""}
+        {numTasks < 1? <br></br> : ""}
+        {numTasks < 1? <br></br> : ""}
         </div>
 
         </Tooltip>

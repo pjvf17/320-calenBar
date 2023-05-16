@@ -9,6 +9,7 @@ import dayjs from 'dayjs';
 import React, { useContext } from 'react';
 import Service from './Service';
 import { ReloadCalendarContext, EditModalContext } from './App';
+import { DateTimePicker } from '@mui/x-date-pickers';
 
 export default function EditTask({calendar}) {
   const { reloadCalendar, setReloadCalendar } = useContext(ReloadCalendarContext)
@@ -66,14 +67,22 @@ export default function EditTask({calendar}) {
 
               </Stack>
 
-              
+                <Stack spacing={2} direction="row">
+                {
+                editTask.is_event?
 
-              <Stack spacing={2} direction="row">
-                <DatePicker 
-                  label="Start Date"
-                  value={dayjs(editTask.start_date)}
-                  onChange={(newValue) => setEditTask({...editTask, start_date: newValue})}
-                />
+                  <DateTimePicker
+                    label="Start Date"
+                    value={dayjs(editTask.start_date)}
+                    onChange={(newValue) => setEditTask({...editTask, start_date: newValue})}
+                    ></DateTimePicker>
+                  :
+                  <DatePicker 
+                    label="Start Date"
+                    value={dayjs(editTask.start_date)}
+                    onChange={(newValue) => setEditTask({...editTask, start_date: newValue})}
+                  />
+                  }
 
                 {editTask.is_event? 
                     <TextField
@@ -126,7 +135,7 @@ export default function EditTask({calendar}) {
 
               <div style={{flexDirection: "row", display: "flex", justifyContent: "space-between"}}>
                 <div style={{textAlign: "left"}}>
-                  <Button color = "secondary" onClick={() => Service.deleteTask(calendar.id, editTask.id).then(setReloadCalendar(!reloadCalendar)).then(handleClose())}>Delete {editTask.isEvent? "Event" : "Task"}</Button>
+                  <Button color = "secondary" onClick={() => Service.deleteTask(calendar.id, editTask.id).then(setReloadCalendar(!reloadCalendar)).then(handleClose())}>Delete {editTask.is_event? "Event" : "Task"}</Button>
                 </div>
                 <div style={{textAlign:"right"}}>
                   <Button color = "primary" type="submit">Submit</Button>
