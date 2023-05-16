@@ -219,10 +219,11 @@ export default function Day(props){
             })}
 
 
-        {numTasks < 3? <br></br> : ""}
-        {numTasks < 2? <br></br> : ""}
         {numTasks < 1? <br></br> : ""}
         {numTasks < 1? <br></br> : ""}
+        {numTasks < 1? <br></br> : ""}
+        {numTasks < 1? <br></br> : ""}
+
         </div>
 
         </Tooltip>
