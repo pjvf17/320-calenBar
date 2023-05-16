@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-// let REST_API_URL = "http://ec2-34-225-95-209.compute-1.amazonaws.com:8000";
-let REST_API_URL = "http://localhost:8000"; // for local testing
+let REST_API_URL = "http://ec2-34-225-95-209.compute-1.amazonaws.com:8000";
+// let REST_API_URL = "http://localhost:8000"; // for local testing
 
 class Service {
   async getCalendars() {
@@ -8,19 +8,21 @@ class Service {
       method: "GET",
       headers: { Authorization: `Token ${localStorage.getItem("token")}` },
     });
-
-    console.log(data);
-    
-    if (data.status === 401) {
-      window.location.href = "/login";
-    }
     let json = await data.json();
-    // console.log(json)
     return json;
   }
   
-  addCalendar(calendar){
-    console.log(calendar)
+  async addCalendar(calendar) {
+    let data = await fetch(`${REST_API_URL}/calendars/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(calendar),
+    });
+    let json = await data.json();
+    return json;
   }
 
   addTask(calendarId, task, setReloadCalendar) {
