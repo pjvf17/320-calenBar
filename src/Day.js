@@ -21,8 +21,20 @@ const weekendDayStyles = {
 }
 
 
-
-let count = -1;
+const handleVerticalBorders = (num) => {
+    if (num === 0) {
+        return {
+            textAlign: "left",
+            borderTop: "1px solid #9F9F9F",
+        }
+    } else {
+        return {
+            textAlign: "left",
+            borderTop: "1px solid #9F9F9F",
+            borderLeft: "1px solid #9F9F9F",
+        }
+    }
+}
 
 dayjs.extend(isBetween)
 
@@ -156,8 +168,7 @@ export default function Day(props){
         // Each day is a grid item surrounded by a border
 
 
-        <Grid item xs = {1} sx={ props.dayOfWeek === 0 || props.dayOfWeek === 7 ? weekendDayStyles : weekDayStyles } position={"relative"}>
-
+        <Grid item xs = {1} sx={ handleVerticalBorders(props.dayOfWeek) } position={"relative"}>
 
             {/* This displays the current day of the month */}
             <Box display={"flex"} justifyContent={"space-between"}>

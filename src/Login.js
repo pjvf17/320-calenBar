@@ -70,16 +70,6 @@ export default function Login(){
             <div className="haveaccount2">
                 <Link to={"/register"}>Don't have an account? Register here</Link>
             </div>
-
-            {/* <div className="return2" style={{paddingTop:"5px"}}>
-            <Link to={"/"}>Return to Home</Link>
-            </div> */}
-            <div className="return2">
-            <Link to={"/"}>
-                <Button type='submit' color='primary' variant='contained' fullWidth>Return Home</Button>
-            </Link>
-        </div>
-
         </div>
     )
 

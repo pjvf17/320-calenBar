@@ -13,7 +13,7 @@ import AddCalendar from "./AddCalendar";
 import { Link } from "react-router-dom";
 import { AccountCircle, HowToReg } from "@mui/icons-material";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from '@mui/icons-material/Logout';
 import Login from "./Login";
 import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
@@ -99,26 +99,6 @@ function ResponsiveAppBar(props) {
                     backgroundColor: "#424242",
                   },}}
                 >
-                  <LoginIcon fontSize="small" sx={{ color: "white" }} />
-                  <Link
-                    to={"/login"}
-                    style={{
-                      marginLeft: "10px",
-                      color: "white",
-                      textDecoration: "none",
-                      fontFamily: "Merriweather",
-                    }}
-                  >
-                    Login
-                  </Link>
-                </MenuItem>
-                <Divider sx={{ my: 0.5, backgroundColor: "#3D3D3D", marginLeft: "0.5em", marginRight: "0.5em" }} />
-                <MenuItem
-                  onClick={handleCloseUserMenu}
-                  sx={{ "&:hover": {
-                    backgroundColor: "#424242",
-                  },}}
-                >
                   <HowToReg sx={{ color: "#FFF" }} />
                   <Link
                     to={"/register"}
@@ -130,6 +110,26 @@ function ResponsiveAppBar(props) {
                     }}
                   >
                     Register
+                  </Link>
+                </MenuItem>
+                <Divider sx={{ my: 0.5, backgroundColor: "#3D3D3D", marginLeft: "0.5em", marginRight: "0.5em" }} />
+                <MenuItem
+                  onClick={handleCloseUserMenu}
+                  sx={{ "&:hover": {
+                    backgroundColor: "#424242",
+                  },}}
+                >
+                  <LogoutIcon fontSize="small" sx={{ color: "white" }} />
+                  <Link
+                    to={"/login"}
+                    style={{
+                      marginLeft: "10px",
+                      color: "white",
+                      textDecoration: "none",
+                      fontFamily: "Merriweather",
+                    }}
+                  >
+                    Logout
                   </Link>
                 </MenuItem>
               </Menu>
