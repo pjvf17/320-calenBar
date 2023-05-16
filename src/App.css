@@ -137,6 +137,7 @@
   left:35.5%;
   right:35.5%;
   transform: translate(0%, 190%);
+  justify-content: center;
 }
 
 .haveaccount {
