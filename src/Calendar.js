@@ -1,12 +1,13 @@
 import dayjs from 'dayjs'
 import isBetween from 'dayjs/plugin/isBetween'
 import { useState } from 'react'
-import { Button, Grid, Typography } from '@mui/material'
+import { Button, Dialog, Grid, Typography } from '@mui/material'
 import Box from '@mui/material/Box';
 import Week from './Week'
 import { SvgIcon } from '@mui/material'
 import ArrowForwardIosTwoToneIcon from '@mui/icons-material/ArrowForwardIosTwoTone'
 import ArrowBackIosNewTwoToneIcon from '@mui/icons-material/ArrowBackIosNewTwoTone';
+import Service from './Service';
 
 import AddTask from "./AddTask";
 
@@ -77,6 +78,18 @@ function Calendar(props){
         setTasksInWeeks(stuff.tasksInWeeks)
         setDays(stuff.newDays)
     }
+
+    function handleDeleteCalendar(){
+        Service.deleteCalendar(props.calendar)
+    }
+    function handleOpen(){
+        setOpenConfirmDelete(true)
+    }
+    function handleClose(){
+        setOpenConfirmDelete(false)
+    }
+
+    let [openConfirmDelete, setOpenConfirmDelete]= useState(false)
 
     //probably overcomplicated function to create an array of all days of the month
     function daysOfMonth(){
@@ -224,7 +237,15 @@ function Calendar(props){
                             ))}
                     </Grid>
                 </Grid>
+                    <Button onClick={handleOpen} size='small' sx={{color:"red", paddingTop:"20px"}}>Delete Calendar</Button>
             </Grid>
+
+        <Dialog open={openConfirmDelete} onClose={handleClose}>
+            <Button size='large' sx={{color:"red"}} onClick={handleDeleteCalendar}>
+                Are You Sure You Want To Delete?
+            </Button>
+        </Dialog>
+
         </Box>
     )
 

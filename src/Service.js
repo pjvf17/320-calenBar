@@ -25,6 +25,10 @@ class Service {
     return json;
   }
 
+  deleteCalendar(calendar){
+    console.log(calendar)
+  }
+
   addTask(calendarId, task, setReloadCalendar) {
     return fetch(`${REST_API_URL}/calendars/${calendarId}/add_task/`, {
       method: "POST",
