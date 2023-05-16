@@ -4,6 +4,7 @@ import dayjs from "dayjs"
 import isBetween from 'dayjs/plugin/isBetween'
 import { EditModalContext } from "./App"
 import EventDisplay from "./EventDisplay"
+import WarningRoundedIcon from '@mui/icons-material/WarningRounded'
 
 const weekDayStyles = {
     // height: "6em",
@@ -179,6 +180,8 @@ export default function Day(props){
                 let showEnd = props.day !== "0" && thickness[0] && d.isSame(t.end_date, 'day');
                 /* figure out whether or not to show start indicator (end of task) */
                 let showStart = props.day !== "0" && thickness[0] && d.isSame(t.start_date, 'day');
+                /* figure out whether or not to show start indicator (end of task) */
+                let showAfterGoal = props.day !== "0" && thickness[0] && d.isBetween(t.end_date, t.goal_end_date, "day", "[)");
                 /* If tasks is today, draw visible line, otherwise make it invisible */
                 if(!t.is_event && d.isBetween(t.start_date, t.end_date, "day", "[]")){
 
@@ -209,6 +212,10 @@ export default function Day(props){
                                     <div>
                                         <div style={{background: startFill, height: "100%", width: "4%", left: "0px", position: "absolute"}}></div>
                                         <div style={{width: 0, height: 0, borderTop: "5px solid transparent", borderBottom: "5px solid transparent", borderLeft: "7px solid " + startFill, left: "4%", top: "10%", position: "absolute"}}></div>
+                                    </div>
+                                    {/* After goal indicator */}
+                                    <div>
+                                        {showAfterGoal? <Tooltip style = {{position: "absolute"}}title = "PAST GOAL DATE"><WarningRoundedIcon fontSize = "inherit"/></Tooltip> : ""}
                                     </div>
                                 </div>
                             </Tooltip>
