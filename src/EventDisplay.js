@@ -36,7 +36,7 @@ export default function EventDisplay({ events, day, calendar }) {
 
       <Dialog open={open} onClose={handleClose}>
 
-      <h2>Events Today: {day.format('MM/DD/YYYY')}</h2>
+      <h2>Events On {day.format('MMM D, YYYY')}</h2>
 
         {events.map((e, i) => {
             return(
@@ -57,7 +57,7 @@ export default function EventDisplay({ events, day, calendar }) {
                     <Stack>
                     <Typography fontSize="large">{e.title}</Typography>
                     <Typography fontSize="medium">{e.description}</Typography>
-                    <Typography fontSize="medium">{dayjs(e.start_date).format("h:mm A")}</Typography>
+                    <Typography fontSize="medium">{dayjs(e.start_date).format("h:mm A")} to {dayjs(e.start_date).add(e.event_duration, "h").format("h:mm A")}</Typography>
                     <Typography fontSize="medium">{e.event_duration + " hours long"}</Typography>
                     </Stack>
 
