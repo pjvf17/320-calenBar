@@ -123,7 +123,7 @@ export default function AddTask({ calendar, event, defaultDay }) {
 
           <form onSubmit={handleSubmit} action={<Link to="/login" />}>
             <FormControlLabel
-              label="One Time Event"
+              label="One Day Event"
               control={
                 <Checkbox
                   checked={isEvent}
