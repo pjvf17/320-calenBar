@@ -242,7 +242,10 @@ function Calendar(props){
 
         <Dialog open={openConfirmDelete} onClose={handleClose}>
             <Button size='large' sx={{color:"red"}} onClick={handleDeleteCalendar}>
-                Are You Sure You Want To Delete?
+                Confirm Delete Calendar
+            </Button>
+            <Button size='large' sx={{color:"blue"}} onClick={handleClose}>
+                Cancel
             </Button>
         </Dialog>
 
