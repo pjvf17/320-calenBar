@@ -2,7 +2,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
-import { Stack, Link } from '@mui/material'
+import { Stack, Link, Popover, Container } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { MuiColorInput } from 'mui-color-input'
 import dayjs from 'dayjs';
@@ -10,6 +10,8 @@ import React, { useContext } from 'react';
 import Service from './Service';
 import { ReloadCalendarContext, EditModalContext } from './App';
 import { DateTimePicker } from '@mui/x-date-pickers';
+import ColorPalettePicker from "./ColorPalettePicker"
+
 
 export default function EditTask({calendar}) {
   const { reloadCalendar, setReloadCalendar } = useContext(ReloadCalendarContext)
@@ -28,6 +30,20 @@ export default function EditTask({calendar}) {
   const handleClose = () => {
     setEditModalOpen(false)
   };
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+
+  const colorPopoverHandleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const colorPopoverHandleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const colorPopoverOpen = Boolean(anchorEl);
+  const colorPopoverId = editModalOpen ? 'simple-popover' : undefined;
 
 // https://www.copycat.dev/blog/material-ui-form/
 
@@ -127,8 +143,31 @@ export default function EditTask({calendar}) {
                     sx={{mb: 4}}
                 />}
 
-                <MuiColorInput label={"color"} value={editTask.color} onChange={(newColor) => setEditTask({...editTask, color: newColor})} />
-
+            <Button variant="outlined" onClick={colorPopoverHandleClick}
+              style={{ fontSize: "Medium", justifyContent:"center", borderRadius: "20px", 
+               textTransform: "capitalize", backgroundColor:editTask.color, color:"white",
+              fontFamily: "Merriweather", width: "11.5em", textAlign: "center", left: "-2px" }}
+             >
+              Color Palette
+            </Button>
+            <Popover
+              id={colorPopoverId}
+              open={colorPopoverOpen}
+              anchorEl={anchorEl}
+              onClose={colorPopoverHandleClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+            >
+              
+              <Container>
+               <ColorPalettePicker
+                onChange={e => setEditTask({...editTask, color: e})}
+               /> 
+              </Container>
+            
+              </Popover>
               </Stack>
 
               <br/>
