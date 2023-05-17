@@ -95,26 +95,9 @@ export default function AddTask({ calendar, event, defaultDay }) {
     <div>
       <Button
         variant="contained"
-<<<<<<< Updated upstream
-        style={{
-          fontSize: "medium",
-          justifyContent: "center",
-          borderRadius: "20px",
-          backgroundColor: "#1976d2",
-          textTransform: "capitalize",
-          fontFamily: "Merriweather",
-          width: "auto",
-          textAlign: "center",
-          left: "-2px",
-          paddingLeft: "50px",
-          paddingRight: "50px",
-          width: "240px",
-        }}
-=======
         style={{ fontSize: "medium", justifyContent:"center", borderRadius: "20px", 
                  backgroundColor: "#1976d2", textTransform: "capitalize", 
                  fontFamily: "Merriweather", width: "12em", textAlign: "center", left: "-2px" }}
->>>>>>> Stashed changes
         onClick={handleClickOpen}
       >
         Add {event ? "Event" : "Task"} To{" "}

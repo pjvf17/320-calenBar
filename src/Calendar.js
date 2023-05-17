@@ -162,11 +162,7 @@ function Calendar(props){
                 currently this can only show one month at a time */}
             <Box flex-direction="row" sx={{ border: "1px black solid", marginBottom: "10px" }} display="inline-flex" justifyContent="space-between"
                  maxWidth={"90%"} backgroundColor={"#EEEEEE"}
-<<<<<<< Updated upstream
-                 borderRadius={"25px"} width={"1275px"} paddingTop={"25px"} paddingBottom={"25px"} alignItems={"center"} boxShadow={"2px 2px 3px 1px rgb(207, 207, 207)"}>
-=======
-                 borderRadius={"25px"} width={"1275px"} paddingTop={"25px"} paddingBottom={"25px"} alignItems={"center"}>
->>>>>>> Stashed changes
+                 borderRadius={"25px"} width={"1275px"} paddingTop={"25px"} paddingBottom={"25px"} alignItems={"center"}  boxShadow={"2px 2px 4px 2px rgb(207, 207, 207)"}>
                 <Box flex-direction="row" display="inline-flex" justifyContent={"start"} columnGap={"10px"} paddingLeft={"10px"} boxSizing={"border-box"} maxHeight={"2.5em"}>
                     <Button onClick={prevYear} 
                             sx={{ color: "black", border: "2px #A1A1A1 solid", 
