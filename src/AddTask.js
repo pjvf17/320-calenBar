@@ -95,26 +95,9 @@ export default function AddTask({ calendar, event, defaultDay }) {
     <div>
       <Button
         variant="contained"
-<<<<<<< HEAD
         style={{ fontSize: "medium", justifyContent:"center", borderRadius: "20px", 
                  backgroundColor: "#1976d2", textTransform: "capitalize", 
                  fontFamily: "Merriweather", width: "12em", textAlign: "center", left: "-2px" }}
-=======
-        style={{
-          fontSize: "medium",
-          justifyContent: "center",
-          borderRadius: "20px",
-          backgroundColor: "#1976d2",
-          textTransform: "capitalize",
-          fontFamily: "Merriweather",
-          width: "auto",
-          textAlign: "center",
-          left: "-2px",
-          paddingLeft: "50px",
-          paddingRight: "50px",
-          width: "240px",
-        }}
->>>>>>> 21a9f15e862dcd66ce9688ac50910cd74e3c4ed0
         onClick={handleClickOpen}
       >
         Add {event ? "Event" : "Task"} To{" "}
