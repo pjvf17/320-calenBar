@@ -46,8 +46,16 @@ export default function Login(){
                     type="username"
                     autoComplete="current-username"
                     variant="standard"
+                    fontFamily={"Merriweather"}
+                    inputProps={{
+                        style: {fontFamily: "Merriweather"}
+                    }}
+                    InputLabelProps={{
+                        style: {fontFamily: "Merriweather"}
+                    }}
                     value={userName}
                     onChange={e=>setUserName(e.target.value)}
+                    
                 />
             </Box>
             <Box>
@@ -57,7 +65,13 @@ export default function Login(){
                     type="password"
                     autoComplete="current-password"
                     variant="standard"
-                    fontFamily="Merriweather"
+                    fontFamily={"Merriweather"}
+                    inputProps={{
+                        style: {fontFamily: "Merriweather"}
+                    }}
+                    InputLabelProps={{
+                        style: {fontFamily: "Merriweather"}
+                    }}
                     value={password}
                     onChange={e=>setPassword(e.target.value)}
                 />
