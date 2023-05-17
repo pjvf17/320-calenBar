@@ -128,6 +128,7 @@ function ResponsiveAppBar(props) {
                       textDecoration: "none",
                       fontFamily: "Merriweather",
                     }}
+                    onClick={() => {localStorage.clear()}}
                   >
                     Logout
                   </Link>

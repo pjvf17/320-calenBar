@@ -167,16 +167,25 @@ export default function Day(props){
     return(
         // Each day is a grid item surrounded by a border
 
-
         <Grid item xs = {1} sx={ handleVerticalBorders(props.dayOfWeek) } position={"relative"}>
-
+            {numTasks > 0 ? 
+                (
+                <Tooltip title={<div style={{ whiteSpace: 'pre-line' }}>{prioString}</div>}>
+                    <Box display={"flex"} justifyContent={"space-between"}>
+                        <Typography variant="dayNumber" paddingTop={1}>{props.day==="0"? <br></br> : props.day.date()}</Typography>
+                        {props.day !== "0"? <EventDisplay events={events} day={dayjs(props.day)} calendar={props.calendar}></EventDisplay> : <br></br>}
+                    </Box>
+                </Tooltip>) : 
+                (
+                <Box display={"flex"} justifyContent={"space-between"}>
+                    <Typography variant="dayNumber" paddingTop={1}>{props.day==="0"? <br></br> : props.day.date()}</Typography>
+                    {props.day !== "0"? <EventDisplay events={events} day={dayjs(props.day)} calendar={props.calendar}></EventDisplay> : <br></br>}
+                </Box>)  
+            }
+            
             {/* This displays the current day of the month */}
-            <Box display={"flex"} justifyContent={"space-between"}>
-                <Typography variant="dayNumber" paddingTop={1}>{props.day==="0"? <br></br> : props.day.date()}</Typography>
-                {props.day !== "0"? <EventDisplay events={events} day={dayjs(props.day)} calendar={props.calendar}></EventDisplay> : <br></br>}
-            </Box>
 
-            <Tooltip title={<div style={{ whiteSpace: 'pre-line' }}>{prioString}</div>}>
+
             <div>
             {/* Create a line for each task */}
             {props.tasks.map((t, i)=> 
@@ -243,8 +252,6 @@ export default function Day(props){
         {numTasks < 1? <br></br> : ""}
 
         </div>
-
-        </Tooltip>
 
 
         </Grid>
