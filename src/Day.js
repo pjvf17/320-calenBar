@@ -152,10 +152,22 @@ export default function Day(props){
         return num
     }
 
-    let numTasks = getNumTasks()
-    let thickness = []
-    let events = []
-    let prioString = ""
+    function getNumTasksToday(){
+        let num = 0
+        let d = dayjs(props.day) 
+        for(const task of props.tasks){
+            if(!task.is_event && d.isBetween(task.start_date, task.end_date, "day", "[]")){
+                num++
+            }
+        }
+        return num
+    }
+
+    let numTasks = getNumTasks();
+    let taskToday = getNumTasksToday();
+    let thickness = [];
+    let events = [];
+    let prioString = "";
     if(props.tasks.length > 0){
         thickness = getThickness(15, 5, 100);
         events = getEvents();
@@ -168,7 +180,7 @@ export default function Day(props){
         // Each day is a grid item surrounded by a border
 
         <Grid item xs = {1} sx={ handleVerticalBorders(props.dayOfWeek) } position={"relative"}>
-            {numTasks > 0 ? 
+            {taskToday > 0 ? 
                 (
                 <Tooltip title={<div style={{ whiteSpace: 'pre-line' }}>{prioString}</div>}>
                     <Box display={"flex"} justifyContent={"space-between"}>
