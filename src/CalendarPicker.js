@@ -45,7 +45,7 @@ export default function CalendarPicker(props){
 
         {calendars.map((cal, i) => {
             const isCurrent = cal.id === props.calendar.id
-            const color = isCurrent? "#6699cc" :"white"
+            const color = isCurrent? "white" :"#6699cc"
             return(
                 <Button variant="contained" 
                 style={{backgroundColor: color, color: "black", paddingTop:"7px", marginRight:"8px"}} 
