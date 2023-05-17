@@ -1,7 +1,10 @@
 import { useState } from "react"
-import { TextField, Stack, Button } from "@mui/material"
+import { TextField, Stack } from "@mui/material"
 import Service from "./Service"
 import { Link } from "react-router-dom"
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 
 export default function Login(){
@@ -31,56 +34,62 @@ export default function Login(){
     }
 
     return (
-        <div className="login" style={{textAlign:"center"}}>
+        <Box className="login" rowGap={"5px"} display="flex" flexDirection={"column"} justifyContent={"flex-start"} 
+        alignItems={"center"} margin={"0 auto"} position={"relative"} top={"1.5em"} boxSizing={"border-box"} height={"40em"}>
+            <Box paddingTop={"30px"}>
+                <Typography className="loginTitle" variant={"h3"} fontFamily={"Merriweather"}>Login to calenBar</Typography>
+            </Box>
+            <Box paddingTop={"120px"}>
+                <TextField
+                    id="username-input"
+                    label="Username"
+                    type="username"
+                    autoComplete="current-username"
+                    variant="standard"
+                    fontFamily={"Merriweather"}
+                    inputProps={{
+                        style: {fontFamily: "Merriweather"}
+                    }}
+                    InputLabelProps={{
+                        style: {fontFamily: "Merriweather"}
+                    }}
+                    value={userName}
+                    onChange={e=>setUserName(e.target.value)}
+                    
+                />
+            </Box>
+            <Box>
+                <TextField
+                    id="password-input"
+                    label="Password"
+                    type="password"
+                    autoComplete="current-password"
+                    variant="standard"
+                    fontFamily={"Merriweather"}
+                    inputProps={{
+                        style: {fontFamily: "Merriweather"}
+                    }}
+                    InputLabelProps={{
+                        style: {fontFamily: "Merriweather"}
+                    }}
+                    value={password}
+                    onChange={e=>setPassword(e.target.value)}
+                />
+            </Box>
 
-            <h2 className="loginTitle">Login to calenBar</h2>
+            <Box className="Login" paddingTop={"30px"}>
+                <Button sx={{width: "200px", fontFamily: "Merriweather" }} type='submit' color='primary' variant='contained' onClick={attemptLogin}>Login</Button>
+            </Box>
 
-            <div>
-            <TextField
-                id="username-input"
-                label="Username"
-                type="username"
-                autoComplete="current-username"
-                variant="standard"
-                value={userName}
-                onChange={e=>setUserName(e.target.value)}
-            />
-            </div>
-            <div>
-            <TextField
-                id="password-input"
-                label="Password"
-                type="password"
-                autoComplete="current-password"
-                variant="standard"
-                value={password}
-                onChange={e=>setPassword(e.target.value)}
-            />
-            </div>
-
-            <div className="Login">
-            <Button type='submit' color='primary' variant='contained' fullWidth onClick={attemptLogin}>Login</Button>
-            </div>
-
-            <div className="Lerror">
+            <Box className="Lerror">
                 {/* <div className="error"> */}
-                    <div style={{color:"red"}}>{errorMsg}</div>
+                    <Box style={{color:"red"}}>{errorMsg}</Box>
                 {/* </div> */}
-            </div>
-            <div className="haveaccount2">
+            </Box>
+            <Box className="haveaccount2">
                 <Link to={"/register"}>Don't have an account? Register here</Link>
-            </div>
-
-            {/* <div className="return2" style={{paddingTop:"5px"}}>
-            <Link to={"/"}>Return to Home</Link>
-            </div> */}
-            <div className="return2">
-            <Link to={"/"}>
-                <Button type='submit' color='primary' variant='contained' fullWidth>Return Home</Button>
-            </Link>
-        </div>
-
-        </div>
+            </Box>
+        </Box>
     )
 
 }

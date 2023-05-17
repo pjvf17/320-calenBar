@@ -21,8 +21,20 @@ const weekendDayStyles = {
 }
 
 
-
-let count = -1;
+const handleVerticalBorders = (num) => {
+    if (num === 0) {
+        return {
+            textAlign: "left",
+            borderTop: "1px solid #9F9F9F",
+        }
+    } else {
+        return {
+            textAlign: "left",
+            borderTop: "1px solid #9F9F9F",
+            borderLeft: "1px solid #9F9F9F",
+        }
+    }
+}
 
 dayjs.extend(isBetween)
 
@@ -155,7 +167,7 @@ export default function Day(props){
     return(
         // Each day is a grid item surrounded by a border
 
-        <Grid item xs = {1} sx={ ( (count++) % 7) === 0 ? weekendDayStyles : weekDayStyles } position={"relative"}>
+        <Grid item xs = {1} sx={ handleVerticalBorders(props.dayOfWeek) } position={"relative"}>
             {numTasks > 0 ? 
                 (
                 <Tooltip title={<div style={{ whiteSpace: 'pre-line' }}>{prioString}</div>}>

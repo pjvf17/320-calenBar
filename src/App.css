@@ -29,43 +29,39 @@
 }
 
 .authentication {
-  justify-content: center;
-  height: 550px;
+  /* justify-content: center; */
+  /* height: 550px; */
   width: 35%;
   box-shadow: 11px 12px 13px 12px rgb(207, 207, 207);
-  padding-top: 30px;
+  /* padding-top: 30px; */
   border-radius: 60px; 
   background-color: white;
-  text-align: center;
-  transform: translate(90%, 15%);
+  /* text-align: center; */
+  /* transform: translate(90%, 15%); */
 }
 
 .login {
-  justify-content: center;
   height: 550px;
   width: 35%;
   box-shadow: 11px 12px 13px 12px rgb(207, 207, 207);
-  padding-top: 30px;
+  /* padding-top: 30px; */
   border-radius: 60px; 
   background-color: white;
-  text-align: center;
-  transform: translate(90%, 15%);
+  /* text-align: center; */
+}
+
+#username-input {
+  font-family: "Merriweather";
 }
 
 .registerTitle {
-  background: fixed;
+  /* background: fixed;
   font-family: Merriweather;
-  font-size: 40px;
-}
-
-.loginTitle {
-  background: fixed;
-  font-family: Merriweather;
-  font-size: 40px;
+  font-size: 40px; */
 }
 
 .Register {
-  width: 180px;
+  /* width: 180px;
   height: 40px;
   font-family: Merriweather;
   color: white;
@@ -75,23 +71,20 @@
   left:35.5%;
   right:35.5%;
   /* padding-right: 35px; */
-  transform: translate(0%, 50%);
+  /* transform: translate(0%, 50%); */
   
 }
 
-.Login {
-  width: 180px;
-  height: 40px;
-  font-family: Merriweather;
+/*.Login {
+  /* width: 180px;
+  height: 40px; */
+  /* font-family: Merriweather;
   color: white;
   font-size: 25px;
   border:rgb(0, 0, 0);
-  position: absolute;
-  left:35.5%;
-  right:35.5%;
   /* padding-right: 35px; */
-  transform: translate(0%, 75%);
-}
+  /* transform: translate(0%, 75%); */
+/* } */
 
 .return a {
   width: 180px;
@@ -142,10 +135,12 @@
 
 .haveaccount {
   transform: translate(0%, 340%);
+  font-family: "Merriweather";
 }
 
 .haveaccount2 {
   transform: translate(0%, 360%);
+  font-family: "Merriweather";
 }
 
 @keyframes App-logo-spin {
